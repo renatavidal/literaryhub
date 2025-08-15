@@ -1,0 +1,59 @@
+## Archivos de usuario de Visual Studio
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## Carpetas de build y binarios
+bin/
+obj/
+[Bb]uild/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## Paquetes NuGet descargados
+*.nupkg
+*.snupkg
+packages/
+# Si quieres incluir el packages.config pero no los paquetes:
+!packages/*.config
+
+## Archivos de configuración local
+*.local.json
+appsettings.Development.json
+
+## Archivos temporales
+*.tmp
+*.temp
+*.log
+*.vspscc
+*.vssscc
+*.pdb
+
+## Carpeta de VS local
+.vs/
+
+## Cache de Rider / ReSharper
+.idea/
+_ReSharper*/
+*.DotSettings.user
+
+## Configuración de IIS Express
+.vscode/
+.vscode/*
+IISExpress/
+
+## Archivos generados por publicación
+publish/
+*.pubxml
+*.publishproj
+
+## Archivos de dependencias
+node_modules/
+
+## Archivos de sistema
+.DS_Store
+Thumbs.db

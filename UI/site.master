@@ -1,0 +1,89 @@
+﻿<%@ Master Language="C#" CodeFile="site.master.cs" Inherits="Site" %>
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+    <link href="~/Content/site.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</head>
+<body class="theme-brown">
+    <form id="form1" runat="server">
+        <!-- Topbar / Menú horizontal -->
+        <header class="topbar">
+            <div class="container topbar-inner">
+                <a href="~/Default.aspx" class="brand">Literary Hub</a>
+
+                <nav class="nav-horizontal" aria-label="Navegación principal">
+                    <ul>
+                        <li><a href="/Default.aspx" class="active">Home</a></li>
+                        <li><a href="/Community.aspx">Community</a></li>
+                        <li><a href="/About.aspx">About</a></li>
+                    </ul>
+                </nav>
+
+                <div class="top-actions">
+                    <!-- Selector de idioma -->
+                    <label for="ddlLangTop" class="sr-only">Idioma</label>
+                    <asp:DropDownList ID="ddlLangTop" runat="server" CssClass="lang-select">
+                        <asp:ListItem Text="ES" Value="es" Selected="True"></asp:ListItem>
+                        <asp:ListItem Text="EN" Value="en"></asp:ListItem>
+                        <asp:ListItem Text="PT" Value="pt"></asp:ListItem>
+                    </asp:DropDownList>
+
+                    <a class="btn ghost" href="/Login.aspx">Log in</a>
+                    <a class="btn solid" href="/Signup.aspx">Sign up</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Layout con sidebar (menú vertical) + contenido -->
+        <div class="container layout">
+            <!-- Menú vertical -->
+            <aside class="sidebar" aria-label="Navegación secundaria">
+                <div class="sidebar-header">Browse</div>
+                <ul class="nav-vertical">
+                    <li><a href="/Books.aspx">Popular Books</a></li>
+                    <li><a href="/Groups.aspx">Reading Groups</a></li>
+                    <li><a href="/Genres.aspx">Classics</a></li>
+                    <li><a href="/NewReleases.aspx">New Releases</a></li>
+                    <li><a href="/Recommendations.aspx">For You</a></li>
+                </ul>
+
+                <div class="sidebar-lang">
+                    <label for="ddlLangSide">Idioma</label>
+                    <asp:DropDownList ID="ddlLangSide" runat="server" CssClass="lang-select full">
+                        <asp:ListItem Text="Español" Value="es" Selected="True"></asp:ListItem>
+                        <asp:ListItem Text="English" Value="en"></asp:ListItem>
+                        <asp:ListItem Text="Português" Value="pt"></asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </aside>
+
+            <!-- Contenido principal -->
+            <main class="content">
+                
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </main>
+        </div>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container footer-grid">
+                <div class="footer-brand">Literary Hub</div>
+                <nav aria-label="Legal y contacto" class="footer-links">
+                    <a href="About.aspx">¿Quiénes somos?</a>
+                    <a href="Contact.aspx">Contáctenos</a>
+                    <a href="Terms.aspx">Términos y condiciones</a>
+                    <a href="Security.aspx">Políticas de seguridad</a>
+                    <a href="Privacy.aspx">Privacidad</a>
+                </nav>
+                <div class="footer-copy">
+                    © <%= DateTime.Now.Year %> Literary Hub. Todos los derechos reservados.
+                </div>
+            </div>
+        </footer>
+    </form>
+</body>
+</html>

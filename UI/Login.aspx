@@ -40,7 +40,7 @@
       <asp:RequiredFieldValidator ID="reqPassword" runat="server"
         ControlToValidate="txtPassword" ErrorMessage="Ingresá tu contraseña."
         Display="Dynamic" SetFocusOnError="true" ValidationGroup="login" />
-      <!-- Para login usamos una regex amplia (6–128) para no bloquear contraseñas existentes -->
+     
       <asp:RegularExpressionValidator ID="revPassword" runat="server"
         ControlToValidate="txtPassword" ValidationExpression="^.{6,128}$"
         ErrorMessage="La contraseña debe tener entre 6 y 128 caracteres."
@@ -56,7 +56,7 @@
 
     <div>
             <asp:Button ID="btnLogin" runat="server" Text="Ingresar" CssClass="btn solid"
-            OnClientClick="return doLoginApi();" UseSubmitBehavior="false" />
+            OnClick="btnLogin_Click" UseSubmitBehavior="false" />
         <asp:Label ID="lblLoginResult" runat="server" />
     </div>
 

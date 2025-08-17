@@ -6,7 +6,13 @@ using System.Web.UI;
 // public partial class VerifyEmailPending : AuthenticatedPage
 public partial class VerifyEmailPending : ReaderPage
 {
-    protected UserSession CurrentUser => Session["auth"] as UserSession;
+    protected UserSession CurrentUser
+    {
+        get
+        {
+            return (Session != null) ? (Session["auth"] as UserSession) : null;
+        }
+    }
 
     protected void Page_Load(object sender, EventArgs e)
     {

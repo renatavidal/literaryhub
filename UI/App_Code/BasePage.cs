@@ -1,97 +1,77 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Linq;
-using System.Net.Http;
+﻿using System;
 
 public abstract class AuthPage : System.Web.UI.Page
 {
-    // Cambiables por clase hija si querés
-    protected virtual bool RequireLogin => true;
-    protected virtual bool RequireVerifiedEmail => false;
-    protected virtual string[] RequiredRoles => new string[0];
-    protected virtual string LoginUrl => "/Login.aspx";
-    protected virtual string AccessDeniedUrl => "/AccessDenied.aspx";
-    protected virtual string VerifyEmailUrl => "/VerifyEmailPending.aspx";
+    // Configurables por las clases hijas (sin '=>' ni null-prop)
+    protected virtual bool RequireLogin { get { return true; } }
+    protected virtual bool RequireVerifiedEmail { get { return false; } }
+    protected virtual string[] RequiredRoles { get { return new string[0]; } }
+    protected virtual string LoginUrl { get { return "/Login.aspx"; } }
+    protected virtual string AccessDeniedUrl { get { return "/AccessDenied.aspx"; } }
+    protected virtual string VerifyEmailUrl { get { return "/VerifyEmailPending.aspx"; } }
 
-    protected UserSession CurrentUser => Context?.Session?["auth"] as UserSession;
+    // Sesión actual (sin '?.')
+    protected UserSession CurrentUser
+    {
+        get
+        {
+            return (Session != null) ? (Session["auth"] as UserSession) : null;
+        }
+    }
 
     protected override void OnInit(EventArgs e)
     {
         base.OnInit(e);
 
-        if (Session["auth"] == null) TryPopulateSessionFromApi();
-
         var auth = CurrentUser;
 
         if (RequireLogin && auth == null)
         {
-            var ret = Server.UrlEncode(Request.RawUrl);
-            Response.Redirect(ResolveUrl(LoginUrl) + "?returnUrl=" + ret, true);
+            RedirectToLogin();
             return;
         }
+
         if (RequireLogin && RequireVerifiedEmail && auth != null && !auth.EmailVerified)
         {
             Response.Redirect(ResolveUrl(VerifyEmailUrl), true);
             return;
         }
-        if (RequireLogin && RequiredRoles.Length > 0)
-        {
-            bool ok = auth != null && Array.Exists(RequiredRoles, r => auth.IsInRole(r));
-            if (!ok) { Response.Redirect(ResolveUrl(AccessDeniedUrl), true); return; }
-        }
-    }
-    private void TryPopulateSessionFromApi()
-    {
-        try
-        {
-            var cookieHeader = Request.Headers["Cookie"];
-            if (string.IsNullOrEmpty(cookieHeader)) return;
 
-            var baseUri = new Uri(Request.Url.GetLeftPart(UriPartial.Authority));
-            var apiUri = new Uri(baseUri, ResolveUrl("/api/me"));
-
-            using (var handler = new HttpClientHandler { UseCookies = false })
-            using (var http = new HttpClient(handler))
+        if (RequireLogin && RequiredRoles != null && RequiredRoles.Length > 0)
+        {
+            bool ok = (auth != null) && HasAnyRole(auth, RequiredRoles);
+            if (!ok)
             {
-                var req = new HttpRequestMessage(HttpMethod.Get, apiUri);
-                req.Headers.TryAddWithoutValidation("Cookie", cookieHeader);
-
-                var resp = http.SendAsync(req).Result;
-                if (!resp.IsSuccessStatusCode) return;
-
-                var json = resp.Content.ReadAsStringAsync().Result;
-                var me = JsonConvert.DeserializeObject<MeResponse>(json);
-
-                if (me?.authenticated == true)
-                {
-                    Session["auth"] = new UserSession
-                    {
-                        UserId = me.userId,
-                        Email = me.email,
-                        EmailVerified = me.emailVerified,
-                        Roles = me.roles ?? new string[0]
-                    };
-                }
+                Response.Redirect(ResolveUrl(AccessDeniedUrl), true);
+                return;
             }
         }
-        catch { /* si falla, la página redirigirá a Login en el flujo normal */ }
     }
 
-    private class MeResponse
+    protected void RedirectToLogin()
     {
-        public bool authenticated { get; set; }
-        public int userId { get; set; }
-        public string email { get; set; }
-        public bool emailVerified { get; set; }
-        public string[] roles { get; set; }
+        string ret = (Request != null && Request.RawUrl != null) ? Request.RawUrl : "/";
+        string url = ResolveUrl(LoginUrl) + "?returnUrl=" + Server.UrlEncode(ret);
+        Response.Redirect(url, true);
+    }
+
+    private static bool HasAnyRole(UserSession auth, string[] required)
+    {
+        if (auth == null || auth.Roles == null || required == null) return false;
+
+        for (int i = 0; i < required.Length; i++)
+        {
+            string r = required[i];
+            if (auth.IsInRole(r)) return true;
+        }
+        return false;
     }
 }
-
 
 // Páginas públicas (no requieren login)
 public abstract class PublicPage : AuthPage
 {
-    protected override bool RequireLogin => false;
+    protected override bool RequireLogin { get { return false; } }
 }
 
 // Cualquier usuario autenticado
@@ -100,24 +80,24 @@ public abstract class AuthenticatedPage : AuthPage
     // RequireLogin = true (de la base)
 }
 
-// Autenticado + email verificado (si usás verificación)
+// Autenticado + email verificado
 public abstract class VerifiedUserPage : AuthenticatedPage
 {
-    protected override bool RequireVerifiedEmail => true;
+    protected override bool RequireVerifiedEmail { get { return true; } }
 }
 
 // Roles específicos
 public abstract class AdminPage : VerifiedUserPage
 {
-    protected override string[] RequiredRoles => new[] { "Admin" };
+    protected override string[] RequiredRoles { get { return new[] { "Admin" }; } }
 }
 
 public abstract class AdminOrEditorPage : VerifiedUserPage
 {
-    protected override string[] RequiredRoles => new[] { "Admin", "Editor" };
+    protected override string[] RequiredRoles { get { return new[] { "Admin", "Editor" }; } }
 }
 
 public abstract class ReaderPage : VerifiedUserPage
 {
-    protected override string[] RequiredRoles => new[] { "Reader" };
+    protected override string[] RequiredRoles { get { return new[] { "Reader" }; } }
 }

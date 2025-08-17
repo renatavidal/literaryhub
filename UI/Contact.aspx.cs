@@ -2,7 +2,7 @@
 using System;
 using System.Web.UI;
 
-public partial class Contact : Page
+public partial class Contact : PublicPage
 {
     protected void Page_Load(object sender, EventArgs e) { }
 

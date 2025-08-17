@@ -51,13 +51,13 @@
       <div>
         <asp:CheckBox ID="chkRemember" runat="server" Text="Recordarme" />
       </div>
-      <a href="~/Forgot.aspx">¿Olvidaste tu contraseña?</a>
+      <a href="/Forgot.aspx">¿Olvidaste tu contraseña?</a>
     </div>
 
     <div>
-      <asp:Button ID="btnLogin" runat="server" Text="Ingresar" CssClass="btn solid"
-        OnClick="btnLogin_Click" ValidationGroup="login" />
-      <asp:Label ID="lblLoginResult" runat="server" />
+            <asp:Button ID="btnLogin" runat="server" Text="Ingresar" CssClass="btn solid"
+            OnClientClick="return doLoginApi();" UseSubmitBehavior="false" />
+        <asp:Label ID="lblLoginResult" runat="server" />
     </div>
 
     <div>¿No tenés cuenta? <a href="~/Signup.aspx">Crear cuenta</a></div>

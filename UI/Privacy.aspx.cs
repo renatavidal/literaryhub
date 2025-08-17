@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Privacy : System.Web.UI.Page
+public partial class Privacy : PublicPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {

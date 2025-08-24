@@ -42,5 +42,5 @@
   <p>Podemos actualizar estos términos; publicaremos la versión vigente en este sitio.</p>
 
   <h2>9. Contacto</h2>
-  <p>Para dudas sobre estos términos, contactanos desde la sección <a href="~/Contact.aspx">Contáctenos</a>.</p>
+  <p>Para dudas sobre estos términos, contactanos desde la sección <a href="/Contact.aspx">Contáctenos</a>.</p>
 </asp:Content>

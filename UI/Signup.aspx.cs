@@ -1,6 +1,9 @@
 ﻿// Signup.aspx.cs
 using System;
 using System.Web.UI;
+using BLL;
+using BE;
+using Servicios;
 
 public partial class Signup : PublicPage
 {
@@ -18,14 +21,32 @@ public partial class Signup : PublicPage
     {
         if (!Page.IsValid) return;
 
-        // TODO: 1) Crear usuario como "no verificado" en tu DB (password con hash+salt).
-        //       2) Generar token aleatorio y fecha de expiración.
-        //       3) Enviar email con link: https://tu-dominio/VerifyEmail.aspx?token=XYZ
-        // Ejemplo (pseudo):
-        // var token = TokenService.CreateForEmail(txtEmail.Text);
-        // EmailService.SendVerification(txtEmail.Text, token);
+        string name = (txtName.Text ?? "").Trim();
+        string lastName = (txtLastName.Text ?? "").Trim();
+        string email = (txtEmail.Text ?? "").Trim();
+        string password = txtPassword.Text ?? "";
 
-        lblSignupResult.CssClass = "success";
-        lblSignupResult.Text = "¡Listo! Te enviamos un correo para verificar tu cuenta.";
+        try
+        {
+            BLLUsuario bll = new BLLUsuario();
+            int newUserId = bll.Registrar(email, name, lastName, password, false); 
+
+            lblSignupResult.CssClass = "success";
+            lblSignupResult.Text = "¡Listo! Te enviamos un correo para verificar tu cuenta.";
+
+            Response.Redirect("/VerifyEmailPending.aspx?email=" + Server.UrlEncode(email), false);
+        }
+        catch (Exception)
+        {
+            lblSignupResult.CssClass = "error";
+            lblSignupResult.Text = "No pudimos crear tu cuenta. Intentá de nuevo.";
+        }
+        finally
+        {
+            // Seguridad: limpiamos los campos de password
+            txtPassword.Text = "";
+            txtConfirm.Text = "";
+        }
     }
 }
+

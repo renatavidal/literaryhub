@@ -1,0 +1,180 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>{{Title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        /* Resets y fixes para clientes de correo */
+        body, table, td, a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        table, td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+            border-collapse: collapse !important;
+        }
+
+        img {
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            outline: none;
+            text-decoration: none;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            height: 100% !important;
+        }
+        /* Responsivo básico */
+        @media screen and (max-width:600px) {
+            .container {
+                width: 100% !important;
+            }
+
+            .p-24 {
+                padding: 16px !important;
+            }
+
+            .h1 {
+                font-size: 22px !important;
+            }
+
+            .btn {
+                display: block !important;
+                width: 100% !important;
+                text-align: center !important;
+            }
+        }
+    </style>
+</head>
+<body style="margin:0; padding:0; background:#faf7f4;">
+    <!-- Preheader oculto (vista previa en bandeja) -->
+    <div style="display:none; visibility:hidden; opacity:0; color:transparent; height:0; max-height:0; overflow:hidden;">
+        {{Preheader}}
+    </div>
+
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#faf7f4;">
+        <tr>
+            <td align="center">
+                <table role="presentation" width="600" cellpadding="0" cellspacing="0" class="container" style="width:600px; max-width:600px; background:#ffffff; margin:24px; border-radius:14px; overflow:hidden;">
+
+                    <!-- HEADER tipográfico en tonos tierra -->
+                    <tr>
+                        <td align="center" style="background:#f5f0ea; padding:26px;">
+                            <span style="font-family:Georgia, 'Times New Roman', serif; font-size:28px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; display:inline-block; color:#6b4226;">
+                                Literary<span style="color:#a47148;">Hub</span>
+                            </span>
+                            <div style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#8b735a; margin-top:6px;">
+                                {{Tagline}}<!-- ej: "Lectura, comunidad y libros" -->
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- HERO / TÍTULO -->
+                    <tr>
+                        <td class="p-24" style="padding:24px;">
+                            <h1 class="h1" style="margin:0 0 12px 0; font-size:24px; line-height:1.3; color:#3b2f2a; font-family:Georgia, 'Times New Roman', serif;">
+                                {{Title}}
+                            </h1>
+                            <p style="margin:0 0 14px 0; font-size:15px; line-height:1.7; color:#5b4f47; font-family:Arial, Helvetica, sans-serif;">
+                                {{IntroHtml}}
+                            </p>
+
+                            <!-- CTA principal -->
+                            {{#CTA}}
+                            <table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:18px;">
+                                <tr>
+                                    <td>
+                                        <a href="{{ButtonUrl}}" class="btn"
+                                           style="background:#a47148; color:#ffffff; text-decoration:none; padding:14px 22px; border-radius:8px; display:inline-block; font-family:Arial, Helvetica, sans-serif; font-size:16px; font-weight:bold;">
+                                            {{ButtonText}}
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                            <p style="font-size:12px; color:#7a6b5e; margin-top:10px; font-family:Arial, Helvetica, sans-serif;">
+                                Si el botón no funciona, copiá y pegá este enlace en tu navegador:<br>
+                                <span style="word-break:break-all; color:#6b4226;">{{ButtonUrl}}</span>
+                            </p>
+                            {{/CTA}}
+                        </td>
+                    </tr>
+
+                    <!-- BLOQUE SECUNDARIO (opcional) -->
+                    {{#Secondary}}
+                    <tr>
+                        <td class="p-24" style="padding:0 24px 24px 24px;">
+                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#fbf8f4; border:1px solid #efe7df; border-radius:10px;">
+                                <tr>
+                                    <td style="padding:16px 18px;">
+                                        <div style="font-family:Georgia, 'Times New Roman', serif; font-size:16px; color:#4a3f39; margin-bottom:6px;">
+                                            {{SecondaryTitle}}
+                                        </div>
+                                        <div style="font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:1.7; color:#5b4f47;">
+                                            {{SecondaryHtml}}
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    {{/Secondary}}
+
+                    <!-- AYUDA / SOPORTE -->
+                    <tr>
+                        <td class="p-24" style="padding:0 24px 24px 24px;">
+                            <div style="font-family:Arial, Helvetica, sans-serif; font-size:13px; line-height:1.6; color:#7a6b5e;">
+                                ¿Necesitás ayuda? Escribinos a
+                                <a href="mailto:{{SupportEmail}}" style="color:#a47148; text-decoration:none;">{{SupportEmail}}</a>.
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- DIVISOR -->
+                    <tr>
+                        <td style="padding:0 24px;">
+                            <hr style="border:none; border-top:1px solid #efe7df; margin:0;">
+                        </td>
+                    </tr>
+
+                    <!-- FOOTER elegante -->
+                    <tr>
+                        <td align="center" style="background:#f5f0ea; padding:18px;">
+                            <div style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#8b735a;">
+                                {{FooterText}}<br>
+                                <span style="color:#A18C78;">{{CompanyName}}</span> · {{CompanyAddress}}
+                            </div>
+
+                            <!-- Redes (opcional) -->
+                            {{#Social}}
+                            <div style="margin-top:8px;">
+                                <a href="{{Instagram}}" style="font-family:Arial; font-size:12px; color:#a47148; text-decoration:none; margin:0 6px;">Instagram</a> |
+                                <a href="{{Twitter}}" style="font-family:Arial; font-size:12px; color:#a47148; text-decoration:none; margin:0 6px;">X</a> |
+                                <a href="{{Facebook}}" style="font-family:Arial; font-size:12px; color:#a47148; text-decoration:none; margin:0 6px;">Facebook</a>
+                            </div>
+                            {{/Social}}
+
+                            <!-- Preferencias (opcional) -->
+                            {{#Prefs}}
+                            <div style="margin-top:8px; font-family:Arial; font-size:11px;">
+                                <a href="{{ManagePrefsUrl}}" style="color:#a47148; text-decoration:none;">Gestionar preferencias</a>
+                                ·
+                                <a href="{{UnsubscribeUrl}}" style="color:#a47148; text-decoration:none;">Darse de baja</a>
+                            </div>
+                            {{/Prefs}}
+                        </td>
+                    </tr>
+
+                </table>
+                <div style="height:24px;"></div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

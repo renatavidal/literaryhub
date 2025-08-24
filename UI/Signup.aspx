@@ -94,8 +94,8 @@
     <div class="form-row">
       <asp:CheckBox ID="chkTerms" runat="server"
         Text="Acepto los " />
-      <a href="~/Terms.aspx" target="_blank">Términos y condiciones</a> y
-      <a href="~/Privacy.aspx" target="_blank">Privacidad</a>.
+      <a href="/Terms.aspx" target="_blank">Términos y condiciones</a> y
+      <a href="/Privacy.aspx" target="_blank">Privacidad</a>.
       <asp:CustomValidator ID="cvTerms" runat="server"
         OnServerValidate="cvTerms_ServerValidate"
         ErrorMessage="Debés aceptar los Términos y la Privacidad."
@@ -109,6 +109,6 @@
       <asp:Label ID="lblSignupResult" runat="server" />
     </div>
 
-    <div>¿Ya tenés cuenta? <a href="~/Login.aspx">Iniciar sesión</a></div>
+    <div>¿Ya tenés cuenta? <a href="/Login.aspx">Iniciar sesión</a></div>
   </div>
 </asp:Content>

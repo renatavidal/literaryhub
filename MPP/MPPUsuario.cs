@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Data;
+using System.Data.SqlClient;
 using BE;
 using DAL;
 
@@ -58,11 +59,13 @@ namespace MPP
         }
 
         /// <summary>Crea usuario y devuelve el nuevo Id. Requiere que el SP haga SELECT SCOPE_IDENTITY().</summary>
-        public int CrearUsuario(string email, string passwordHash, bool emailVerified)
+        public int CrearUsuario(string email, string nombre, string apellido, string passwordHash, bool emailVerified)
         {
             var h = new Hashtable
-            {
+            {   
                 { "@Email", email },
+                { "@Nombre", nombre },
+                { "@Apellido", apellido },
                 { "@PasswordHash", passwordHash },
                 { "@EmailVerified", emailVerified }
             };
@@ -90,5 +93,111 @@ namespace MPP
             };
             _datos.Escribir("s_bitacora_login", h);
         }
+        public void RegistrarCambioContrasena(int userId, string agente)
+        {
+            var h = new Hashtable
+            {
+                { "@UserId", userId },
+                { "@Descripcion",  "Usuario modifico su contraseña" },
+                { "@Agente", agente ?? "" },
+                { "@Fecha", DateTime.UtcNow }
+            };
+            _datos.Escribir("s_bitacora_login", h);
+        }
+        public void RegistrarRegistro(int userId, string agente)
+        {
+            var h = new Hashtable
+            {
+                { "@UserId", userId },
+                { "@Descripcion",  "Nuevo Usuario Registrado" },
+                { "@Agente", agente ?? "" },
+                { "@Fecha", DateTime.UtcNow }
+            };
+            _datos.Escribir("s_bitacora_login", h);
+        }
+        public void InsertEmailVerificationToken(int userId, string token, DateTime expiresAtUtc)
+        {
+            var h = new Hashtable
+            {
+                { "@UserId", userId },
+                { "@Token",  token},
+                { "@ExpiresAt", expiresAtUtc }
+
+            };
+             _datos.Escribir("sp_EmailToken_Insert", h);
+        }
+        public BEEmailVerificationToken GetToken(string token)
+        {
+            var h = new Hashtable
+            {
+                { "@Token", token }
+            };
+
+            DataTable dt = _datos.Leer("sp_EmailToken_Get", h);
+
+            if (dt.Rows.Count == 0) return null;
+
+            DataRow row = dt.Rows[0];
+            var be = new BEEmailVerificationToken
+            {
+                Id = (Guid)(row["Id"]),
+                UserId = Convert.ToInt32(row["UserId"]),
+                Token = Convert.ToString(row["Token"]),
+                ExpiresAt = Convert.ToDateTime(row["ExpiresAt"]),
+                Used = Convert.ToBoolean(row["Used"]),
+               
+            };
+
+            return be;
+        }
+        public void MarkTokenUsed(Guid id)
+        {
+            var h = new Hashtable
+            {
+                { "@Id", id }
+            };
+
+            _datos.Escribir("sp_EmailToken_MarkUsed", h);
+        }
+
+        // Marcar email del usuario como verificado
+        public void MarkEmailVerified(int userId)
+        {
+            var h = new Hashtable
+            {
+                { "@UserId", userId }
+            };
+
+            _datos.Escribir("sp_User_EmailVerified_Set", h);
+        }
+        public BEUsuarioAuth GetUserByEmail(string email)
+        {
+            var h = new Hashtable { { "@Email", email } };
+            DataTable dt = _datos.Leer("sp_User_GetByEmail", h);
+            if (dt.Rows.Count == 0) return null;
+
+            DataRow r = dt.Rows[0];
+            var be = new BEUsuarioAuth();
+            be.Id = Convert.ToInt32(r["Id"]);
+            be.Email = Convert.ToString(r["Email"]);
+            be.PasswordHash = Convert.ToString(r["PasswordHash"]);
+            be.EmailVerified = Convert.ToBoolean(r["EmailVerified"]);
+            return be;
+        }
+        public void SetPassword(int userId, string passwordHash)
+        {
+            var h = new Hashtable {
+            { "@UserId", userId },
+            { "@PasswordHash", passwordHash }
+        };
+            _datos.Escribir("sp_User_SetPassword", h);
+        }
+        public void MarkTokenUsed(int tokenId)
+        {
+            var h = new Hashtable { { "@Id", tokenId } };
+            _datos.Escribir("sp_EmailToken_MarkUsed", h);
+        }
+
     }
 }
+

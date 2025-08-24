@@ -17,7 +17,7 @@
 
                 <nav class="nav-horizontal" aria-label="Navegación principal">
                     <ul>
-                        <li><a href="/Landing.aspx" class="active">Home</a></li>
+                        <li><a href="/Home.aspx" class="active">Home</a></li>
                         <li><a href="/Community.aspx">Community</a></li>
                         <li><a href="/About.aspx">About</a></li>
                     </ul>
@@ -32,8 +32,44 @@
                         <asp:ListItem Text="PT" Value="pt"></asp:ListItem>
                     </asp:DropDownList>
 
-                    <a class="btn ghost" href="/Login.aspx">Log in</a>
-                    <a class="btn solid" href="/Signup.aspx">Sign up</a>
+                    <asp:Panel ID="pnlAnon" runat="server" CssClass="auth-actions">
+        <a class="btn ghost" href="/Login.aspx">Log in</a>
+        <a class="btn solid" href="/Signup.aspx">Sign up</a>
+      </asp:Panel>
+
+      <!-- Bloque para USUARIOS LOGUEADOS -->
+      <asp:Panel ID="pnlAuth" runat="server" CssClass="account" Visible="false">
+        <button id="accountBtn" type="button" class="icon-btn" onclick="toggleMenu()">
+          <span class="avatar"><asp:Literal ID="litInitials" runat="server" /></span>
+          <span class="muted"><asp:Literal ID="litEmail" runat="server" /></span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#7a6b5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+
+        <div id="accountMenu" class="dropdown">
+          <div class="dd-header">
+            Conectado como <strong><asp:Literal ID="litEmailSmall" runat="server" /></strong>
+          </div>
+
+          <!-- Si el email NO está verificado, opcional mostrar atajo -->
+          <asp:Panel ID="pnlVerifyShortcut" runat="server" Visible="false">
+            <a href="/VerifyEmailPending.aspx" class="dd-item">Verificar email</a>
+            <div style="border-top:1px solid #efe7df"></div>
+          </asp:Panel>
+
+          <a href="/MyAccount.aspx" class="dd-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 7a4 4 0 10-7.001 2.646L6 17v3h3l3.999-3.999A4 4 0 0021 7z" stroke="#6b4226" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Mi cuenta / Cambiar contraseña
+          </a>
+
+          <asp:LinkButton ID="btnLogout" runat="server" CssClass="dd-item" OnClick="btnLogout_Click">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-right:4px">
+              <path d="M12 3v10" stroke="#6b4226" stroke-width="1.6" stroke-linecap="round"/>
+              <path d="M5.5 7a8 8 0 1013 0" stroke="#6b4226" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+            </svg>
+            Cerrar sesión
+          </asp:LinkButton>
+        </div>
+      </asp:Panel>
                 </div>
             </div>
         </header>

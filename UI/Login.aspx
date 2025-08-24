@@ -42,15 +42,12 @@
         Display="Dynamic" SetFocusOnError="true" ValidationGroup="login" />
      
       <asp:RegularExpressionValidator ID="revPassword" runat="server"
-        ControlToValidate="txtPassword" ValidationExpression="^.{6,128}$"
-        ErrorMessage="La contraseña debe tener entre 6 y 128 caracteres."
+        ControlToValidate="txtPassword" ValidationExpression="^.{8,128}$"
+        ErrorMessage="La contraseña debe tener entre 8 y 128 caracteres."
         Display="Dynamic" ValidationGroup="login" />
     </div>
 
     <div class="row-inline">
-      <div>
-        <asp:CheckBox ID="chkRemember" runat="server" Text="Recordarme" />
-      </div>
       <a href="/Forgot.aspx">¿Olvidaste tu contraseña?</a>
     </div>
 

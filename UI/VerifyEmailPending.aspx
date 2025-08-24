@@ -42,12 +42,11 @@
     <div class="verify-actions">
       <asp:Button ID="btnResend" runat="server" CssClass="btn solid" Text="Reenviar verificación" OnClick="btnResend_Click" />
       <asp:Button ID="btnCheck"  runat="server" CssClass="btn ghost" Text="Ya verifiqué, volver a intentar" OnClick="btnCheck_Click" />
-      <asp:HyperLink ID="lnkChangeEmail" runat="server" CssClass="btn ghost" Text="Cambiar email" NavigateUrl="~/MyAccount.aspx" />
-      <asp:HyperLink ID="lnkLogout" runat="server" CssClass="btn ghost" Text="Cerrar sesión" NavigateUrl="~/Logout.aspx" />
+      <asp:HyperLink ID="lnkLogout" runat="server" CssClass="btn ghost" Text="Cerrar sesión" NavigateUrl="/Logout.aspx" />
     </div>
 
     <div class="hint">
-      Revisá la carpeta de spam y asegurate de que <code>no-reply@literaryhub.example</code> esté permitido.
+      Revisá la carpeta de spam y asegurate de que <code>literary.hub.contact@gmail.com</code> esté permitido.
     </div>
 
     <asp:Label ID="lblStatus" runat="server" />

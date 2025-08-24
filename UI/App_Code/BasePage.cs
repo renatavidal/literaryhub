@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Web;
 
 public abstract class AuthPage : System.Web.UI.Page
 {
-    // Configurables por las clases hijas (sin '=>' ni null-prop)
+    
     protected virtual bool RequireLogin { get { return true; } }
     protected virtual bool RequireVerifiedEmail { get { return false; } }
     protected virtual string[] RequiredRoles { get { return new string[0]; } }
@@ -24,16 +25,24 @@ public abstract class AuthPage : System.Web.UI.Page
         base.OnInit(e);
 
         var auth = CurrentUser;
-
+        var here = VirtualPathUtility.ToAppRelative(Request.Path).ToLowerInvariant();
+        string verifyUrlAppRel = VirtualPathUtility
+                                    .ToAppRelative(ResolveUrl(VerifyEmailUrl))
+                                    .ToLowerInvariant();
+        string loginUrlAppRel = VirtualPathUtility
+                                    .ToAppRelative(ResolveUrl(LoginUrl))
+                                    .ToLowerInvariant();
         if (RequireLogin && auth == null)
         {
-            RedirectToLogin();
+            if (here != loginUrlAppRel)
+                RedirectToLogin();
             return;
         }
 
         if (RequireLogin && RequireVerifiedEmail && auth != null && !auth.EmailVerified)
         {
-            Response.Redirect(ResolveUrl(VerifyEmailUrl), true);
+            if (here != verifyUrlAppRel)
+                SafeRedirect(ResolveUrl(VerifyEmailUrl));
             return;
         }
 
@@ -42,17 +51,22 @@ public abstract class AuthPage : System.Web.UI.Page
             bool ok = (auth != null) && HasAnyRole(auth, RequiredRoles);
             if (!ok)
             {
-                Response.Redirect(ResolveUrl(AccessDeniedUrl), true);
+                SafeRedirect(ResolveUrl(AccessDeniedUrl));
                 return;
             }
         }
+    }
+    protected void SafeRedirect(string url)
+    {
+        Response.Redirect(url, false);
+        Context.ApplicationInstance.CompleteRequest();
     }
 
     protected void RedirectToLogin()
     {
         string ret = (Request != null && Request.RawUrl != null) ? Request.RawUrl : "/";
         string url = ResolveUrl(LoginUrl) + "?returnUrl=" + Server.UrlEncode(ret);
-        Response.Redirect(url, true);
+        SafeRedirect(url);
     }
 
     private static bool HasAnyRole(UserSession auth, string[] required)

@@ -8,7 +8,17 @@ using BE;
 
     public partial class Login : PublicPage
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected override bool RequireLogin
+        {
+            get { return false; }
+        }
+
+        protected override bool RequireVerifiedEmail
+        {
+            get { return false; }
+        }
+        protected override string[] RequiredRoles { get { return null; } }
+    protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
@@ -24,28 +34,19 @@ using BE;
 
             var email = (txtEmail.Text ?? "").Trim();
             var password = txtPassword.Text ?? "";
-            var remember = chkRemember.Checked;
             var ret = Request.QueryString["returnUrl"] ?? "";
 
             try
             {
                 var bll = new BLLUsuario();
 
-                BEUsuario be = bll.Login(email, password);      // devuelve null si credenciales inválidas
+                BEUsuario be = bll.Login(email, password);      
 
                 if (be == null)
                 {
                     lblLoginResult.Text = "Credenciales inválidas";
                     return;
                 }
-
-                if (!be.EmailVerified)
-                {
-                    Response.Redirect(ResolveUrl("/VerifyEmailPending.aspx"));
-                    return;
-                }
-
-
                 Session["auth"] = new UserSession
                 {
                     UserId = be.Id,
@@ -55,11 +56,23 @@ using BE;
                 };
                 bll.RegistrarAcceso(be, Request.UserAgent);
 
+                if (!be.EmailVerified)
+                {
+                    Response.Redirect("/VerifyEmailPending.aspx", endResponse: false);
+                    Context.ApplicationInstance.CompleteRequest();
+                    return;
+                }
+
+
+                
+               
+
                 var target = !string.IsNullOrWhiteSpace(ret) && IsSafeLocalUrl(ret)
                     ? ret
                     : ResolveUrl("/Landing.aspx");
 
-                Response.Redirect(target, endResponse: true);
+                Response.Redirect(target, endResponse: false);
+                Context.ApplicationInstance.CompleteRequest();
             }
             catch (Exception)
             {

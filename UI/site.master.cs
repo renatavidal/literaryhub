@@ -1,9 +1,17 @@
 ﻿using System;
+using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 
 public partial class Site : MasterPage
 {
+    protected UserSession CurrentUser
+    {
+        get
+        {
+            return (Session != null) ? (Session["auth"] as UserSession) : null;
+        }
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         if (IsPostBack) return;
@@ -11,6 +19,8 @@ public partial class Site : MasterPage
         var sess = (UserSession)(Session != null ? Session["auth"] : null);
         pnlAnon.Visible = (sess == null);
         pnlAuth.Visible = (sess != null);
+
+        lnkBitacora.Visible = UsuarioActualEsAdmin();
 
         if (sess != null)
         {
@@ -35,6 +45,12 @@ public partial class Site : MasterPage
         Session.Abandon();
         System.Web.Security.FormsAuthentication.SignOut();
         Response.Redirect("~/Login.aspx");
+    }
+    private bool UsuarioActualEsAdmin()
+    {
+        if( CurrentUser != null)
+            return CurrentUser.IsInRole("Admin"); 
+        return false;
     }
 
 

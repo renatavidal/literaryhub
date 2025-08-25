@@ -11,7 +11,6 @@ public abstract class AuthPage : System.Web.UI.Page
     protected virtual string AccessDeniedUrl { get { return "/AccessDenied.aspx"; } }
     protected virtual string VerifyEmailUrl { get { return "/VerifyEmailPending.aspx"; } }
 
-    // Sesión actual (sin '?.')
     protected UserSession CurrentUser
     {
         get

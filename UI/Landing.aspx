@@ -110,6 +110,7 @@
     Sumate a miles de lectores que descubren nuevos libros, se unen a grupos de lectura
     y asisten a eventos en vivo con autores.
   </p>
+    <div class="autor-libreria"> <a runat="server" href="/SignupCliente.aspx" class="signupcliente"> ¿Eres un/a autor/a o tienes una libreria? ¡Sumate, publica y vende!</a></div>
   <div class="cta-row">
     <a runat="server" href="/Login.aspx" class="btn ghost">Iniciar sesión</a>
     <a runat="server" href="/Signup.aspx" class="btn cta">Comenzar</a>

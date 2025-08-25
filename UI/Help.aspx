@@ -96,11 +96,11 @@
 
             <div class="faq">
                 <h3>¿Cómo contacto al soporte técnico?</h3>
-                <p>Podés escribirnos a <a href="mailto:soporte@literaryhub.com">soporte@literaryhub.com</a> o desde la sección <strong>Contáctenos</strong> en la web.</p>
+                <p>Podés escribirnos a <a href="mailto:literary.hub.contact@gmail.com">literary.hub.contact@gmail.com</a> o desde la sección <strong>Contáctenos</strong> en la web.</p>
             </div>
 
             <div class="back-link">
-                <a href="Default.aspx">← Volver al inicio</a>
+                <a href="/Landing.aspx">← Volver al inicio</a>
             </div>
         </div>
     </form>

@@ -68,8 +68,14 @@
           <span class="slider"></span>
         </label>
       </div>
+        <asp:HyperLink ID="lnkBitacora" runat="server"
+            class="sc-item" NavigateUrl="/Bitacora.aspx" Visible="false">
+          <span class="sc-icon">🗒️</span><span class="sc-text">Bitácora</span>
+          <span class="sc-arrow">›</span>
+        </asp:HyperLink>
 
-      <a href="/MyAccount.aspx" class="sc-item">
+
+      <a href="/Forgot.aspx" class="sc-item">
         <span class="sc-icon">🔐</span><span class="sc-text">Seguridad / Cambiar contraseña</span>
         <span class="sc-arrow">›</span>
       </a>

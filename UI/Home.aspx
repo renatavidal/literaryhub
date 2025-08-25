@@ -1,5 +1,5 @@
-﻿<%@ Page Title="Inicio" Language="C#" MasterPageFile="~/MasterPage.master"
-    AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="HomeBooks" %>
+﻿<%@ Page Title="Inicio" Language="C#" MasterPageFile="/site.master"
+    AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="Home" %>
 
 <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
   <style>
@@ -32,28 +32,44 @@
   </div>
 
   <!-- Secciones por género -->
-  <asp:Repeater ID="rptSections" runat="server">
-    <ItemTemplate>
-      <div class="section">
-        <h2><%# Eval("Genre") %></h2>
-        <div class="grid">
-          <asp:Repeater ID="rptBooks" runat="server" DataSource='<%# Eval("Books") %>'>
-            <ItemTemplate>
-              <div class="card">
-                <a href='<%# Eval("InfoLink") %>' target="_blank" rel="noopener">
-                  <img class="cover" src='<%# Eval("Thumbnail") %>' alt='<%# Eval("Title") %>' />
-                </a>
-                <div class="body">
-                  <div class="title"><%# Eval("Title") %></div>
-                  <div class="author"><%# Eval("Authors") %></div>
-                  <div class="price"><%# Eval("PriceLabel") %></div>
-                  <a class="more" href='<%# Eval("InfoLink") %>' target="_blank" rel="noopener">Ver más →</a>
-                </div>
+<asp:Repeater ID="rptSections" runat="server" OnItemDataBound="rptSections_ItemDataBound">
+  <ItemTemplate>
+    <div class="section">
+      <h2><%# DataBinder.Eval(Container.DataItem, "Genre") %></h2>
+
+      <div class="grid">
+        <!-- Repeater interno: el DataSource lo seteo en ItemDataBound -->
+        <asp:Repeater ID="rptBooks" runat="server">
+          <ItemTemplate>
+            <div class="card">
+
+              <asp:HyperLink ID="lnk" runat="server"
+                             NavigateUrl='<%# DataBinder.Eval(Container.DataItem, "InfoLink") %>'
+                             Target="_blank" rel="noopener">
+                <asp:Image ID="img" runat="server" CssClass="cover"
+                           ImageUrl='<%# DataBinder.Eval(Container.DataItem, "Thumbnail") %>'
+                           AlternateText='<%# DataBinder.Eval(Container.DataItem, "Title") %>' />
+              </asp:HyperLink>
+
+              <div class="body">
+                <div class="title"><%# DataBinder.Eval(Container.DataItem, "Title") %></div>
+                <div class="author"><%# DataBinder.Eval(Container.DataItem, "Authors") %></div>
+                <div class="price"><%# DataBinder.Eval(Container.DataItem, "PriceLabel") %></div>
+
+                <asp:HyperLink runat="server" CssClass="more"
+                               NavigateUrl='<%# DataBinder.Eval(Container.DataItem, "InfoLink") %>'
+                               Target="_blank" rel="noopener">Ver más →</asp:HyperLink>
               </div>
-            </ItemTemplate>
-          </asp:Repeater>
-        </div>
+
+            </div>
+          </ItemTemplate>
+        </asp:Repeater>
       </div>
-    </ItemTemplate>
-  </asp:Repeater>
+    </div>
+  </ItemTemplate>
+</asp:Repeater>
+
+
+
+
 </asp:Content>

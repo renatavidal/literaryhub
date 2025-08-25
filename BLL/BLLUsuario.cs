@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Abstracciones;
 using Servicios;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace BLL
 {
@@ -160,8 +161,15 @@ namespace BLL
             _mpp.RegistrarCambioContrasena(userId, "");
             _mpp.SetPassword(userId, hash);
         }
+        public void Contacto(string email, string text, int userId)
+        {
+            _mpp.Contacto(email, text, userId);
+        }
+        public bool ExisteEmail(string email) {
+            return _mpp.ExisteEmail( email);
+        }
 
-        
+
     }
 }
 

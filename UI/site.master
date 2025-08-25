@@ -5,8 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
-    <link href="~/Content/site.css" rel="stylesheet" />
+    <link href="/Content/site.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+    <script src="https://www.google.com/recaptcha/api.js?hl=es" async defer></script>
 </head>
 <body class="theme-brown">
     <form id="form1" runat="server">
@@ -24,52 +25,78 @@
                 </nav>
 
                 <div class="top-actions">
-                    <!-- Selector de idioma -->
-                    <label for="ddlLangTop" class="sr-only">Idioma</label>
-                    <asp:DropDownList ID="ddlLangTop" runat="server" CssClass="lang-select">
-                        <asp:ListItem Text="ES" Value="es" Selected="True"></asp:ListItem>
-                        <asp:ListItem Text="EN" Value="en"></asp:ListItem>
-                        <asp:ListItem Text="PT" Value="pt"></asp:ListItem>
-                    </asp:DropDownList>
+                    <!-- Idioma (si querés, puede quedarse afuera del menú) -->
+<label for="ddlLangTop" class="sr-only">Idioma</label>
+<asp:DropDownList ID="ddlLangTop" runat="server" CssClass="lang-select">
+    <asp:ListItem Text="ES" Value="es" Selected="True" />
+    <asp:ListItem Text="EN" Value="en" />
+    <asp:ListItem Text="PT" Value="pt" />
+</asp:DropDownList>
 
-                    <asp:Panel ID="pnlAnon" runat="server" CssClass="auth-actions">
-        <a class="btn ghost" href="/Login.aspx">Log in</a>
-        <a class="btn solid" href="/Signup.aspx">Sign up</a>
-      </asp:Panel>
+<!-- Anónimo -->
+<asp:Panel ID="pnlAnon" runat="server" CssClass="auth-actions">
+  <a class="btn ghost" href="/Login.aspx">Log in</a>
+  <a class="btn solid" href="/Signup.aspx">Sign up</a>
+</asp:Panel>
 
-      <!-- Bloque para USUARIOS LOGUEADOS -->
-      <asp:Panel ID="pnlAuth" runat="server" CssClass="account" Visible="false">
-        <button id="accountBtn" type="button" class="icon-btn" onclick="toggleMenu()">
-          <span class="avatar"><asp:Literal ID="litInitials" runat="server" /></span>
-          <span class="muted"><asp:Literal ID="litEmail" runat="server" /></span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="#7a6b5e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+<!-- Logueado -->
+<asp:Panel ID="pnlAuth" runat="server" CssClass="account" Visible="false">
+  <button id="accountBtn" type="button" class="account-btn" onclick="toggleMenu()">
+    <span class="avatar"><asp:Literal ID="litInitials" runat="server" /></span>
+    <span class="email"><asp:Literal ID="litEmail" runat="server" /></span>
+    <svg class="caret" width="12" height="12" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+  </button>
 
-        <div id="accountMenu" class="dropdown">
-          <div class="dd-header">
-            Conectado como <strong><asp:Literal ID="litEmailSmall" runat="server" /></strong>
-          </div>
+  <!-- Settings card -->
+  <div id="accountMenu" class="settings-card" role="menu" aria-label="Cuenta">
+    <div class="sc-header">
+      <img class="sc-photo" src="/Content/user-placeholder.png" alt="" />
+      <div class="sc-user">
+        <strong><asp:Literal ID="litEmailSmall" runat="server" /></strong>
+        <small>Mi perfil</small>
+      </div>
+    </div>
+   
 
-          <!-- Si el email NO está verificado, opcional mostrar atajo -->
-          <asp:Panel ID="pnlVerifyShortcut" runat="server" Visible="false">
-            <a href="/VerifyEmailPending.aspx" class="dd-item">Verificar email</a>
-            <div style="border-top:1px solid #efe7df"></div>
-          </asp:Panel>
+    <div class="sc-list">
+      <!-- Dark mode -->
+      <div class="sc-item">
+        <span class="sc-icon">🌙</span>
+        <span class="sc-text">Dark mode</span>
+        <label class="switch">
+          <input id="chkDark" type="checkbox" onchange="toggleDark(this)">
+          <span class="slider"></span>
+        </label>
+      </div>
 
-          <a href="/MyAccount.aspx" class="dd-item">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 7a4 4 0 10-7.001 2.646L6 17v3h3l3.999-3.999A4 4 0 0021 7z" stroke="#6b4226" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Mi cuenta / Cambiar contraseña
-          </a>
+      <a href="/MyAccount.aspx" class="sc-item">
+        <span class="sc-icon">🔐</span><span class="sc-text">Seguridad / Cambiar contraseña</span>
+        <span class="sc-arrow">›</span>
+      </a>
 
-          <asp:LinkButton ID="btnLogout" runat="server" CssClass="dd-item" OnClick="btnLogout_Click">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="margin-right:4px">
-              <path d="M12 3v10" stroke="#6b4226" stroke-width="1.6" stroke-linecap="round"/>
-              <path d="M5.5 7a8 8 0 1013 0" stroke="#6b4226" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-            </svg>
-            Cerrar sesión
-          </asp:LinkButton>
-        </div>
-      </asp:Panel>
+      <a href="/Privacy.aspx" class="sc-item">
+        <span class="sc-icon">🛡️</span><span class="sc-text">Privacidad</span>
+        <span class="sc-arrow">›</span>
+      </a>
+
+      <a href="/Help.aspx" class="sc-item">
+        <span class="sc-icon">❓</span><span class="sc-text">Ayuda / FAQ</span>
+        <span class="sc-arrow">›</span>
+      </a>
+
+      <a href="/About.aspx" class="sc-item">
+        <span class="sc-icon">ℹ️</span><span class="sc-text">Acerca de</span>
+        <span class="sc-arrow">›</span>
+      </a>
+
+      <div class="sc-sep"></div>
+
+      <asp:LinkButton ID="btnLogout" runat="server" CssClass="sc-item danger" OnClick="btnLogout_Click">
+        <span class="sc-icon">⏻</span><span class="sc-text">Cerrar sesión</span>
+      </asp:LinkButton>
+    </div>
+  </div>
+</asp:Panel>
                 </div>
             </div>
         </header>
@@ -122,4 +149,30 @@
         </footer>
     </form>
 </body>
+        <script>
+            function toggleMenu() {
+                var dd = document.getElementById('accountMenu');
+                if (dd) dd.classList.toggle('show');
+            }
+
+            document.addEventListener('click', function (ev) {
+                var btn = document.getElementById('accountBtn');
+                var dd = document.getElementById('accountMenu');
+                if (!btn || !dd) return;
+                if (!btn.contains(ev.target) && !dd.contains(ev.target)) dd.classList.remove('show');
+            });
+
+            (function () { // persistencia del tema
+                var pref = localStorage.getItem('lh-theme');
+                if (pref === 'dark') document.body.classList.add('theme-dark');
+                var chk = document.getElementById('chkDark');
+                if (chk) chk.checked = document.body.classList.contains('theme-dark');
+            })();
+
+            function toggleDark(cb) {
+                if (cb && cb.checked) { document.body.classList.add('theme-dark'); localStorage.setItem('lh-theme', 'dark'); }
+                else { document.body.classList.remove('theme-dark'); localStorage.setItem('lh-theme', 'light'); }
+            }
+        </script>
+
 </html>

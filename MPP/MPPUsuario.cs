@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using BE;
 using DAL;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MPP
 {
@@ -197,7 +198,20 @@ namespace MPP
             var h = new Hashtable { { "@Id", tokenId } };
             _datos.Escribir("sp_EmailToken_MarkUsed", h);
         }
-
+        public void Contacto(string email, string text, int userId)
+        {
+            var h = new Hashtable { { "@UserId ", userId } ,
+                {"@Email", email }, {"@Text", text} };
+            _datos.Escribir("sp_Contacto", h);
+        }
+        public bool ExisteEmail(string email)
+        {
+            var h = new Hashtable { 
+                {"@Email", email } };
+            if (_datos.LeerCantidad("s_email_existente", h) > 0)
+                return true;
+            return false;
+        }
     }
 }
 

@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Sign up" Language="C#" MasterPageFile="~/site.master"
     AutoEventWireup="true" CodeFile="Signup.aspx.cs" Inherits="Signup" %>
 
+
 <asp:Content ID="Head" ContentPlaceHolderID="HeadContent" runat="server">
   <style>
     .auth { max-width: 620px; display:grid; gap:14px }
@@ -10,6 +11,22 @@
     .input{ padding:10px; border:1px solid var(--stroke); border-radius:10px; background:var(--paper) }
     .hint{ color:var(--ink-soft); font-size:.9rem }
     .success{ color:green } .error{ color:maroon }
+    .g-recaptcha{ display:block; min-height:78px }
+    .g-recaptcha > div{ width:100% }
+    .acceptance-sign-up{
+        display:flex;
+        flex-direction:column;
+        padding: 0.5rem;
+        justify-content: space-between;
+        align-items:center;
+    }
+    .terminos-condiciones{
+        padding: 2rem;
+        display: flex;
+        flex-direction:row;
+        justify-content: space-between;
+        align-items:center;
+    }
   </style>
 </asp:Content>
 
@@ -89,18 +106,33 @@
         ErrorMessage="Las contraseñas no coinciden."
         Display="Dynamic" ValidationGroup="signup" />
     </div>
+      <div class="acceptance-sign-up">
+             <div class="form-row">
+          <div class="g-recaptcha"
+               data-sitekey="<%= System.Configuration.ConfigurationManager.AppSettings["RecaptchaSiteKeyLocal"] %>"></div>
 
-    <!-- TÉRMINOS -->
-    <div class="form-row">
-      <asp:CheckBox ID="chkTerms" runat="server"
-        Text="Acepto los " />
-      <a href="/Terms.aspx" target="_blank">Términos y condiciones</a> y
-      <a href="/Privacy.aspx" target="_blank">Privacidad</a>.
-      <asp:CustomValidator ID="cvTerms" runat="server"
-        OnServerValidate="cvTerms_ServerValidate"
-        ErrorMessage="Debés aceptar los Términos y la Privacidad."
-        Display="Dynamic" ValidationGroup="signup" />
-    </div>
+                  <asp:CustomValidator ID="cvCaptcha" runat="server"
+                      OnServerValidate="cvCaptcha_ServerValidate"
+                      ErrorMessage="Verificá que no sos un robot."
+                      Display="Dynamic" ValidationGroup="login" />
+                </div>
+
+                <!-- TÉRMINOS -->
+                <div class="form-row">
+                    <div class="terminos-condiciones">
+                         <asp:CheckBox ID="chkTerms" runat="server"
+                           />
+                        Acepto los
+                         <a href="/Terms.aspx" target="_blank">Términos y condiciones</a> y
+                         <a href="/Privacy.aspx" target="_blank">Privacidad</a>.
+                         <asp:CustomValidator ID="cvTerms" runat="server"
+                           OnServerValidate="cvTerms_ServerValidate"
+                           ErrorMessage="Debés aceptar los Términos y la Privacidad."
+                           Display="Dynamic" ValidationGroup="signup" />
+                    </div>
+                </div>  
+        </div>
+      
 
     <!-- BOTÓN -->
     <div>

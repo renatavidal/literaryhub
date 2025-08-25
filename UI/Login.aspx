@@ -57,6 +57,6 @@
         <asp:Label ID="lblLoginResult" runat="server" />
     </div>
 
-    <div>¿No tenés cuenta? <a href="~/Signup.aspx">Crear cuenta</a></div>
+    <div>¿No tenés cuenta? <a href="/Signup.aspx">Crear cuenta</a></div>
   </div>
 </asp:Content>

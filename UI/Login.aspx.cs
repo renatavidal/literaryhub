@@ -69,7 +69,7 @@ using BE;
 
                 var target = !string.IsNullOrWhiteSpace(ret) && IsSafeLocalUrl(ret)
                     ? ret
-                    : ResolveUrl("/Landing.aspx");
+                    : ResolveUrl("/Home.aspx");
 
                 Response.Redirect(target, endResponse: false);
                 Context.ApplicationInstance.CompleteRequest();

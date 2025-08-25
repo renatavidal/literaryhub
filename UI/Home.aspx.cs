@@ -4,6 +4,10 @@ using System.Linq;
 using System.Net;
 using System.IO;
 using System.Web.Script.Serialization;
+using System.Configuration;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 
 public partial class Home : ReaderPage
 {
@@ -32,14 +36,26 @@ public partial class Home : ReaderPage
         rptSections.DataSource = sections;
         rptSections.DataBind();
     }
+    protected void rptSections_ItemDataBound(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType != ListItemType.Item && e.Item.ItemType != ListItemType.AlternatingItem)
+            return;
+
+        var section = (GenreSection)e.Item.DataItem;         
+        var inner = (Repeater)e.Item.FindControl("rptBooks");
+        inner.DataSource = section.Books;                    
+        inner.DataBind();
+    }
 
     protected void btnSearch_Click(object sender, EventArgs e)
     {
         var q = (txtSearch.Text ?? "").Trim();
         if (q.Length == 0) return;
         // Simple: redirigí a una página de búsqueda tuya
-        Response.Redirect("~/Search.aspx?q=" + Server.UrlEncode(q));
+        Response.Redirect("/Search.aspx?q=" + Server.UrlEncode(q));
     }
+
+
 
     // ------------------ Google Books ------------------
 

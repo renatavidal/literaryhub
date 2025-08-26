@@ -1,6 +1,7 @@
 ﻿// MPP/MPPUsuario.cs
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using BE;
@@ -211,6 +212,71 @@ namespace MPP
             if (_datos.LeerCantidad("s_email_existente", h) > 0)
                 return true;
             return false;
+        }
+        public List<BE.BESuscripcion> GetPlanesSuscripcionAdmin()
+        {
+            var dt = _datos.Leer("sp_Suscripciones_ListarTodo", null);
+            var list = new List<BE.BESuscripcion>();
+            foreach (DataRow r in dt.Rows)
+            {
+                list.Add(new BE.BESuscripcion
+                {
+                    Id = Convert.ToInt32(r["Id"]),
+                    Codigo = Convert.ToString(r["Codigo"]),
+                    Descripcion = Convert.ToString(r["Descripcion"]),
+                    Roles = Convert.ToString(r["Roles"]),
+                    PrecioUSD = Convert.ToDecimal(r["PrecioUSD"]),
+                    Orden = Convert.ToInt32(r["Orden"]),
+                    EsDestacado = Convert.ToBoolean(r["EsDestacado"]),
+                    Activo = Convert.ToBoolean(r["Activo"])
+                });
+            }
+            return list;
+        }
+        public List<BE.BESuscripcion> GetPlanesSuscripcion()
+        {
+            var dt = _datos.Leer("sp_Suscripciones_ListarActivas", null);
+            var list = new List<BE.BESuscripcion>();
+            foreach (DataRow r in dt.Rows)
+            {
+                list.Add(new BE.BESuscripcion
+                {
+                    Id = Convert.ToInt32(r["Id"]),
+                    Codigo = Convert.ToString(r["Codigo"]),
+                    Descripcion = Convert.ToString(r["Descripcion"]),
+                    Roles = Convert.ToString(r["Roles"]),
+                    PrecioUSD = Convert.ToDecimal(r["PrecioUSD"]),
+                    Orden = Convert.ToInt32(r["Orden"]),
+                    EsDestacado = Convert.ToBoolean(r["EsDestacado"])
+                });
+            }
+            return list;
+        }
+
+        public int InsertPlan(BE.BESuscripcion s)
+        {
+            var h = new Hashtable {
+                {"@Codigo", s.Codigo}, {"@Descripcion", s.Descripcion}, {"@Roles", s.Roles},
+                {"@PrecioUSD", s.PrecioUSD}, {"@Orden", s.Orden},
+                {"@EsDestacado", s.EsDestacado}, {"@Activo", s.Activo}
+            };
+            return _datos.LeerCantidad("sp_Suscripciones_Insert", h);
+        }
+
+        public void UpdatePlan(BE.BESuscripcion s)
+        {
+            var h = new Hashtable {
+                {"@Id", s.Id}, {"@Codigo", s.Codigo}, {"@Descripcion", s.Descripcion},
+                {"@Roles", s.Roles}, {"@PrecioUSD", s.PrecioUSD}, {"@Orden", s.Orden},
+                {"@EsDestacado", s.EsDestacado}, {"@Activo", s.Activo}
+            };
+            _datos.Escribir("sp_Suscripciones_Update", h);
+        }
+
+        public void ArchivarPlan(int id)
+        {
+            var h = new Hashtable { { "@Id", id } };
+            _datos.Escribir("sp_Suscripciones_Archivar", h);
         }
     }
 }

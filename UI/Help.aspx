@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Help.aspx.cs" Inherits="Help" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/site.master" CodeFile="Help.aspx.cs" Inherits="Help" %>
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">

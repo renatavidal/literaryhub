@@ -14,7 +14,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace BLL
 {
-    public class BLLUsuario
+    public class BLLUsuario: BLLPersona
     {
         private readonly MPPUsuario _mpp;
         private readonly IEmailService _email;
@@ -168,8 +168,47 @@ namespace BLL
         public bool ExisteEmail(string email) {
             return _mpp.ExisteEmail( email);
         }
+        public List<BESuscripcion> ListarPlanesSuscripcion()
+        {
+            return _mpp.GetPlanesSuscripcion();
+        }
+        public List<BESuscripcion> ListarPlanesAdmin()
+        {
+            return _mpp.GetPlanesSuscripcionAdmin();
+        }
+        public int CrearPlan(BESuscripcion s)
+        {
+            ValidarPlan(s, isNew: true);
+            return _mpp.InsertPlan(s);
+        }
 
+        public void ActualizarPlan(BESuscripcion s)
+        {
+            if (s.Id <= 0) throw new ArgumentException("Id inválido.");
+            ValidarPlan(s, isNew: false);
+            _mpp.UpdatePlan(s);
+        }
 
+        public void ArchivarPlan(int id)
+        {
+            if (id <= 0) throw new ArgumentException("Id inválido.");
+            _mpp.ArchivarPlan(id);
+        }
+
+        private void ValidarPlan(BESuscripcion s, bool isNew)
+        {
+            if (string.IsNullOrWhiteSpace(s.Codigo) || s.Codigo.Length > 30)
+                throw new ArgumentException("Código requerido (máx. 30).");
+            if (string.IsNullOrWhiteSpace(s.Descripcion) || s.Descripcion.Length > 120)
+                throw new ArgumentException("Descripción requerida (máx. 120).");
+            if (string.IsNullOrWhiteSpace(s.Roles) || s.Roles.Length > 200)
+                throw new ArgumentException("Roles requeridos (CSV, máx. 200).");
+            if (s.PrecioUSD < 0) throw new ArgumentException("Precio no puede ser negativo.");
+            if (s.Orden < 0) s.Orden = 0;
+        }
     }
+
+
 }
+
 

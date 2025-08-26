@@ -13,7 +13,7 @@ public partial class SignupCliente : System.Web.UI.Page
     protected void btnCrear_Click(object sender, EventArgs e)
     {
         if (!Page.IsValid) return;
-        if (!ValidateRecaptcha()) // o copia tu validador aquí
+        if (!ValidateRecaptcha()) 
         {
             lblResultado.CssClass = "error";
             lblResultado.Text = "Verificá el captcha.";
@@ -41,6 +41,10 @@ public partial class SignupCliente : System.Web.UI.Page
 
 
             int id = _bll.Registrar(c);
+            lblSignupResult.CssClass = "success";
+            lblSignupResult.Text = "¡Listo! Te enviamos un correo para verificar tu cuenta.";
+
+            Response.Redirect("/VerifyEmailPending.aspx?email=" + Server.UrlEncode(email), false);
             lblResultado.CssClass = "success";
             lblResultado.Text = "Cliente creado. Id: " + id;
         }
@@ -85,7 +89,14 @@ public partial class SignupCliente : System.Web.UI.Page
         }
         catch
         {
-            return false; // ante error de verificación, tratá como inválido
+            return false; 
         }
+    }
+    protected void rblTipo_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        bool esLibreria = string.Equals(rblTipo.SelectedValue, "LIB",
+                                        StringComparison.OrdinalIgnoreCase);
+        rowUbicacion.Visible = esLibreria;
+        if (!esLibreria) txtUbicacion.Text = string.Empty; 
     }
 }

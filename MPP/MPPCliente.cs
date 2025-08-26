@@ -26,7 +26,8 @@ namespace MPP
                 {"@Fac_Domicilio",   (object)c.Fac_Domicilio ?? DBNull.Value},
                 {"@Fac_Email",       (object)c.Fac_Email ?? DBNull.Value},
                 {"@Tipo",            c.Tipo},
-                {"@Ubicacion",       (object)c.Ubicacion ?? DBNull.Value}
+                {"@Ubicacion",       (object)c.Ubicacion ?? DBNull.Value},
+                     {"@EmailActive", false}
             };
 
             return _datos.LeerCantidad("sp_Cliente_Insert", h);
@@ -73,6 +74,61 @@ namespace MPP
                 });
             }
             return list;
+        }
+        public void InsertEmailVerificationToken(int userId, string token, DateTime expiresAtUtc)
+        {
+            var h = new Hashtable
+            {
+                { "@UserId", userId },
+                { "@Token",  token},
+                { "@ExpiresAt", expiresAtUtc }
+
+            };
+            _datos.Escribir("sp_EmailToken_InsertClient", h);
+        }
+        public BEEmailVerificationToken GetToken(string token)
+        {
+            var h = new Hashtable
+            {
+                { "@Token", token }
+            };
+
+            DataTable dt = _datos.Leer("sp_EmailToken_GetClient", h);
+
+            if (dt.Rows.Count == 0) return null;
+
+            DataRow row = dt.Rows[0];
+            var be = new BEEmailVerificationToken
+            {
+                Id = (Guid)(row["Id"]),
+                UserId = Convert.ToInt32(row["UserId"]),
+                Token = Convert.ToString(row["Token"]),
+                ExpiresAt = Convert.ToDateTime(row["ExpiresAt"]),
+                Used = Convert.ToBoolean(row["Used"]),
+
+            };
+
+            return be;
+        }
+        public void MarkTokenUsed(Guid id)
+        {
+            var h = new Hashtable
+            {
+                { "@Id", id }
+            };
+
+            _datos.Escribir("sp_EmailToken_MarkUsedClient", h);
+        }
+
+        // Marcar email del usuario como verificado
+        public void MarkEmailVerified(int userId)
+        {
+            var h = new Hashtable
+            {
+                { "@UserId", userId }
+            };
+
+            _datos.Escribir("sp_User_EmailVerified_SetClient", h);
         }
     }
 }

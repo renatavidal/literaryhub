@@ -23,24 +23,51 @@
       <div>
         <label for="txtEmail">Email</label>
         <asp:TextBox ID="txtEmail" runat="server" CssClass="input" TextMode="Email" MaxLength="120" />
-        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtEmail" ErrorMessage="Ingresá email" ValidationGroup="c" />
+         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtEmail"
+      ErrorMessage="Ingresá el email." ValidationGroup="c" />
+  <asp:RegularExpressionValidator runat="server" ControlToValidate="txtEmail"
+      ValidationExpression="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+      ErrorMessage="Email inválido." ValidationGroup="c" />
       </div>
       <div>
         <label for="txtNombre">Nombre</label>
         <asp:TextBox ID="txtNombre" runat="server" CssClass="input" MaxLength="60" />
-        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNombre" ErrorMessage="Ingresá nombre" ValidationGroup="c" />
+         <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNombre"
+              ErrorMessage="Ingresá el nombre." ValidationGroup="c" />
+          <asp:RegularExpressionValidator runat="server" ControlToValidate="txtNombre"
+              ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÀ-ÖØ-öø-ÿÑñ\.\- ']{2,60}$"
+              ErrorMessage="Nombre inválido (solo letras/espacios, 2–60)."
+              ValidationGroup="c" />
       </div>
       <div>
         <label for="txtApellido">Apellido</label>
         <asp:TextBox ID="txtApellido" runat="server" CssClass="input" MaxLength="60" />
+           <asp:RequiredFieldValidator runat="server" ControlToValidate="txtApellido"
+      ErrorMessage="Ingresá el apellido." ValidationGroup="c" />
+  <asp:RegularExpressionValidator runat="server" ControlToValidate="txtApellido"
+      ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÀ-ÖØ-öø-ÿÑñ\.\- ']{2,60}$"
+      ErrorMessage="Apellido inválido (solo letras/espacios, 2–60)."
+      ValidationGroup="c" />
       </div>
       <div>
         <label for="txtAlias">Negocio / Alias</label>
         <asp:TextBox ID="txtAlias" runat="server" CssClass="input" MaxLength="120" />
+           <asp:RequiredFieldValidator runat="server" ControlToValidate="txtAlias"
+      ErrorMessage="Ingresá el alias del negocio." ValidationGroup="c" />
+  <asp:RegularExpressionValidator runat="server" ControlToValidate="txtAlias"
+      ValidationExpression="^[0-9A-Za-zÁÉÍÓÚáéíóúÀ-ÖØ-öø-ÿÑñ\.\- '()&/]{2,120}$"
+      ErrorMessage="Alias inválido (2–120, letras/nros/.,-/()&/)."
+      ValidationGroup="c" />
       </div>
       <div>
         <label for="txtTel">Teléfono</label>
         <asp:TextBox ID="txtTel" runat="server" CssClass="input" MaxLength="30" />
+          <asp:RequiredFieldValidator runat="server" ControlToValidate="txtTel"
+      ErrorMessage="Ingresá el teléfono." ValidationGroup="c" />
+  <asp:RegularExpressionValidator runat="server" ControlToValidate="txtTel"
+      ValidationExpression="^[0-9()+\-.\s]{6,25}$"
+      ErrorMessage="Teléfono inválido (6–25, dígitos + () - . espacios)."
+      ValidationGroup="c" />
       </div>
         <div class="form-row">
           <label>Tipo de cliente</label>
@@ -49,6 +76,8 @@
             <asp:ListItem Text="Autor" Value="AUT" Selected="True" />
             <asp:ListItem Text="Librería" Value="LIB" />
           </asp:RadioButtonList>
+              <asp:RequiredFieldValidator runat="server" ControlToValidate="rblTipo"
+      ErrorMessage="Elegí el tipo de cliente." ValidationGroup="c" />
         </div>
 
 <div class="form-row" id="rowUbicacion" runat="server">
@@ -73,22 +102,47 @@
           <asp:ListItem Text="Responsable Inscripto" Value="RI" />
           <asp:ListItem Text="Exento" Value="EX" />
         </asp:DropDownList>
+            <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlIVA"
+      InitialValue="" ErrorMessage="Seleccioná la condición de IVA."
+      ValidationGroup="c" />
       </div>
       <div>
         <label for="txtRazSoc">Razón social</label>
         <asp:TextBox ID="txtRazSoc" runat="server" CssClass="input" MaxLength="120" />
+           <asp:RequiredFieldValidator runat="server" ControlToValidate="txtRazSoc"
+      ErrorMessage="Ingresá la razón social." ValidationGroup="c" />
+  <asp:RegularExpressionValidator runat="server" ControlToValidate="txtRazSoc"
+      ValidationExpression="^[A-Za-zÁÉÍÓÚáéíóúÀ-ÖØ-öø-ÿÑñ0-9\.\- '()&/]{2,120}$"
+      ErrorMessage="Razón social inválida." ValidationGroup="c" />
       </div>
       <div>
         <label for="txtCuitFac">CUIT facturación</label>
         <asp:TextBox ID="txtCuitFac" runat="server" CssClass="input" MaxLength="14" />
+           <asp:RequiredFieldValidator runat="server" ControlToValidate="txtCuitFac"
+      ErrorMessage="Ingresá el CUIT de facturación." ValidationGroup="c" />
+  <asp:RegularExpressionValidator runat="server" ControlToValidate="txtCuitFac"
+      ValidationExpression="^\d{11}$|^\d{2}-\d{8}-\d$"
+      ErrorMessage="CUIT inválido (11 dígitos o XX-XXXXXXXX-X)."
+      ValidationGroup="c" />
       </div>
       <div>
         <label for="txtDomFac">Domicilio fiscal</label>
         <asp:TextBox ID="txtDomFac" runat="server" CssClass="input" MaxLength="200" />
+           <asp:RequiredFieldValidator runat="server" ControlToValidate="txtDomFac"
+      ErrorMessage="Ingresá el domicilio fiscal." ValidationGroup="c" />
+  <asp:RegularExpressionValidator runat="server" ControlToValidate="txtDomFac"
+      ValidationExpression="^[^\r\n]{4,200}$"
+      ErrorMessage="Domicilio inválido (4–200 caracteres, sin saltos de línea)."
+      ValidationGroup="c" />
       </div>
       <div>
         <label for="txtEmailFac">Email facturación</label>
         <asp:TextBox ID="txtEmailFac" runat="server" CssClass="input" MaxLength="120" />
+           <asp:RequiredFieldValidator runat="server" ControlToValidate="txtEmailFac"
+      ErrorMessage="Ingresá el email de facturación." ValidationGroup="c" />
+  <asp:RegularExpressionValidator runat="server" ControlToValidate="txtEmailFac"
+      ValidationExpression="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+      ErrorMessage="Email de facturación inválido." ValidationGroup="c" />
       </div>
     </div>
 

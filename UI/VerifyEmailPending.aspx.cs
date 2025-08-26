@@ -42,7 +42,14 @@ public partial class VerifyEmailPending : ReaderPage
             Response.Redirect("/Landing.aspx");
             return;
         }
-        var bll = new BLL.BLLUsuario();
+        var bll = new BLL.BLLPersona();
+        if (CurrentUser.IsInRole("Cliente")){
+             bll = new BLL.BLLCliente();
+        }
+        else
+        {
+            bll = new BLL.BLLUsuario();
+        }
         string token_url = Request.QueryString["token"];
         if (!string.IsNullOrEmpty(token_url))
         {
@@ -103,7 +110,15 @@ public partial class VerifyEmailPending : ReaderPage
 
     protected void btnCheck_Click(object sender, EventArgs e)
     {
-        var bll = new BLL.BLLUsuario();
+        var bll = new BLL.BLLPersona();
+        if (CurrentUser.IsInRole("Cliente"))
+        {
+            bll = new BLL.BLLCliente();
+        }
+        else
+        {
+            bll = new BLL.BLLUsuario();
+        }
         string token_url = Request.QueryString["token"];
         if (!string.IsNullOrEmpty(token_url))
         {

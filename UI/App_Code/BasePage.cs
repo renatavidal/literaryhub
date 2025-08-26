@@ -112,5 +112,5 @@ public abstract class AdminOrEditorPage : VerifiedUserPage
 
 public abstract class ReaderPage : VerifiedUserPage
 {
-    protected override string[] RequiredRoles { get { return new[] { "Reader" }; } }
+    protected override string[] RequiredRoles { get { return new[] { "Reader", "Admin", "Editor" }; } }
 }

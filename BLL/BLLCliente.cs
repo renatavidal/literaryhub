@@ -4,7 +4,7 @@ using BE;
 
 namespace BLL
 {
-    public class BLLCliente
+    public class BLLCliente: BLLPersona
     {
         private readonly MPP.MPPCliente _mpp = new MPP.MPPCliente();
         private readonly BLLBitacora _bit = new BLLBitacora(); 
@@ -52,6 +52,37 @@ namespace BLL
         }
 
         public System.Collections.Generic.List<BECliente> Buscar(string texto)
-            => _mpp.Buscar(texto);
+        {
+            return _mpp.Buscar(texto);
+        }
+
+
+        public string GenerarTokenVerificacion(int userId)
+        {
+
+            string token = Convert.ToBase64String(Guid.NewGuid().ToByteArray())
+                          .Replace("+", string.Empty)
+                          .Replace("/", string.Empty)
+                          .TrimEnd('=');
+            GuardarToken(userId, token, DateTime.Now.AddHours(20));
+            return token;
+        }
+        public void GuardarToken(int userId, string token, DateTime expiresAt)
+        {
+            _mpp.InsertEmailVerificationToken(userId, token, expiresAt);
+        }
+        public bool VerificarEmailPorToken(string token, out int userId)
+        {
+            userId = 0;
+            var t = _mpp.GetToken(token);
+            if (t == null) return false;
+            if (t.Used) return false;
+            if (t.ExpiresAt < DateTime.UtcNow) return false;
+
+            _mpp.MarkEmailVerified(t.UserId);
+            _mpp.MarkTokenUsed(t.Id);
+            userId = t.UserId;
+            return true;
+        }
     }
 }

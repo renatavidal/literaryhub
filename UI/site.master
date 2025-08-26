@@ -19,13 +19,12 @@
                 <nav class="nav-horizontal" aria-label="Navegación principal">
                     <ul>
                         <li><a href="/Home.aspx" class="active">Home</a></li>
-                        <li><a href="/Community.aspx">Community</a></li>
+                        <li><a href="/Privacy.aspx">Privacy</a></li>
                         <li><a href="/About.aspx">About</a></li>
                     </ul>
                 </nav>
 
                 <div class="top-actions">
-                    <!-- Idioma (si querés, puede quedarse afuera del menú) -->
 <label for="ddlLangTop" class="sr-only">Idioma</label>
 <asp:DropDownList ID="ddlLangTop" runat="server" CssClass="lang-select">
     <asp:ListItem Text="ES" Value="es" Selected="True" />
@@ -168,7 +167,7 @@
                 if (!btn.contains(ev.target) && !dd.contains(ev.target)) dd.classList.remove('show');
             });
 
-            (function () { // persistencia del tema
+            (function () { 
                 var pref = localStorage.getItem('lh-theme');
                 if (pref === 'dark') document.body.classList.add('theme-dark');
                 var chk = document.getElementById('chkDark');

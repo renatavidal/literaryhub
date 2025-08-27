@@ -1,13 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Abstracciones;
 using BE;
+using MPP;
+using Servicios;
 
 namespace BLL
 {
     public class BLLCliente: BLLPersona
     {
-        private readonly MPP.MPPCliente _mpp = new MPP.MPPCliente();
-        private readonly BLLBitacora _bit = new BLLBitacora(); 
+        private readonly MPP.MPPCliente _mpp;
+        private readonly BLLBitacora _bit = new BLLBitacora();
+        private readonly IEmailService _email;
+
+        public BLLCliente()
+        {
+            _mpp = new MPPCliente();
+            _email = new SmtpEmailService();
+        }
+
 
         public int Registrar(BECliente c)
         {
@@ -83,6 +95,31 @@ namespace BLL
             _mpp.MarkTokenUsed(t.Id);
             userId = t.UserId;
             return true;
+        }
+        public BEUsuarioAuth ObtenerPorEmail(string email)
+        {
+            return _mpp.GetUsuarioAuthByEmail(email);
+        }
+        public void EnviarVerificacion(string toEmail, string verifyUrl)
+        {
+            var appName = "LiteraryHub";
+            var footer = "© " + appName + ". Todos los derechos reservados.";
+
+            var tokens = new Dictionary<string, string>();
+            tokens["AppName"] = appName;
+            tokens["Title"] = "Confirmá tu email";
+            tokens["Preheader"] = "Activá tu cuenta con un clic.";
+            tokens["Tagline"] = "Lectura, comunidad y libros";
+            tokens["IntroHtml"] = "¡Gracias por registrarte! Para activar tu cuenta, hacé clic en el botón de abajo.";
+            tokens["ButtonText"] = "Verificar mi email";
+            tokens["ButtonUrl"] = verifyUrl;
+            tokens["SupportEmail"] = "soporte@literaryhub.com";
+            tokens["FooterText"] = "© LiteraryHub. Todos los derechos reservados.";
+            tokens["CompanyName"] = "LiteraryHub";
+            tokens["CompanyAddress"] = "Buenos Aires, AR";
+
+            string templatePath = System.Web.Hosting.HostingEnvironment.MapPath("/Templates/Email/BaseTemplate.html");
+            _email.SendTemplate(toEmail, "Verificación de email", templatePath, tokens);
         }
     }
 }

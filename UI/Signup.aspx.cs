@@ -53,7 +53,7 @@ public partial class Signup : PublicPage
             lblSignupResult.CssClass = "success";
             lblSignupResult.Text = "¡Listo! Te enviamos un correo para verificar tu cuenta.";
 
-            Response.Redirect("/VerifyEmailPending.aspx?email=" + Server.UrlEncode(email), false);
+            Response.Redirect("/VerifyEmailPending.aspx?email=" + Server.UrlEncode(email) + "&tipo=usuario" +  "&id=" + newUserId, false);
         }
         catch (Exception)
         {

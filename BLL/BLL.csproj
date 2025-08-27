@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="BLLBitacora.cs" />
     <Compile Include="BLLCliente.cs" />
+    <Compile Include="BLLPersona.cs" />
     <Compile Include="BLLUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

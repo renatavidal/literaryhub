@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Configuration;
 using System.Net;
+using System.Security.Policy;
 using System.Web;
 using BE;
 using BLL;
 using Newtonsoft.Json;
+using Servicios;
 
 public partial class SignupCliente : System.Web.UI.Page
 {
@@ -22,6 +24,8 @@ public partial class SignupCliente : System.Web.UI.Page
 
         try
         {
+            string password = txtPassword.Text ?? "";
+            string PasswordHash =  PasswordService.HashPassword(password);
             var c = new BECliente
             {
                 Cuil = (txtCuil.Text ?? "").Trim(),
@@ -36,15 +40,16 @@ public partial class SignupCliente : System.Web.UI.Page
                 Fac_Domicilio = (txtDomFac.Text ?? "").Trim(),
                 Fac_Email = (txtEmailFac.Text ?? "").Trim(),
                 Tipo = rblTipo.SelectedValue,
-                Ubicacion = (rblTipo.SelectedValue == "LIB" ? (txtUbicacion.Text ?? "").Trim() : null)
+                Ubicacion = (rblTipo.SelectedValue == "LIB" ? (txtUbicacion.Text ?? "").Trim() : null),
+                PasswordHash = PasswordHash
             };
 
 
             int id = _bll.Registrar(c);
-            lblSignupResult.CssClass = "success";
-            lblSignupResult.Text = "¡Listo! Te enviamos un correo para verificar tu cuenta.";
+            lblResultado.CssClass = "success";
+            lblResultado.Text = "¡Listo! Te enviamos un correo para verificar tu cuenta.";
 
-            Response.Redirect("/VerifyEmailPending.aspx?email=" + Server.UrlEncode(email), false);
+            Response.Redirect("/VerifyEmailPending.aspx?email=" + Server.UrlEncode(c.Email) + "&tipo=cliente"  + "&id=" + id, false);
             lblResultado.CssClass = "success";
             lblResultado.Text = "Cliente creado. Id: " + id;
         }

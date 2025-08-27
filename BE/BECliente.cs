@@ -22,6 +22,7 @@ namespace BE
         public string Fac_Email { get; set; }
         public string Tipo { get; set; }       // 'AUT' | 'LIB'
         public string Ubicacion { get; set; }  // requerido si Tipo == 'LIB'
+        public string PasswordHash { get; set; }
 
         public DateTime FechaAltaUtc { get; set; }
     }

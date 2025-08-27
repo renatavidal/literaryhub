@@ -40,34 +40,36 @@ using BE;
             {
                 var bll = new BLLUsuario();
 
-                BEUsuario be = bll.Login(email, password);      
+                var p = bll.LoginAny(email, password);
 
-                if (be == null)
+
+                if (p == null)
                 {
                     lblLoginResult.Text = "Credenciales inválidas";
                     return;
                 }
                 Session["auth"] = new UserSession
                 {
-                    UserId = be.Id,
-                    Email = be.Email,
-                    EmailVerified = be.EmailVerified,
-                    Roles = be.Roles ?? new string[0]
+                    UserId = p.Id,
+                    Email = p.Email,
+                    EmailVerified = p.EmailVerified,
+                    Roles = p.Roles ?? new string[0]
                 };
-                bll.RegistrarAcceso(be, Request.UserAgent);
+                bll.RegistrarAcceso(p, Request.UserAgent);
 
-                if (!be.EmailVerified)
+                if (!p.EmailVerified)
                 {
                     Response.Redirect("/VerifyEmailPending.aspx", endResponse: false);
                     Context.ApplicationInstance.CompleteRequest();
                     return;
                 }
-
-
-                
                
 
-                var target = !string.IsNullOrWhiteSpace(ret) && IsSafeLocalUrl(ret)
+
+
+
+
+            var target = !string.IsNullOrWhiteSpace(ret) && IsSafeLocalUrl(ret)
                     ? ret
                     : ResolveUrl("/Home.aspx");
 

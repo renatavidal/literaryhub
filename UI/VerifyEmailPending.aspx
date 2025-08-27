@@ -41,7 +41,6 @@
 
     <div class="verify-actions">
       <asp:Button ID="btnResend" runat="server" CssClass="btn solid" Text="Reenviar verificación" OnClick="btnResend_Click" />
-      <asp:Button ID="btnCheck"  runat="server" CssClass="btn ghost" Text="Ya verifiqué, volver a intentar" OnClick="btnCheck_Click" />
       <asp:HyperLink ID="lnkLogout" runat="server" CssClass="btn ghost" Text="Cerrar sesión" NavigateUrl="/Logout.aspx" />
     </div>
 

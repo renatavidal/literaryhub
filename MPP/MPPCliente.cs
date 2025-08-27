@@ -45,6 +45,36 @@ namespace MPP
             var h = new Hashtable { { "@Cuil", cuil } };
             return _datos.LeerCantidad("sp_Cliente_ExisteCuil", h);
         }
+        public BEUsuarioAuth GetUsuarioAuthByEmail(string email)
+        {
+            var h = new Hashtable { { "@Email", email } };
+            var dt = _datos.Leer("s_cliente_por_email", h);
+            if (dt.Rows.Count == 0) return null;
+
+            var r = dt.Rows[0];
+            var u = new BEUsuarioAuth
+            {
+                Id = Convert.ToInt32(r["Id"]),
+                Email = Convert.ToString(r["Email"]),
+                EmailVerified = Convert.ToBoolean(r["EmailActive"]),
+                PasswordHash = Convert.ToString(r["PasswordHash"])
+            };
+
+            // Cargar roles
+            u.Roles = GetRoles(u.Id);
+            return u;
+        }
+        public string[] GetRoles(int userId)
+        {
+            var h = new Hashtable { { "@UserId", userId } };
+            var dt = _datos.Leer("s_clientes_roles_listar", h);
+            if (dt.Rows.Count == 0) return new string[0];
+
+            var roles = new string[dt.Rows.Count];
+            for (int i = 0; i < dt.Rows.Count; i++)
+                roles[i] = Convert.ToString(dt.Rows[i]["Rol"]);
+            return roles;
+        }
 
         public List<BE.BECliente> Buscar(string texto)
         {
@@ -130,5 +160,22 @@ namespace MPP
 
             _datos.Escribir("sp_User_EmailVerified_SetClient", h);
         }
+        public BEUsuarioAuth GetClienteAuthByEmail(string email)
+        {
+            var h = new Hashtable { { "@Email", email } };
+            var dt = _datos.Leer("s_cliente_auth_por_email", h);
+            if (dt.Rows.Count == 0) return null;
+
+            var r = dt.Rows[0];
+            return new BEUsuarioAuth
+            {
+                Id = Convert.ToInt32(r["Id"]),
+                Email = Convert.ToString(r["Email"]),
+                PasswordHash = Convert.ToString(r["PasswordHash"]),
+                EmailVerified = Convert.ToBoolean(r["EmailVerified"]),
+                Roles = new[] { "Reader", "Client" }    
+            };
+        }
+       
     }
 }

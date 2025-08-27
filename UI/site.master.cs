@@ -21,6 +21,8 @@ public partial class Site : MasterPage
         pnlAuth.Visible = (sess != null);
 
         lnkBitacora.Visible = UsuarioActualEsAdmin();
+        HyperLink3.Visible = UsuarioActualEsAdmin();
+
 
         if (sess != null)
         {
@@ -44,7 +46,7 @@ public partial class Site : MasterPage
         Session.Remove("auth");
         Session.Abandon();
         System.Web.Security.FormsAuthentication.SignOut();
-        Response.Redirect("~/Login.aspx");
+        Response.Redirect("/Login.aspx");
     }
     private bool UsuarioActualEsAdmin()
     {

@@ -72,6 +72,17 @@
           <span class="sc-icon">🗒️</span><span class="sc-text">Bitácora</span>
           <span class="sc-arrow">›</span>
         </asp:HyperLink>
+        <asp:HyperLink ID="HyperLink2" runat="server"
+            class="sc-item" NavigateUrl="/Suscripciones.aspx" Visible="true">
+          <span class="sc-icon">🗒️</span><span class="sc-text">Planes de Suscripciones</span>
+          <span class="sc-arrow">›</span>
+        </asp:HyperLink>
+                <asp:HyperLink ID="HyperLink3" runat="server"
+            class="sc-item" NavigateUrl="/SuscripcionesAdmin.aspx" Visible="false">
+          <span class="sc-icon">🗒️</span><span class="sc-text">Administrar Suscripciones</span>
+          <span class="sc-arrow">›</span>
+        </asp:HyperLink>
+
 
 
       <a href="/Forgot.aspx" class="sc-item">

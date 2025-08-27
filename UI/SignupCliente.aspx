@@ -145,6 +145,34 @@
       ErrorMessage="Email de facturación inválido." ValidationGroup="c" />
       </div>
     </div>
+      <!-- PASSWORD -->
+<div class="form-row">
+  <label for="txtPassword">Contraseña</label>
+  <asp:TextBox ID="txtPassword" runat="server" CssClass="input" TextMode="Password" MaxLength="64" />
+  <span class="hint">Mín. 8 y máx. 64. Debe incluir: mayúscula, minúscula, número y símbolo.</span>
+  <asp:RequiredFieldValidator ID="reqPassword" runat="server"
+    ControlToValidate="txtPassword" ErrorMessage="Ingresá una contraseña."
+    Display="Dynamic" SetFocusOnError="true" ValidationGroup="signup" />
+  <!-- Complejidad: 1 mayúscula, 1 minúscula, 1 dígito, 1 símbolo; 8–64 -->
+  <asp:RegularExpressionValidator ID="revPassword" runat="server"
+    ControlToValidate="txtPassword"
+    ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,64}$"
+    ErrorMessage="La contraseña no cumple los requisitos."
+    Display="Dynamic" ValidationGroup="signup" />
+</div>
+
+<!-- CONFIRM PASSWORD -->
+<div class="form-row">
+  <label for="txtConfirm">Confirmar contraseña</label>
+  <asp:TextBox ID="txtConfirm" runat="server" CssClass="input" TextMode="Password" MaxLength="64" />
+  <asp:RequiredFieldValidator ID="reqConfirm" runat="server"
+    ControlToValidate="txtConfirm" ErrorMessage="Repetí la contraseña."
+    Display="Dynamic" SetFocusOnError="true" ValidationGroup="signup" />
+  <asp:CompareValidator ID="cmpPasswords" runat="server"
+    ControlToValidate="txtConfirm" ControlToCompare="txtPassword"
+    ErrorMessage="Las contraseñas no coinciden."
+    Display="Dynamic" ValidationGroup="signup" />
+</div>
 
     <div class="g-recaptcha" data-sitekey="<%= System.Configuration.ConfigurationManager.AppSettings["RecaptchaSiteKeyLocal"] %>"></div>
 

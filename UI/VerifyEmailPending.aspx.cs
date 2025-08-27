@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Configuration;
 using System.Web.UI;
+using BE;
 using BLL;
+using Newtonsoft.Json.Linq;
 
 // Si usás las páginas base centralizadas, descomentá la línea de abajo y
 // cambiá Page por AuthenticatedPage en la herencia.
@@ -10,7 +12,7 @@ public partial class VerifyEmailPending : ReaderPage
 {
     protected override bool RequireLogin
     {
-        get { return true; }
+        get { return false; }
     }
 
     protected override bool RequireVerifiedEmail
@@ -26,77 +28,130 @@ public partial class VerifyEmailPending : ReaderPage
         }
     }
 
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        // Debe estar logueado para ver esta página
-        if (CurrentUser == null)
-        {
-            //este returnurl hace que despues de loguearse el usuario vuelva a esta pagina a verificar el mail
-            Response.Redirect("/Login.aspx?returnUrl=" + Server.UrlEncode(Request.RawUrl));
-            return;
-        }
-
-        // Si YA está verificado, no tiene sentido estar acá
-        if (CurrentUser.EmailVerified)
-        {
-            Response.Redirect("/Landing.aspx");
-            return;
-        }
-        var bll = new BLL.BLLPersona();
-        if (CurrentUser.IsInRole("Cliente")){
-             bll = new BLL.BLLCliente();
-        }
-        else
-        {
-            bll = new BLL.BLLUsuario();
-        }
+        
+      
         string token_url = Request.QueryString["token"];
         if (!string.IsNullOrEmpty(token_url))
         {
-            int userId;
-            bool ok = bll.VerificarEmailPorToken(token_url, out userId);
-
-            if (ok && userId == CurrentUser.UserId)
-            {
-                CurrentUser.EmailVerified = true;
-                Session["auth"] = CurrentUser;
-
-                lblStatus.CssClass = "ok";
-                lblStatus.Text = "¡Tu email fue verificado!";
-                Response.Redirect("/Home.aspx");
-            }
-            else
-            {
-                lblStatus.CssClass = "err";
-                lblStatus.Text = "Enlace inválido o vencido.";
-            }
+            VerificarPorToken(token_url);
         }
-        else{
-            enviar_email();
+        else
+        {
+            EnviarEmailVerificacion();
         }
-       
-        
+        string email = "";
+        if (CurrentUser == null)
+        {
+            email = Request.QueryString["email"];
+        }
+        else
+        {
+            email = CurrentUser.Email;
+        }
+
+        litMaskedEmail.Text = Server.HtmlEncode(MaskEmail(email));
+        lblStatus.Text = "Te enviamos un correo con el enlace de verificación.";
+
+
 
 
     }
-    public void enviar_email()
+    public bool EsCliente()
     {
-        var bll = new BLL.BLLUsuario();
-        var userId = CurrentUser.UserId;
-        string token = bll.GenerarTokenVerificacion(userId);
-        string baseUrl = ConfigurationManager.AppSettings["AppBaseUrl"];
-        string verifyUrl = baseUrl + "/VerifyEmailPending.aspx?token=" + Uri.EscapeDataString(token);
-        string email = CurrentUser.Email;
+        if (CurrentUser != null && CurrentUser.IsInRole("Cliente")) return true;
+        var t = (Request.QueryString["tipo"] ?? "").Trim().ToLowerInvariant();
+        return t == "cliente" || t == "client";
+    }
+    private void VerificarPorToken(string token)
+    {
+        bool ok; int userId;
 
-        bll.EnviarVerificacion(email, verifyUrl);
-        string masked = MaskEmail(CurrentUser.Email ?? "");
-        litMaskedEmail.Text = Server.HtmlEncode(masked);
+        if (EsCliente())
+        {
+            var bll = new BLL.BLLCliente();
+            ok = bll.VerificarEmailPorToken(token, out userId);
+        }
+        else
+        {
+            var bll = new BLL.BLLUsuario();
+            ok = bll.VerificarEmailPorToken(token, out userId);
+        }
+
+        if (!ok)
+        {
+            lblStatus.CssClass = "err";
+            lblStatus.Text = "Enlace inválido o vencido.";
+            return;
+        }
+        
+          
+
+            lblStatus.CssClass = "ok";
+            lblStatus.Text = "¡Tu email fue verificado!";
+
+            Response.Redirect("/Login.aspx", endResponse: false);
+            Context.ApplicationInstance.CompleteRequest();
+            return;
+
+    }
+    private void EnviarEmailVerificacion()
+    {
+        string email = "";
+        int id = 0;
+        if (CurrentUser == null)
+        {
+            email = Request.QueryString["email"];
+            id = Convert.ToInt32( Request.QueryString["id"]);
+
+        }
+        else
+        {
+            email = CurrentUser.Email;
+            id = CurrentUser.UserId;
+        }
+           
+        if (string.IsNullOrWhiteSpace(email))
+            throw new InvalidOperationException("Falta el email.");
+
+        string token;
+
+        if (EsCliente())
+        {
+            var bll = new BLL.BLLCliente();
+            // Si no hay sesión, necesitás obtener el Id por email
+            BEUsuarioAuth user = new BEUsuarioAuth();
+            user = bll.ObtenerPorEmail(email); 
+            id = user.Id;
+            if (id <= 0) throw new InvalidOperationException("No encontramos ese cliente.");
+            token = bll.GenerarTokenVerificacion(id);
+            var verifyUrl = BuildVerifyUrl(token, "cliente", email , id.ToString());
+            bll.EnviarVerificacion(email, verifyUrl);
+        }
+        else
+        {
+            var bll = new BLL.BLLUsuario();
+            BEUsuario user =  bll.ObtenerPorEmail(email); 
+            if (user != null)
+            {
+                id = user.Id;
+                if (id <= 0) throw new InvalidOperationException("No encontramos ese usuario.");
+                token = bll.GenerarTokenVerificacion(id);
+                var verifyUrl = BuildVerifyUrl(token, "usuario", email,  id.ToString());
+                bll.EnviarVerificacion(email, verifyUrl);
+            }
+           
+        }
+
+        litMaskedEmail.Text = Server.HtmlEncode(MaskEmail(email));
     }
     protected void btnResend_Click(object sender, EventArgs e)
     {
         try
         {
-            enviar_email();
+            EnviarEmailVerificacion();
 
             lblStatus.CssClass = "ok";
             lblStatus.Text = "Listo. Te reenviamos el enlace de verificación. Revisá tu bandeja de entrada.";
@@ -107,39 +162,13 @@ public partial class VerifyEmailPending : ReaderPage
             lblStatus.Text = "No pudimos reenviar el correo ahora. Probá nuevamente en unos minutos.";
         }
     }
-
-    protected void btnCheck_Click(object sender, EventArgs e)
+    private string BuildVerifyUrl(string token, string tipo, string email , string id)
     {
-        var bll = new BLL.BLLPersona();
-        if (CurrentUser.IsInRole("Cliente"))
-        {
-            bll = new BLL.BLLCliente();
-        }
-        else
-        {
-            bll = new BLL.BLLUsuario();
-        }
-        string token_url = Request.QueryString["token"];
-        if (!string.IsNullOrEmpty(token_url))
-        {
-            int userId;
-            bool ok = bll.VerificarEmailPorToken(token_url, out userId);
-
-            if (ok && userId == CurrentUser.UserId)
-            {
-                CurrentUser.EmailVerified = true;
-                Session["auth"] = CurrentUser;
-
-                lblStatus.CssClass = "ok";
-                lblStatus.Text = "¡Tu email fue verificado!";
-                Response.Redirect("/Home.aspx");
-            }
-            else
-            {
-                lblStatus.CssClass = "err";
-                lblStatus.Text = "Enlace inválido o vencido.";
-            }
-        }
+        string baseUrl = (ConfigurationManager.AppSettings["AppBaseUrl"] ?? "").TrimEnd('/');
+        string tokenEnc = Uri.EscapeDataString(token ?? "");
+        string tipoEnc = Uri.EscapeDataString(tipo ?? "");
+        return string.Format("{0}/VerifyEmailPending.aspx?token={1}&tipo={2}&id={4}&email={3}",
+                             baseUrl, tokenEnc, tipoEnc, email, id);
     }
 
     private static string MaskEmail(string email)
@@ -153,9 +182,8 @@ public partial class VerifyEmailPending : ReaderPage
             ? new string('*', user.Length)
             : user.Substring(0, 2) + new string('*', Math.Max(0, user.Length - 2));
 
-     
         var dot = domain.IndexOf('.');
-        if (dot <= 1) return maskUser + "@" + domain; 
+        if (dot <= 1) return maskUser + "@" + domain;
         var domName = domain.Substring(0, dot);
         var tld = domain.Substring(dot);
         string maskDom = domName.Length <= 2
@@ -164,4 +192,9 @@ public partial class VerifyEmailPending : ReaderPage
 
         return maskUser + "@" + maskDom + tld;
     }
-}
+
+   
+    }
+
+
+

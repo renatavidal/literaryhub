@@ -112,8 +112,8 @@
   </p>
     <div class="autor-libreria"> <a runat="server" href="/SignupCliente.aspx" class="signupcliente"> ¿Eres un/a autor/a o tienes una libreria? ¡Sumate, publica y vende!</a></div>
   <div class="cta-row">
-    <a runat="server" href="/Login.aspx" class="btn ghost">Iniciar sesión</a>
-    <a runat="server" href="/Signup.aspx" class="btn cta">Comenzar</a>
+    <a runat="server" href="/Login.aspx" class="btn ghost">Log in</a>
+    <a runat="server" href="/Signup.aspx" class="btn cta">Sign Up</a>
   </div>
 </section>
 

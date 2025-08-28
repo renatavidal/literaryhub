@@ -59,6 +59,11 @@ public partial class SignupCliente : System.Web.UI.Page
             lblResultado.Text = ex.Message;
         }
     }
+    protected void cvTerms_ServerValidate(object source, System.Web.UI.WebControls.ServerValidateEventArgs args)
+    {
+        args.IsValid = chkTerms.Checked;
+    }
+
     protected void cvUbicacion_ServerValidate(object source, System.Web.UI.WebControls.ServerValidateEventArgs args)
     {
         var tipo = rblTipo.SelectedValue ?? "AUT";

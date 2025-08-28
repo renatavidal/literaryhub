@@ -27,7 +27,8 @@ namespace MPP
                 {"@Fac_Email",       (object)c.Fac_Email ?? DBNull.Value},
                 {"@Tipo",            c.Tipo},
                 {"@Ubicacion",       (object)c.Ubicacion ?? DBNull.Value},
-                     {"@EmailActive", false}
+                     {"@EmailActive", false},
+                     {"@PasswordHash", (object)c.PasswordHash ?? DBNull.Value }
             };
 
             return _datos.LeerCantidad("sp_Cliente_Insert", h);
@@ -60,7 +61,6 @@ namespace MPP
                 PasswordHash = Convert.ToString(r["PasswordHash"])
             };
 
-            // Cargar roles
             u.Roles = GetRoles(u.Id);
             return u;
         }

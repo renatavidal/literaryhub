@@ -173,6 +173,20 @@
     ErrorMessage="Las contraseñas no coinciden."
     Display="Dynamic" ValidationGroup="signup" />
 </div>
+       <!-- TÉRMINOS -->
+ <div class="form-row">
+     <div class="terminos-condiciones">
+          <asp:CheckBox ID="chkTerms" runat="server"
+            />
+         Acepto los
+          <a href="/Terms.aspx" target="_blank">Términos y condiciones</a> y
+          <a href="/Privacy.aspx" target="_blank">Privacidad</a>.
+          <asp:CustomValidator ID="cvTerms" runat="server"
+            OnServerValidate="cvTerms_ServerValidate"
+            ErrorMessage="Debés aceptar los Términos y la Privacidad."
+            Display="Dynamic" ValidationGroup="signup" />
+     </div>
+ </div>  
 
     <div class="g-recaptcha" data-sitekey="<%= System.Configuration.ConfigurationManager.AppSettings["RecaptchaSiteKeyLocal"] %>"></div>
 

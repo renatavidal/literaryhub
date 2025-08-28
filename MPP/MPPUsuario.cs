@@ -278,6 +278,20 @@ namespace MPP
             var h = new Hashtable { { "@Id", id } };
             _datos.Escribir("sp_Suscripciones_Archivar", h);
         }
+        public List<BEIdTexto> ListarUsuariosParaFiltro()
+        {
+            var dt = _datos.Leer("s_usuarios_listar_para_filtro", null);
+            var list = new List<BEIdTexto>();
+            foreach (System.Data.DataRow r in dt.Rows)
+            {
+                list.Add(new BEIdTexto
+                {
+                    Id = Convert.ToInt32(r["Id"]),
+                    Texto = Convert.ToString(r["Texto"])
+                });
+            }
+            return list;
+        }
     }
 }
 

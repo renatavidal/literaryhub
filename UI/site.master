@@ -89,6 +89,11 @@
         <span class="sc-icon">🔐</span><span class="sc-text">Seguridad / Cambiar contraseña</span>
         <span class="sc-arrow">›</span>
       </a>
+          <a href="/MyAccount.aspx" class="sc-item">
+    <span class="sc-icon">🔐</span><span class="sc-text">Mi cuenta</span>
+    <span class="sc-arrow">›</span>
+  </a>
+
 
       <a href="/Privacy.aspx" class="sc-item">
         <span class="sc-icon">🛡️</span><span class="sc-text">Privacidad</span>

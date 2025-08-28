@@ -15,7 +15,11 @@ namespace BE
         public string[] Roles { get; set; } = new string[0];
     }
 
-
+    public class BEIdTexto
+    {
+        public int Id { get; set; }
+        public string Texto { get; set; }
+    }
     public class BEUsuarioAuth : BEUsuario
     {
         public string PasswordHash { get; set; } // formato "iter:saltB64:hashB64"

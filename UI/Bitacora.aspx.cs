@@ -26,6 +26,7 @@ public partial class Bitacora : System.Web.UI.Page
         if (!IsPostBack)
         {
             Buscar();
+            CargarUsuarios();
         }
     }
 
@@ -43,8 +44,37 @@ public partial class Bitacora : System.Web.UI.Page
     {
         txtDesde.Text = txtHasta.Text = txtTexto.Text = "";
         ddlUsuario.ClearSelection(); ddlUsuario.Items[0].Selected = true;
-        ddlAgente.ClearSelection(); ddlAgente.Items[0].Selected = true;
         Buscar();
+    }
+    void CargarUsuarios()
+    {
+        var bllU = new BLLUsuario();
+        var items = bllU.ListarUsuariosParaFiltro(); // Id, Texto
+
+        ddlUsuario.DataSource = items;
+        ddlUsuario.DataTextField = "Texto";
+        ddlUsuario.DataValueField = "Id";
+        ddlUsuario.DataBind();
+        ddlUsuario.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Todos", "")); // primera opción
+    }
+
+    // (opcional) mostrar el nombre en la grilla en vez del Id
+    protected void gvBitacora_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == System.Web.UI.WebControls.DataControlRowType.DataRow)
+        {
+            var utc = (DateTime)DataBinder.Eval(e.Row.DataItem, "FechaUtc");
+            var tz = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time");
+            e.Row.Cells[0].Text = TimeZoneInfo.ConvertTimeFromUtc(utc, tz).ToString("yyyy-MM-dd HH:mm");
+
+            // Columna 3 = UserId -> lo traduzco a texto del ddl
+            var userId = Convert.ToString(DataBinder.Eval(e.Row.DataItem, "UserId"));
+            var it = ddlUsuario.Items.FindByValue(userId);
+            if (it != null && !string.IsNullOrEmpty(userId))
+            {
+                e.Row.Cells[3].Text = Server.HtmlEncode(it.Text);
+            }
+        }
     }
 
     void Buscar()
@@ -53,7 +83,6 @@ public partial class Bitacora : System.Web.UI.Page
         var filtro = new BEBitacoraFiltro
         {
             UserId = string.IsNullOrEmpty(ddlUsuario.SelectedValue) ? (int?)null : int.Parse(ddlUsuario.SelectedValue),
-            Agente = string.IsNullOrEmpty(ddlAgente.SelectedValue) ? null : ddlAgente.SelectedValue,
             Texto = string.IsNullOrWhiteSpace(txtTexto.Text) ? null : txtTexto.Text.Trim(),
             DesdeUtc = ParseLocalDateToUtc(txtDesde.Text),
             HastaUtc = ParseLocalDateToUtc(txtHasta.Text)
@@ -81,15 +110,5 @@ public partial class Bitacora : System.Web.UI.Page
         Buscar();
     }
 
-    protected void gvBitacora_RowDataBound(object sender, System.Web.UI.WebControls.GridViewRowEventArgs e)
-    {
-        if (e.Row.RowType == System.Web.UI.WebControls.DataControlRowType.DataRow)
-        {
-            // Columna 0 = FechaUtc (la convierto a hora local elegante)
-            var utc = (DateTime)DataBinder.Eval(e.Row.DataItem, "FechaUtc");
-            var tz = TimeZoneInfo.FindSystemTimeZoneById("Argentina Standard Time"); // ajustá tu zona si hace falta
-            var local = TimeZoneInfo.ConvertTimeFromUtc(utc, tz);
-            e.Row.Cells[0].Text = local.ToString("yyyy-MM-dd HH:mm");
-        }
-    }
+    
 }

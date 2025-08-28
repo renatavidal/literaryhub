@@ -31,12 +31,6 @@
       </asp:DropDownList>
     </div>
     <div>
-      <label>Agente</label>
-      <asp:DropDownList ID="ddlAgente" runat="server" CssClass="input">
-        <asp:ListItem Text="Todos" Value=""></asp:ListItem>
-      </asp:DropDownList>
-    </div>
-    <div>
       <label>Texto</label>
       <asp:TextBox ID="txtTexto" runat="server" CssClass="input" placeholder="Buscar en descripción..." />
     </div>

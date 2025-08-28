@@ -220,6 +220,11 @@ namespace BLL
             if (s.PrecioUSD < 0) throw new ArgumentException("Precio no puede ser negativo.");
             if (s.Orden < 0) s.Orden = 0;
         }
+        
+        public List<BEIdTexto> ListarUsuariosParaFiltro()
+        {
+            return _mpp.ListarUsuariosParaFiltro();
+        }
     }
 
 

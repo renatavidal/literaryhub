@@ -188,7 +188,7 @@
      </div>
  </div>  
 
-    <div class="g-recaptcha" data-sitekey="<%= System.Configuration.ConfigurationManager.AppSettings["RecaptchaSiteKeyLocal"] %>"></div>
+    <div class="g-recaptcha" data-sitekey="<%= System.Configuration.ConfigurationManager.AppSettings["RecaptchaSiteKey"] %>"></div>
 
     <div>
       <asp:Button ID="btnCrear" runat="server" Text="Crear cliente" CssClass="btn solid" OnClick="btnCrear_Click" ValidationGroup="c" />

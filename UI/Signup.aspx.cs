@@ -79,7 +79,7 @@ public partial class Signup : PublicPage
             var response = Request.Form["g-recaptcha-response"];
             if (string.IsNullOrEmpty(response)) return false;
 
-            var secret = ConfigurationManager.AppSettings["RecaptchaSecretLocal"];
+            var secret = ConfigurationManager.AppSettings["RecaptchaSecret"];
             var remoteIp = Request.UserHostAddress; // opcional
 
             // (Opcional pero recomendado en .NET 4.7.x)

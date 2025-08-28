@@ -109,7 +109,7 @@
       <div class="acceptance-sign-up">
              <div class="form-row">
           <div class="g-recaptcha"
-               data-sitekey="<%= System.Configuration.ConfigurationManager.AppSettings["RecaptchaSiteKeyLocal"] %>"></div>
+               data-sitekey="<%= System.Configuration.ConfigurationManager.AppSettings["RecaptchaSiteKey"] %>"></div>
 
                   <asp:CustomValidator ID="cvCaptcha" runat="server"
                       OnServerValidate="cvCaptcha_ServerValidate"
@@ -143,4 +143,5 @@
 
     <div>¿Ya tenés cuenta? <a href="/Login.aspx">Iniciar sesión</a></div>
   </div>
+    <script src="https://www.google.com/recaptcha/api.js?hl=es" async defer></script>
 </asp:Content>

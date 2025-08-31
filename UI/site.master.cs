@@ -12,9 +12,16 @@ public partial class Site : MasterPage
             return (Session != null) ? (Session["auth"] as UserSession) : null;
         }
     }
+    private TranslationService _tr;
+    protected void Page_Init(object sender, EventArgs e)
+    {
+        var apiKey = System.Configuration.ConfigurationManager.AppSettings["GoogleTranslateApiKey"];
+        _tr = new TranslationService(apiKey);
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
         if (IsPostBack) return;
+
 
         var sess = (UserSession)(Session != null ? Session["auth"] : null);
         pnlAnon.Visible = (sess == null);
@@ -23,6 +30,15 @@ public partial class Site : MasterPage
         lnkBitacora.Visible = UsuarioActualEsAdmin();
         HyperLink3.Visible = UsuarioActualEsAdmin();
 
+        string lang = "es";
+        HttpCookie c = (Request != null) ? Request.Cookies["lh-lang"] : null;
+        if (c != null && !string.IsNullOrEmpty(c.Value))
+        {
+            lang = c.Value;
+        }
+        var it = ddlLangTop.Items.FindByValue(lang);
+        if (it != null) ddlLangTop.ClearSelection();
+        if (it != null) it.Selected = true;
 
         if (sess != null)
         {
@@ -31,6 +47,22 @@ public partial class Site : MasterPage
             litEmailSmall.Text = Server.HtmlEncode(email);
             litInitials.Text = Server.HtmlEncode(GetInitial(email));
         }
+    }
+
+
+    protected void ddlLangTop_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        var lang = ddlLangTop.SelectedValue;     // "es" | "en" | "pt"
+
+        // guarda cookie sitio-completo por 1 año
+        var cookie = new HttpCookie("lh-lang", lang);
+        cookie.Path = "/";
+        cookie.Expires = DateTime.UtcNow.AddYears(1);
+        Response.Cookies.Add(cookie);
+
+        // recargar para que InitializeCulture vuelva a correr
+        Response.Redirect(Request.RawUrl, endResponse: false);
+        Context.ApplicationInstance.CompleteRequest();
     }
 
     string GetInitial(string email)

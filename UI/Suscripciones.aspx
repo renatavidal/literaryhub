@@ -32,13 +32,47 @@
     }
     .btn-choose:hover { background: var(--brand-dark) }
     .muted { color:var(--ink-soft) }
+    .compare-grid { overflow-x:auto; }
+    .compare-cols { display:grid; grid-auto-flow:column; grid-auto-columns: minmax(240px, 1fr); gap:16px; }
+    .compare-col {
+      background: var(--paper);
+      border:1px solid var(--stroke);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:0 8px 18px rgba(0,0,0,.06);
+    }
+    .compare-col.popular{
+      background: linear-gradient(180deg, #f6efe6, var(--paper));
+      border-color:#e3d6c7;
+    }
+    .compare-head{ display:grid; gap:6px; margin-bottom:12px }
+    .compare-price{ font-size:1.6rem; font-weight:800; color:var(--brand) }
+    .compare-features{ list-style:none; display:grid; gap:8px; padding:0; margin:0 }
+    .badge.mini{ display:inline-block; padding:2px 8px; border-radius:999px; background:var(--chip); color:var(--brand); font-weight:700; font-size:.8rem }
+    .btn-ghost{ border:1px solid var(--brand); padding:8px 12px; border-radius:10px; text-decoration:none; color:var(--brand) }
   </style>
 </asp:Content>
 
 <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
   <h1>Planes de suscripción</h1>
   <p class="muted">Elegí el plan que mejor se adapte a vos. Los precios están expresados en USD.</p>
-
+    <!-- ======= BARRA DE COMPARACIÓN ======= -->
+  <div class="compare-bar" style="margin:18px 0; padding:14px; border:1px solid var(--stroke); border-radius:12px; background:var(--paper); display:grid; gap:10px">
+    <div style="display:grid; gap:10px">
+      <strong>Comparar planes</strong>
+      <div class="selectors" style="display:grid; grid-template-columns:repeat(3, minmax(160px, 1fr)); gap:10px">
+        <asp:DropDownList ID="ddlA" runat="server" CssClass="input"></asp:DropDownList>
+        <asp:DropDownList ID="ddlB" runat="server" CssClass="input"></asp:DropDownList>
+        <asp:DropDownList ID="ddlC" runat="server" CssClass="input"></asp:DropDownList>
+      </div>
+      <div>
+        <asp:Button ID="btnCompare" runat="server" Text="Comparar" OnClick="btnCompare_Click"
+                    CssClass="btn-choose" />
+      </div>
+    </div>
+    <small class="muted" id="comparemessage">Elegí 2 o 3 planes.</small>
+  </div>
+      <asp:PlaceHolder ID="phCompare" runat="server" />
   <asp:Repeater ID="rptPlanes" runat="server">
     <HeaderTemplate><div class="plans"></HeaderTemplate>
     <ItemTemplate>
@@ -60,8 +94,12 @@
         <a class="btn-choose" href='<%# "/Checkout.aspx?plan=" + Eval("Codigo") %>'>
           Elegir plan
         </a>
+            <!-- Botón que precarga el selector A/B con este plan -->
+          <asp:LinkButton runat="server" CommandName="prefill"
+              CommandArgument='<%# Eval("Codigo") %>' CssClass="btn-ghost">Comparar este</asp:LinkButton>
       </div>
     </ItemTemplate>
     <FooterTemplate></div></FooterTemplate>
   </asp:Repeater>
+    
 </asp:Content>

@@ -26,7 +26,10 @@
 
                 <div class="top-actions">
 <label for="ddlLangTop" class="sr-only">Idioma</label>
-<asp:DropDownList ID="ddlLangTop" runat="server" CssClass="lang-select">
+<asp:DropDownList ID="ddlLangTop" runat="server"
+                  CssClass="lang-select"
+                  AutoPostBack="true"
+                  OnSelectedIndexChanged="ddlLangTop_SelectedIndexChanged">
     <asp:ListItem Text="ES" Value="es" Selected="True" />
     <asp:ListItem Text="EN" Value="en" />
     <asp:ListItem Text="PT" Value="pt" />

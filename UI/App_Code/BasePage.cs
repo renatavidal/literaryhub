@@ -79,6 +79,16 @@ public abstract class AuthPage : System.Web.UI.Page
         }
         return false;
     }
+    protected override void InitializeCulture()
+    {
+        string lang = "es";
+        var c = (Request != null) ? Request.Cookies["lh-lang"] : null;
+        if (c != null && !string.IsNullOrEmpty(c.Value)) lang = c.Value;
+        var ci = new System.Globalization.CultureInfo(lang);
+        System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
+        System.Threading.Thread.CurrentThread.CurrentCulture = ci;
+        base.InitializeCulture();
+    }
 }
 
 // Páginas públicas (no requieren login)

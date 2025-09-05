@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BE
+{
+    public class BEBook
+    {
+        public int BookId { get; set; }
+        public string GoogleVolumeId { get; set; }
+        public string Title { get; set; }
+        public string Authors { get; set; }
+        public string ThumbnailUrl { get; set; }
+        public string Isbn13 { get; set; }
+        public string PublishedDate { get; set; }
+    }
+    public enum UserBookStatus : byte { None = 0, WantToRead = 1, Read = 2 }
+
+}

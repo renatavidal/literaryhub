@@ -40,30 +40,41 @@
       <div class="grid">
         <!-- Repeater interno: el DataSource lo seteo en ItemDataBound -->
         <asp:Repeater ID="rptBooks" runat="server">
-          <ItemTemplate>
-            <div class="card">
+  <ItemTemplate>
+    <div class="card">
+      <asp:HyperLink ID="lnk" runat="server"
+          NavigateUrl='<%# BookUrl(Eval("Gid")) %>'>
+        <asp:Image ID="img" runat="server" CssClass="cover"
+            ImageUrl='<%# Eval("Thumbnail") %>'
+            AlternateText='<%# Eval("Title") %>' />
+      </asp:HyperLink>
 
-              <asp:HyperLink ID="lnk" runat="server"
-                             NavigateUrl='<%# DataBinder.Eval(Container.DataItem, "InfoLink") %>'
-                             Target="_blank" rel="noopener">
-                <asp:Image ID="img" runat="server" CssClass="cover"
-                           ImageUrl='<%# DataBinder.Eval(Container.DataItem, "Thumbnail") %>'
-                           AlternateText='<%# DataBinder.Eval(Container.DataItem, "Title") %>' />
-              </asp:HyperLink>
+      <div class="body">
+        <div class="title"><%# Eval("Title") %></div>
+        <div class="author"><%# Eval("Authors") %></div>
+        <div class="price"><%# Eval("PriceLabel") %></div>
 
-              <div class="body">
-                <div class="title"><%# DataBinder.Eval(Container.DataItem, "Title") %></div>
-                <div class="author"><%# DataBinder.Eval(Container.DataItem, "Authors") %></div>
-                <div class="price"><%# DataBinder.Eval(Container.DataItem, "PriceLabel") %></div>
+        <asp:HyperLink runat="server" CssClass="more"
+            NavigateUrl='<%# BookUrl(Eval("Gid")) %>'>
+          Ver / comentar →
+        </asp:HyperLink>
 
-                <asp:HyperLink runat="server" CssClass="more"
-                               NavigateUrl='<%# DataBinder.Eval(Container.DataItem, "InfoLink") %>'
-                               Target="_blank" rel="noopener">Ver más →</asp:HyperLink>
-              </div>
+        <div style="margin-top:6px; display:flex; gap:8px; flex-wrap:wrap">
+          <asp:HyperLink runat="server" CssClass="more"
+              NavigateUrl='<%# BookUrl(Eval("Gid"), "want") %>'>Quiero leer</asp:HyperLink>
+          <asp:HyperLink runat="server" CssClass="more"
+              NavigateUrl='<%# BookUrl(Eval("Gid"), "read") %>'>Leído</asp:HyperLink>
+        </div>
+          <asp:HyperLink runat="server" CssClass="more"
+            NavigateUrl='<%# "/Purchase.aspx?gid=" + Eval("Gid") %>'>
+          Comprar
+        </asp:HyperLink>
+      </div> <!-- .body -->
 
-            </div>
-          </ItemTemplate>
-        </asp:Repeater>
+    </div> <!-- .card -->
+  </ItemTemplate>
+</asp:Repeater>
+
       </div>
     </div>
   </ItemTemplate>

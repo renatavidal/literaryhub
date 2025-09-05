@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLLBitacora.cs" />
+    <Compile Include="BLLCatalog.cs" />
     <Compile Include="BLLCliente.cs" />
     <Compile Include="BLLPersona.cs" />
     <Compile Include="BLLUsuario.cs" />

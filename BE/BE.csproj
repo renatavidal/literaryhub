@@ -42,9 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BEBitacora.cs" />
+    <Compile Include="BEBook.cs" />
     <Compile Include="BECliente.cs" />
+    <Compile Include="BEComment.cs" />
     <Compile Include="BEEmailVerificationToken.cs" />
+    <Compile Include="BEPaymentMethod.cs" />
     <Compile Include="BEPersona.cs" />
+    <Compile Include="BEPurchase.cs" />
     <Compile Include="BESuscripcion.cs" />
     <Compile Include="BEUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

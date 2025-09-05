@@ -8,6 +8,8 @@ using System.Configuration;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
+using Newtonsoft.Json.Linq;
+
 
 public partial class Home : ReaderPage
 {
@@ -21,6 +23,63 @@ public partial class Home : ReaderPage
         "Fiction", "Fantasy", "Romance", "Mystery",
         "Science", "History", "Self-Help", "Poetry"
     };
+
+    private static string S(JToken t)
+    {
+        return t == null ? "" : (string)t;
+    }
+
+    private static BookVM MapFromGoogle(JToken item)
+    {
+        var vi = item == null ? null : item["volumeInfo"];
+        var img = vi == null ? null : vi["imageLinks"];
+
+        // Thumbnail con fallback
+        string thumb = "/Content/blank-cover.png";
+        if (img != null)
+        {
+            string t1 = S(img["thumbnail"]);
+            string t2 = S(img["smallThumbnail"]);
+            if (!string.IsNullOrEmpty(t1)) thumb = t1;
+            else if (!string.IsNullOrEmpty(t2)) thumb = t2;
+        }
+
+        // Autores
+        string authors = "";
+        var aTok = vi == null ? null : vi["authors"];
+        if (aTok != null && aTok.Type == JTokenType.Array)
+        {
+            var arr = aTok.ToObject<string[]>();
+            if (arr != null && arr.Length > 0)
+                authors = string.Join(", ", arr);
+        }
+
+        // InfoLink
+        string infoLink = S(vi == null ? null : vi["infoLink"]);
+        if (string.IsNullOrEmpty(infoLink)) infoLink = S(item["selfLink"]);
+
+        return new BookVM
+        {
+            Gid = S(item["id"]),
+            Title = S(vi == null ? null : vi["title"]),
+            Authors = authors,
+            Thumbnail = thumb,
+            InfoLink = infoLink,
+            PriceLabel = "" // si no tenés precio, dejalo vacío o poné "—"
+        };
+    }
+    protected string BookUrl(object gidObj, string action = null)
+    {
+        var gid = gidObj == null ? "" : gidObj.ToString();
+        var baseUrl = ResolveUrl("~/BookDetails.aspx");
+        if (string.IsNullOrEmpty(gid)) return baseUrl; // fallback
+
+        var qs = "gid=" + Server.UrlEncode(gid);
+        if (!string.IsNullOrEmpty(action))
+            qs += "&action=" + Server.UrlEncode(action);
+
+        return baseUrl + "?" + qs;
+    }
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -104,6 +163,7 @@ public partial class Home : ReaderPage
 
                     list.Add(new BookVM
                     {
+                        Gid = it.id ?? "",
                         Title = Truncate(vi.title, 80),
                         Authors = Truncate(authors, 80),
                         Thumbnail = thumb.Replace("http://", "https://"),
@@ -146,6 +206,7 @@ public partial class Home : ReaderPage
 
     public class BookVM
     {
+        public string Gid { get; set; }
         public string Title { get; set; }
         public string Authors { get; set; }
         public string Thumbnail { get; set; }
@@ -157,6 +218,7 @@ public partial class Home : ReaderPage
     public class GoogleBooksRoot { public Item[] items { get; set; } }
     public class Item
     {
+        public string id { get; set; }
         public string selfLink { get; set; }
         public VolumeInfo volumeInfo { get; set; }
         public SaleInfo saleInfo { get; set; }

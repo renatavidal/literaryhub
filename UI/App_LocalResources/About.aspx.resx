@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PageTitle" xml:space="preserve"><value>¿Quiénes somos?</value></data>
+  <data name="H1" xml:space="preserve"><value>Sobre LiteraryHub</value></data>
+  <data name="Sec1_Title" xml:space="preserve"><value>Descripción básica del negocio</value></data>
+  <data name="Sec1_Body" xml:space="preserve"><value>LiteraryHub conecta lectores, autores y librerías en un ecosistema único: recomendaciones personalizadas por algoritmos, comunidades de lectura virtuales, eventos exclusivos con autores y un marketplace para comprar libros en formato digital y físico con librerías asociadas. Incluye funciones sociales (perfiles, reseñas, seguimiento de autores) y un plan premium con beneficios y descuentos.</value></data>
+  <data name="Carousel_Aria" xml:space="preserve"><value>Galería de imágenes</value></data>
+  <data name="Carousel_Prev" xml:space="preserve"><value>Anterior</value></data>
+  <data name="Carousel_Next" xml:space="preserve"><value>Siguiente</value></data>
+  <data name="Carousel_Dots" xml:space="preserve"><value>Selector de imagen</value></data>
+  <data name="Sec2_Title" xml:space="preserve"><value>Situación actual</value></data>
+  <data name="Sec2_Body" xml:space="preserve"><value>Startup emergente con equipo fundador de tecnología, marketing digital y editorial, asesorado por referentes del mundo literario. Visión: ser el hub digital literario líder en 3 años, con 500.000 usuarios activos/mes, +200 librerías asociadas y +500 autores reconocidos. Lanzamiento local y expansión a 3 países el segundo año.</value></data>
+  <data name="Sec3_Title" xml:space="preserve"><value>¿Qué nos hace únicos?</value></data>
+  <data name="Sec3_Item1" xml:space="preserve"><value><strong>Enfoque integral:</strong> recomendaciones + compra + comunidades en un solo lugar.</value></data>
+  <data name="Sec3_Item2" xml:space="preserve"><value><strong>Hibridación digital-física:</strong> integra librerías locales y eventos presenciales.</value></data>
+  <data name="Sec3_Item3" xml:space="preserve"><value><strong>Recomendaciones avanzadas:</strong> patrones de lectura, progreso y valoraciones contextualizadas.</value></data>
+  <data name="Sec3_Item4" xml:space="preserve"><value><strong>Experiencia social enriquecida:</strong> comentarios por página evitando spoilers.</value></data>
+  <data name="Sec3_Item5" xml:space="preserve"><value><strong>Puente autores-lectores:</strong> exposición y eventos que mejoran el ingreso del autor.</value></data>
+  <data name="Sec4_Title" xml:space="preserve"><value>Factores clave de éxito</value></data>
+  <data name="Sec4_Item1" xml:space="preserve"><value>Tecnología de personalización que mejora con el uso.</value></data>
+  <data name="Sec4_Item2" xml:space="preserve"><value>Modelo de ingresos diversificado (comisiones, suscripción, eventos, publicidad selectiva).</value></data>
+  <data name="Sec4_Item3" xml:space="preserve"><value>Alianzas con editoriales, librerías, Kindle y creadores de contenido.</value></data>
+  <data name="Sec4_Item4" xml:space="preserve"><value>Foco en comunidad para aumentar retención.</value></data>
+  <data name="Sec4_Item5" xml:space="preserve"><value>Escalabilidad internacional (idiomas y contexto local).</value></data>
+  <data name="Sec4_Item6" xml:space="preserve"><value>UX fluida entre descubrir, comprar, leer y debatir.</value></data>
+  <data name="Sec4_Item7" xml:space="preserve"><value>Analytics útiles para autores y librerías.</value></data>
+  <data name="Sec5_Title" xml:space="preserve"><value>Estrategia (Misión, Visión y marco temporal)</value></data>
+  <data name="Sec5_Body" xml:space="preserve"><value>Horizonte de 3 años con evaluaciones trimestrales y metodología ágil: permite adaptarse a cambios económicos, tecnológicos y editoriales, incorporando IA, análisis predictivo y alianzas estratégicas sostenibles.</value></data>
+</root>

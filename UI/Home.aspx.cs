@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,6 +9,10 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json.Linq;
+using BE;
+using BLL;
+using System.Net.NetworkInformation;
+using System.Web.UI;
 
 
 public partial class Home : ReaderPage
@@ -65,7 +69,7 @@ public partial class Home : ReaderPage
             Authors = authors,
             Thumbnail = thumb,
             InfoLink = infoLink,
-            PriceLabel = "" // si no tenés precio, dejalo vacío o poné "—"
+            PriceLabel = "" // si no tenés precio, dejalo vacío o poné "-"
         };
     }
     protected string BookUrl(object gidObj, string action = null)
@@ -83,17 +87,23 @@ public partial class Home : ReaderPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (IsPostBack) return;
-
-        var sections = new List<GenreSection>();
-        foreach (var g in Genres)
+        if (!IsPostBack)
         {
-            var books = GetBooksForGenre(g, 10, "es"); // 10 libros, español (cambia a null para todos)
-            sections.Add(new GenreSection { Genre = g, Books = books });
-        }
+            var ph = (string)GetGlobalResourceObject("Global", "Search_Placeholder");
+            var q = Request["q"] ?? "";
+            BookSearch1.Query = q;
+            if (!string.IsNullOrWhiteSpace(q)) BookSearch1.Search();
 
-        rptSections.DataSource = sections;
-        rptSections.DataBind();
+            var sections = new List<GenreSection>();
+            foreach (var g in Genres)
+            {
+                var books = GetBooksForGenre(g, 10, "es"); // 10 libros, español (cambia a null para todos)
+                sections.Add(new GenreSection { Genre = g, Books = books });
+            }
+
+            rptSections.DataSource = sections;
+            rptSections.DataBind();
+        }
     }
     protected void rptSections_ItemDataBound(object sender, RepeaterItemEventArgs e)
     {
@@ -106,15 +116,7 @@ public partial class Home : ReaderPage
         inner.DataBind();
     }
 
-    protected void btnSearch_Click(object sender, EventArgs e)
-    {
-        var q = (txtSearch.Text ?? "").Trim();
-        if (q.Length == 0) return;
-        // Simple: redirigí a una página de búsqueda tuya
-        Response.Redirect("/Search.aspx?q=" + Server.UrlEncode(q));
-    }
-
-
+ 
 
     // ------------------ Google Books ------------------
 
@@ -151,7 +153,7 @@ public partial class Home : ReaderPage
 
                     string authors = (vi.authors != null && vi.authors.Length > 0)
                                      ? string.Join(", ", vi.authors)
-                                     : "—";
+                                     : "-";
 
                     string price = "";
                     if (sale.listPrice != null && sale.listPrice.amount > 0)
@@ -159,7 +161,7 @@ public partial class Home : ReaderPage
                     else if (sale.saleability == "FREE")
                         price = "Gratis";
                     else
-                        price = "—";
+                        price = "-";
 
                     list.Add(new BookVM
                     {
@@ -181,6 +183,92 @@ public partial class Home : ReaderPage
             return new List<BookVM>();
         }
     }
+    // Trae lo mínimo del libro por GID (C#5-safe)
+    private static BEBook FetchBookByGid(string gid)
+    {
+        if (string.IsNullOrWhiteSpace(gid)) return null;
+
+        string url = "https://www.googleapis.com/books/v1/volumes/" + Uri.EscapeDataString(gid);
+        string json = HttpGet(url, 7000);
+        var jo = JObject.Parse(json);
+        var vi = jo["volumeInfo"];
+
+        string authors = "";
+        var aTok = vi == null ? null : vi["authors"];
+        if (aTok != null && aTok.Type == JTokenType.Array)
+        {
+            var arr = aTok.ToObject<string[]>();
+            if (arr != null && arr.Length > 0) authors = string.Join(", ", arr);
+        }
+
+        string img = "";
+        var il = vi == null ? null : vi["imageLinks"];
+        if (il != null) img = S(il["thumbnail"] ?? il["smallThumbnail"]);
+
+        string isbn13 = "";
+        var ids = vi == null ? null : vi["industryIdentifiers"];
+        if (ids != null && ids.Type == JTokenType.Array)
+        {
+            foreach (var it in ids)
+            {
+                if (S(it["type"]) == "ISBN_13") { isbn13 = S(it["identifier"]); break; }
+            }
+        }
+
+        return new BEBook
+        {
+            GoogleVolumeId = gid,
+            Title = S(vi == null ? null : vi["title"]),
+            Authors = authors,
+            ThumbnailUrl = img,
+            Isbn13 = isbn13,
+            PublishedDate = S(vi == null ? null : vi["publishedDate"])
+        };
+    }
+    private int CurrentUserId
+    {
+        get
+        {
+            var auth = Session["auth"] as UserSession; 
+            if (auth == null)
+            {
+                var ret = Server.UrlEncode(Request.RawUrl);
+                Response.Redirect("/Login.aspx?returnUrl=" + ret);
+                return 0;
+            }
+            return auth.UserId;
+        }
+    }
+
+    protected void BookAction_Command(object sender, CommandEventArgs e)
+    {
+        try
+        {
+            var auth = Session["auth"] as UserSession;
+            if (auth.IsInRole("Client"))
+            {
+                ScriptManager.RegisterStartupScript(this, GetType(), "err", "alert('Como cliente no puedes guardar libros, create una cuenta como usuario para disfrutar de la experiencia');", true);
+                return;
+            }
+            var gid = (e.CommandArgument ?? "").ToString();
+            if (string.IsNullOrEmpty(gid)) return;
+
+            var book = FetchBookByGid(gid);
+            var bll = new BLLCatalog();
+            var status = (e.CommandName == "read") ? UserBookStatus.Read : UserBookStatus.WantToRead;
+
+            bll.SetUserBookStatus(CurrentUserId, book, status);
+
+            var msg = (status == UserBookStatus.Read) ? "¡Marcado como Leído!" : "¡Marcado como Quiero leer!";
+            ScriptManager.RegisterStartupScript(this, GetType(), "ok", "alert('" + msg + "');", true);
+        }
+        catch (Exception ex)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "err",
+                "alert('No se pudo guardar: " + Server.HtmlEncode(ex.Message).Replace("'", "\\'") + "');", true);
+        }
+    }
+
 
     private static string HttpGet(string url, int timeoutMs)
     {
@@ -198,7 +286,7 @@ public partial class Home : ReaderPage
     private static string Truncate(string s, int max)
     {
         if (string.IsNullOrEmpty(s)) return "";
-        return s.Length <= max ? s : s.Substring(0, max - 1) + "…";
+        return s.Length <= max ? s : s.Substring(0, max - 1) + ".";
     }
 
     // ------------------ VM y DTOs JSON ------------------
@@ -238,3 +326,4 @@ public partial class Home : ReaderPage
     }
     public class Price { public decimal amount { get; set; } public string currencyCode { get; set; } }
 }
+

@@ -49,6 +49,7 @@
     <Compile Include="BEPaymentMethod.cs" />
     <Compile Include="BEPersona.cs" />
     <Compile Include="BEPurchase.cs" />
+    <Compile Include="BEPurchaseDetails.cs" />
     <Compile Include="BESuscripcion.cs" />
     <Compile Include="BEUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

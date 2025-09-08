@@ -29,6 +29,9 @@ public partial class Site : MasterPage
 
         lnkBitacora.Visible = UsuarioActualEsAdmin();
         HyperLink3.Visible = UsuarioActualEsAdmin();
+        HyperLink7.Visible = !UsuarioActualEsCliente();
+        HyperLink5.Visible = !UsuarioActualEsCliente();
+        HyperLink8.Visible = UsuarioActualEsAdmin();
 
         string lang = "es";
         HttpCookie c = (Request != null) ? Request.Cookies["lh-lang"] : null;
@@ -49,18 +52,16 @@ public partial class Site : MasterPage
         }
     }
 
-
+    // Recargar misma URL para que ApplyCulture corra con el nuevo idioma
     protected void ddlLangTop_SelectedIndexChanged(object sender, EventArgs e)
     {
-        var lang = ddlLangTop.SelectedValue;     // "es" | "en" | "pt"
+        var lang = ddlLangTop.SelectedValue;     
 
-        // guarda cookie sitio-completo por 1 año
         var cookie = new HttpCookie("lh-lang", lang);
         cookie.Path = "/";
         cookie.Expires = DateTime.UtcNow.AddYears(1);
         Response.Cookies.Add(cookie);
 
-        // recargar para que InitializeCulture vuelva a correr
         Response.Redirect(Request.RawUrl, endResponse: false);
         Context.ApplicationInstance.CompleteRequest();
     }
@@ -84,6 +85,12 @@ public partial class Site : MasterPage
     {
         if( CurrentUser != null)
             return CurrentUser.IsInRole("Admin"); 
+        return false;
+    }
+    private bool UsuarioActualEsCliente()
+    {
+        if (CurrentUser != null)
+            return CurrentUser.IsInRole("Client");
         return false;
     }
 

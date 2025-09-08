@@ -13,6 +13,7 @@ namespace BE
         public string Email { get; set; }
         public bool EmailVerified { get; set; }
         public string[] Roles { get; set; } = new string[0];
+        public bool Activo { get; set; }
     }
 
     public class BEIdTexto
@@ -23,5 +24,10 @@ namespace BE
     public class BEUsuarioAuth : BEUsuario
     {
         public string PasswordHash { get; set; } // formato "iter:saltB64:hashB64"
+    }
+    public class BENombre: BEUsuario
+    {
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
     }
 }

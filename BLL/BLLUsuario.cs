@@ -32,12 +32,21 @@ namespace BLL
             var ph = PasswordService.HashPassword(passwordPlano);
 
             int nuevoId = _mpp.CrearUsuario(email, nombre, apellido, ph, emailVerifiedInicial);
-            return nuevoId; // 0 o -1 si tu SP no retorna identity
+            return nuevoId; 
         }
         public void RegistrarRegistro(BEUsuario u, string agente)
         {
             if (u == null) return;
             _mpp.RegistrarRegistro(u.Id, agente);
+        }
+        public void Deactivate(int userId)
+        {
+            _mpp.Deactivate(userId);
+            RegistrarEnBitacora(userId, "", "Usuario dado de Baja");
+        }
+        public void RegistrarEnBitacora(int id, string agente, string accion)
+        {
+            _mpp.RegistrarEnBitacora(id, agente, accion);
         }
 
         public void RegistrarAcceso(BEPersona u,  string agente)
@@ -129,7 +138,8 @@ namespace BLL
                     Id = u.Id,
                     Email = u.Email,
                     EmailVerified = u.EmailVerified,
-                    Roles = u.Roles ?? Array.Empty<string>()
+                    Roles = u.Roles ?? Array.Empty<string>(),
+                    Activo = u.Activo,
                 };
             MPPCliente _mppCliente = new MPPCliente();
             var c = _mppCliente.GetClienteAuthByEmail(email);
@@ -140,7 +150,8 @@ namespace BLL
                     Id = c.Id,
                     Email = c.Email,
                     EmailVerified = c.EmailVerified,
-                    Roles = c.Roles ?? new[] { "Reader", "Client" }
+                    Roles = c.Roles ?? new[] { "Reader", "Client" },
+                    Activo = c.Activo,
                 };
 
             return null;
@@ -161,7 +172,8 @@ namespace BLL
                 Id = rec.Id,
                 Email = rec.Email,
                 EmailVerified = rec.EmailVerified,
-                Roles = rec.Roles ?? new string[0]
+                Roles = rec.Roles ?? new string[0],
+                Activo = rec.Activo,
             };
         }
         public BEUsuario ObtenerPorEmail(string email)
@@ -224,6 +236,24 @@ namespace BLL
         public List<BEIdTexto> ListarUsuariosParaFiltro()
         {
             return _mpp.ListarUsuariosParaFiltro();
+        }
+        public  List<BENombre> Buscar(string texto)
+        {
+            return _mpp.Buscar(texto);
+        }
+
+        public  bool DarDeBaja(int userId, string agente)
+        {
+            bool ok = _mpp.SetActive(userId, false);
+            try { RegistrarEnBitacora( userId, agente, "Admin: BAJA de usuario"); } catch { }
+            return ok;
+        }
+
+        public  bool DarDeAlta(int userId, string agente)
+        {
+            bool ok = _mpp.SetActive(userId, true);
+            try { RegistrarEnBitacora( userId , agente, "Admin: ALTA de usuario"); } catch { }
+            return ok;
         }
     }
 

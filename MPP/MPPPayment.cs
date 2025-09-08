@@ -3,6 +3,7 @@ using DAL;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,6 +48,27 @@ namespace MPP
                 {"@Status", status}
             };
             _db.Escribir("sp_Purchase_SetStatus", h);
+        }
+        public BEPurchaseDetails GetPurchaseDetails(int purchaseId)
+        {
+            var h = new Hashtable { { "@PurchaseId", purchaseId } };
+            DataTable dt = _db.Leer("sp_Purchase_GetDetails", h);
+            if (dt == null || dt.Rows.Count == 0) return null;
+
+            var r = dt.Rows[0];
+            return new BEPurchaseDetails
+            {
+                PurchaseId = Convert.ToInt32(r["PurchaseId"]),
+                UserId = Convert.ToInt32(r["UserId"]),
+                BookId = Convert.ToInt32(r["BookId"]),
+                PaymentMethodId = Convert.ToInt32(r["PaymentMethodId"]),
+                Price = Convert.ToDecimal(r["Price"]),
+                Currency = Convert.ToString(r["Currency"]),
+                Status = Convert.ToByte(r["Status"]),
+                CreatedUtc = Convert.ToDateTime(r["CreatedUtc"]),
+                Title = Convert.ToString(r["Title"]),
+                Authors = Convert.ToString(r["Authors"])
+            };
         }
     }
     

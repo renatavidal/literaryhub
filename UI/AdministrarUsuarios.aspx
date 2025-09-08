@@ -1,0 +1,50 @@
+﻿<%@ Page Title="Administrar Usuarios" Language="C#" MasterPageFile="~/site.master"
+    AutoEventWireup="true" CodeFile="AdministrarUsuarios.aspx.cs" Inherits="AdministrarUsuarios" %>
+
+<asp:Content ID="Head" ContentPlaceHolderID="HeadContent" runat="server">
+  <style>
+    .admin { max-width:980px; margin:24px auto; display:grid; gap:14px }
+    .card { background:#fff; border:1px solid var(--stroke); border-radius:14px; padding:16px }
+    .row { display:grid; grid-template-columns:160px 1fr auto; gap:10px; align-items:center }
+    .btn{ padding:8px 12px; border:1px solid var(--stroke); border-radius:10px; background:var(--bg-soft) }
+    .btn-danger{ background:#fbeaea; border-color:#f2c2c2 }
+    .muted{ color:#666 }
+    .table{ width:100% }
+  </style>
+</asp:Content>
+
+<asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
+  <div class="admin">
+    <h1>Administrar Usuarios</h1>
+
+    <div class="card">
+      <div class="row">
+        <label for="txtTexto">Nombre / Apellido / Email</label>
+        <asp:TextBox ID="txtTexto" runat="server" CssClass="input" />
+        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn" OnClick="btnBuscar_Click" />
+      </div>
+      <asp:Label ID="lblMsg" runat="server" CssClass="muted" />
+    </div>
+
+    <div class="card">
+      <asp:GridView ID="gvUsuarios" runat="server" AutoGenerateColumns="False" CssClass="table"
+                    OnRowCommand="gvUsuarios_RowCommand">
+        <Columns>
+          <asp:BoundField HeaderText="ID" DataField="Id" />
+          <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+          <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
+          <asp:BoundField HeaderText="Email" DataField="Email" />
+          <asp:CheckBoxField HeaderText="Verificado" DataField="EmailVerified" />
+          <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
+          <asp:TemplateField HeaderText="Acciones">
+            <ItemTemplate>
+              <asp:Button runat="server" Text="Alta" CommandName="Alta" CommandArgument='<%# Eval("Id") %>' CssClass="btn" />
+              <asp:Button runat="server" Text="Baja" CommandName="Baja" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-danger"
+                          OnClientClick="return confirm('¿Confirmás la BAJA?');" />
+            </ItemTemplate>
+          </asp:TemplateField>
+        </Columns>
+      </asp:GridView>
+    </div>
+  </div>
+</asp:Content>

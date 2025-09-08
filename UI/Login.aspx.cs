@@ -48,6 +48,11 @@ using BE;
                     lblLoginResult.Text = "Credenciales inválidas";
                     return;
                 }
+            if (p.Activo == false)
+            {
+                lblLoginResult.Text = "Usuario DESACTIVADO, si considera que esto fue un error contactenos en literary.hub.contact@gmail.com";
+                return;
+            }
                 Session["auth"] = new UserSession
                 {
                     UserId = p.Id,

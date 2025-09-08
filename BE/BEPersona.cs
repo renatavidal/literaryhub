@@ -14,5 +14,6 @@ namespace BE
         public string Email { get; set; }
         public bool EmailVerified { get; set; }
         public string[] Roles { get; set; } = Array.Empty<string>();
+        public bool Activo { get; set; }
     }
 }

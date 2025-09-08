@@ -14,6 +14,12 @@ public partial class BookDetails : ReaderPage
             Response.Redirect("/AccessDenied.aspx"); 
             return;
         }
+        var auth = Session["auth"] as UserSession;
+        if (auth.IsInRole("Client") )
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "err", "alert('Como cliente no puedes comprar libros, create una cuenta como usuario para disfrutar de la experiencia');", true);
+            Response.Redirect("/Home.aspx");
+        }
 
         if (!IsPostBack)
         {

@@ -40,6 +40,10 @@ namespace BLL
             int pmId = _mPay.AddMethod(pm);
             return _mPay.CreatePurchase(userId, bookId, pmId, price, currency);
         }
+        public BEPurchaseDetails GetPurchaseDetails(int purchaseId)
+        {
+            return _mPay.GetPurchaseDetails(purchaseId);
+        }
 
         public void SetPurchaseStatus(int purchaseId, byte status) => _mPay.SetPurchaseStatus(purchaseId, status);
     }

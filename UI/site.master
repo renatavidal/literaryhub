@@ -85,6 +85,26 @@
           <span class="sc-icon">🗒️</span><span class="sc-text">Administrar Suscripciones</span>
           <span class="sc-arrow">›</span>
         </asp:HyperLink>
+        <asp:HyperLink ID="HyperLink" runat="server"
+    class="sc-item" NavigateUrl="/Suscripciones.aspx" Visible="true">
+  <span class="sc-icon">🗒️</span><span class="sc-text">Planes de Suscripciones</span>
+  <span class="sc-arrow">›</span>
+</asp:HyperLink>
+                        <asp:HyperLink ID="HyperLink5" runat="server"
+            class="sc-item" NavigateUrl="/MyAccount.aspx" Visible="false">
+          <span class="sc-icon">🗒️</span><span class="sc-text">Mi Cuenta</span>
+          <span class="sc-arrow">›</span>
+        </asp:HyperLink>
+        <asp:HyperLink ID="HyperLink7" runat="server"
+    class="sc-item" NavigateUrl="/MyBooks.aspx" Visible="false">
+  <span class="sc-icon">🗒️</span><span class="sc-text">Mis Libros</span>
+  <span class="sc-arrow">›</span>
+</asp:HyperLink>
+                        <asp:HyperLink ID="HyperLink8" runat="server"
+    class="sc-item" NavigateUrl="/AdministrarUsuarios.aspx" Visible="false">
+  <span class="sc-icon">🗒️</span><span class="sc-text">Administrar Usuarios / Clientes</span>
+  <span class="sc-arrow">›</span>
+</asp:HyperLink>
 
 
 
@@ -92,10 +112,7 @@
         <span class="sc-icon">🔐</span><span class="sc-text">Seguridad / Cambiar contraseña</span>
         <span class="sc-arrow">›</span>
       </a>
-          <a href="/MyAccount.aspx" class="sc-item">
-    <span class="sc-icon">🔐</span><span class="sc-text">Mi cuenta</span>
-    <span class="sc-arrow">›</span>
-  </a>
+         
 
 
       <a href="/Privacy.aspx" class="sc-item">
@@ -108,10 +125,7 @@
         <span class="sc-arrow">›</span>
       </a>
 
-      <a href="/About.aspx" class="sc-item">
-        <span class="sc-icon">ℹ️</span><span class="sc-text">Acerca de</span>
-        <span class="sc-arrow">›</span>
-      </a>
+    
 
       <div class="sc-sep"></div>
 

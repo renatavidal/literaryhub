@@ -15,7 +15,9 @@ namespace BE
         public string ThumbnailUrl { get; set; }
         public string Isbn13 { get; set; }
         public string PublishedDate { get; set; }
+        public enum UserBookStatus : byte { None = 0, WantToRead = 1, Read = 2 }
     }
     public enum UserBookStatus : byte { None = 0, WantToRead = 1, Read = 2 }
+
 
 }

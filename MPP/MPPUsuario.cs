@@ -27,7 +27,6 @@ namespace MPP
             _datos = acceso ?? throw new ArgumentNullException(nameof(acceso));
         }
 
-        /// <summary>Trae usuario por email, incluyendo PasswordHash para validar login.</summary>
         public BEUsuarioAuth GetUsuarioAuthByEmail(string email)
         {
             var h = new Hashtable { { "@Email", email } };
@@ -40,12 +39,23 @@ namespace MPP
                 Id = Convert.ToInt32(r["Id"]),
                 Email = Convert.ToString(r["Email"]),
                 EmailVerified = Convert.ToBoolean(r["EmailVerified"]),
-                PasswordHash = Convert.ToString(r["PasswordHash"])
+                PasswordHash = Convert.ToString(r["PasswordHash"]),
+                Activo = Convert.ToBoolean(r["Activo"])
             };
 
             // Cargar roles
             u.Roles = GetRoles(u.Id);
             return u;
+        }
+        public void RegistrarEnBitacora(int id, string agente, string accion)
+        {
+            var h = new Hashtable { { "@UserId",id }, { "@Agente", agente }, {"@Descripcion", accion } };
+            _datos.Escribir("s_registrar_en_bitacora", h);
+        }
+        public void Deactivate(int userId)
+        {
+            var h = new Hashtable { { "@UserId", userId } };
+            _datos.LeerCantidad("sp_User_Deactivate", h); 
         }
 
         public string[] GetRoles(int userId)
@@ -291,6 +301,32 @@ namespace MPP
                 });
             }
             return list;
+        }
+        public List<BENombre> Buscar(string texto)
+        {
+            var h = new Hashtable { { "@Texto", (object)texto ?? DBNull.Value } };
+            DataTable dt = _datos.Leer("sp_Usuario_Buscar", h);
+
+            var list = new List<BENombre>();
+            foreach (DataRow r in dt.Rows)
+            {
+                var u = new BENombre();
+                u.Id = Convert.ToInt32(r["Id"]);
+                u.Email = Convert.ToString(r["Email"]);
+                u.EmailVerified = r["EmailVerified"] != DBNull.Value && Convert.ToBoolean(r["EmailVerified"]);
+                u.Activo = r.Table.Columns.Contains("Activo") && r["Activo"] != DBNull.Value ? Convert.ToBoolean(r["Activo"]) : true;
+                u.Nombre = r["Nombre"] == DBNull.Value ? null : Convert.ToString(r["Nombre"]);
+                u.Apellido = r["Apellido"] == DBNull.Value ? null : Convert.ToString(r["Apellido"]);
+                list.Add(u);
+            }
+            return list;
+        }
+
+        public bool SetActive(int userId, bool isActive)
+        {
+            var h = new Hashtable { { "@UserId", userId }, { "@IsActive", isActive } };
+            int afectadas = _datos.LeerCantidad("sp_Usuario_SetActive", h);
+            return afectadas > 0;
         }
     }
 }

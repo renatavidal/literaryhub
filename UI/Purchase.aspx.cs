@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.UI;
 
 public partial class Purchase : ReaderPage
 {
@@ -7,6 +8,11 @@ public partial class Purchase : ReaderPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        // nada: el UserControl se encarga
+        var auth = Session["auth"] as UserSession;
+        if (auth.IsInRole("Client"))
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "err", "alert('Como cliente no puedes comprar libros, create una cuenta como usuario para disfrutar de la experiencia');", true);
+            Response.Redirect("/Home.aspx");
+        }
     }
 }

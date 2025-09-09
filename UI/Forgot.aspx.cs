@@ -9,6 +9,7 @@ public partial class Forgot : System.Web.UI.Page
     private bool token_correcto = false;
     protected void Page_Load(object sender, EventArgs e)
     {
+        SetPlaceholders();
         if (!IsPostBack)
         {
             string token = Request.QueryString["token"];
@@ -25,14 +26,14 @@ public partial class Forgot : System.Web.UI.Page
                     pnlStep1.Visible = false;
                     pnlStep2.Visible = true;
                     lblMsg2.CssClass = "msg ok";
-                    lblMsg2.Text = "Ingresá tu nueva contraseña.";
+                    lblMsg2.Text = (GetLocalResourceObject("Forgot_Step2Prompt") as string) ?? "Ingresá tu nueva contraseña.";
                 }
                 else
                 {
                     pnlStep1.Visible = true;
                     pnlStep2.Visible = false;
                     lblMsg1.CssClass = "msg err";
-                    lblMsg1.Text = "El enlace no es válido o ya expiró.";
+                    lblMsg1.Text = (GetLocalResourceObject("Forgot_InvalidLink") as string) ?? "El enlace no es válido o ya expiró.";
                 }
             }
         }
@@ -44,13 +45,13 @@ public partial class Forgot : System.Web.UI.Page
         if (email.Length == 0)
         {
             lblMsg1.CssClass = "msg err";
-            lblMsg1.Text = "Ingresá tu email.";
+            lblMsg1.Text = (GetLocalResourceObject("Forgot_EmailRequired") as string) ?? "Ingresá tu email.";
             return;
         }
 
         var user = _bll.ObtenerPorEmail(email); 
         lblMsg1.CssClass = "msg ok";
-        lblMsg1.Text = "Si el email existe, te enviamos un link para cambiar tu contraseña";
+        lblMsg1.Text = (GetLocalResourceObject("Forgot_EmailSent") as string) ?? "Si el email existe, te enviamos un link para cambiar tu contraseña";
 
         if (user == null) return;
 
@@ -70,14 +71,14 @@ public partial class Forgot : System.Web.UI.Page
         if (!int.TryParse(hidUserId.Value, out userId))
         {
             lblMsg2.CssClass = "msg err";
-            lblMsg2.Text = "Sesión de recuperación inválida. Reintentá el proceso.";
+            lblMsg2.Text = (GetLocalResourceObject("Forgot_InvalidSession") as string) ?? "Sesión de recuperación inválida. Reintentá el proceso.";
             return;
         }
 
         if ((txtNewPass.Text ?? "") != (txtNewPass2.Text ?? ""))
         {
             lblMsg2.CssClass = "msg err";
-            lblMsg2.Text = "Las contraseñas no coinciden.";
+            lblMsg2.Text = (GetLocalResourceObject("Forgot_PasswordsMismatch") as string) ?? "Las contraseñas no coinciden.";
             return;
         }
 
@@ -91,4 +92,15 @@ public partial class Forgot : System.Web.UI.Page
         Context.ApplicationInstance.CompleteRequest();
         return;
     }
+    void SetPlaceholders()
+    {
+        var phEmail = GetLocalResourceObject("Forgot_EmailPlaceholder") as string;
+        if (!string.IsNullOrEmpty(phEmail)) txtEmail.Attributes["placeholder"] = phEmail;
+        var ph1 = GetLocalResourceObject("Forgot_NewPwdPlaceholder") as string;
+        if (!string.IsNullOrEmpty(ph1)) txtNewPass.Attributes["placeholder"] = ph1;
+        var ph2 = GetLocalResourceObject("Forgot_ConfirmPlaceholder") as string;
+        if (!string.IsNullOrEmpty(ph2)) txtNewPass2.Attributes["placeholder"] = ph2;
+    }
+
 }
+

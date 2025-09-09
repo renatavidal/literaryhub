@@ -53,7 +53,7 @@ public partial class VerifyEmailPending : ReaderPage
         }
 
         litMaskedEmail.Text = Server.HtmlEncode(MaskEmail(email));
-        lblStatus.Text = "Te enviamos un correo con el enlace de verificación.";
+        lblStatus.Text = (GetLocalResourceObject("Verify_Status_Sent") as string) ?? "Te enviamos un correo con el enlace de verificación.";
 
 
 
@@ -83,14 +83,14 @@ public partial class VerifyEmailPending : ReaderPage
         if (!ok)
         {
             lblStatus.CssClass = "err";
-            lblStatus.Text = "Enlace inválido o vencido.";
+            lblStatus.Text = (GetLocalResourceObject("Verify_Status_Invalid") as string) ?? "Enlace inválido o vencido.";
             return;
         }
         
           
 
             lblStatus.CssClass = "ok";
-            lblStatus.Text = "¡Tu email fue verificado!";
+            lblStatus.Text = (GetLocalResourceObject("Verify_Status_Verified") as string) ?? "¡Tu email fue verificado!";
 
             Response.Redirect("/Login.aspx", endResponse: false);
             Context.ApplicationInstance.CompleteRequest();
@@ -154,12 +154,12 @@ public partial class VerifyEmailPending : ReaderPage
             EnviarEmailVerificacion();
 
             lblStatus.CssClass = "ok";
-            lblStatus.Text = "Listo. Te reenviamos el enlace de verificación. Revisá tu bandeja de entrada.";
+            lblStatus.Text = (GetLocalResourceObject("Verify_Status_Resent") as string) ?? "Listo. Te reenviamos el enlace de verificación. Revisá tu bandeja de entrada.";
         }
         catch (Exception)
         {
             lblStatus.CssClass = "err";
-            lblStatus.Text = "No pudimos reenviar el correo ahora. Probá nuevamente en unos minutos.";
+            lblStatus.Text = (GetLocalResourceObject("Verify_Status_ResendError") as string) ?? "No pudimos reenviar el correo ahora. Probá nuevamente en unos minutos.";
         }
     }
     private string BuildVerifyUrl(string token, string tipo, string email , string id)
@@ -195,6 +195,7 @@ public partial class VerifyEmailPending : ReaderPage
 
    
     }
+
 
 
 

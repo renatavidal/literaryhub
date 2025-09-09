@@ -32,8 +32,15 @@ public partial class Bitacora : System.Web.UI.Page
 
     void ProtegerSoloAdmin()
     {
-        bool esAdmin = CurrentUser.IsInRole("Admin"); 
-        if (!esAdmin) Response.Redirect("/Home.aspx");
+        if (CurrentUser != null)
+        {
+            bool esAdmin = CurrentUser.IsInRole("Admin");
+            if (!esAdmin) Response.Redirect("/Home.aspx");
+        }
+        else
+        {
+            Response.Redirect("/AccessDenied.aspx");
+        }
     }
 
 
@@ -55,7 +62,7 @@ public partial class Bitacora : System.Web.UI.Page
         ddlUsuario.DataTextField = "Texto";
         ddlUsuario.DataValueField = "Id";
         ddlUsuario.DataBind();
-        ddlUsuario.Items.Insert(0, new System.Web.UI.WebControls.ListItem("Todos", "")); // primera opción
+        ddlUsuario.Items.Insert(0, new System.Web.UI.WebControls.ListItem((GetLocalResourceObject("Audit_Filter_All") as string) ?? "Todos", "")); // primera opción
     }
 
     // (opcional) mostrar el nombre en la grilla en vez del Id
@@ -112,3 +119,4 @@ public partial class Bitacora : System.Web.UI.Page
 
     
 }
+

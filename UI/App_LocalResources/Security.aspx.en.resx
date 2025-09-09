@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Security_InfoSec_Item1" xml:space="preserve">
+    <value>TLS encryption in transit; sensitive data encrypted at rest.</value>
+  </data>
+  <data name="Security_Vuln_Body" xml:space="preserve">
+    <value>If you find a vulnerability, contact </value>
+  </data>
+  <data name="Security_Sec_VulnReport" xml:space="preserve">
+    <value>Vulnerability reporting</value>
+  </data>
+  <data name="Security_Title" xml:space="preserve">
+    <value>Security Policies</value>
+  </data>
+  <data name="Security_Sec_InfoSec" xml:space="preserve">
+    <value>Information Security</value>
+  </data>
+  <data name="Security_Infrastructure_Item3" xml:space="preserve">
+    <value>Environment separation (dev, test, prod).</value>
+  </data>
+  <data name="Security_InfoSec_Item3" xml:space="preserve">
+    <value>Event logging and monitoring to detect anomalies.</value>
+  </data>
+  <data name="Security_Intro" xml:space="preserve">
+    <value>We protect confidentiality, integrity and availability of our community data.</value>
+  </data>
+  <data name="Security_Infrastructure_Item2" xml:space="preserve">
+    <value>Regular patching and dependency reviews.</value>
+  </data>
+  <data name="Security_Sec_Infrastructure" xml:space="preserve">
+    <value>Infrastructure</value>
+  </data>
+  <data name="Security_Infrastructure_Item1" xml:space="preserve">
+    <value>Scheduled backups and restore testing.</value>
+  </data>
+  <data name="Security_Sec_Payments" xml:space="preserve">
+    <value>Payments</value>
+  </data>
+  <data name="Security_InfoSec_Item2" xml:space="preserve">
+    <value>Role-based access control and strengthened authentication.</value>
+  </data>
+  <data name="Security_Payments_Body" xml:space="preserve">
+    <value>Transactions processed by certified providers; we do not store full card data.</value>
+  </data>
+  <data name="Security_H1" xml:space="preserve">
+    <value>Security Policies</value>
+  </data>
+</root>

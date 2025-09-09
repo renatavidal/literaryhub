@@ -30,11 +30,11 @@
   </style>
 </asp:Content>
 
-<asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server">Crear cuenta</asp:Content>
+<asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server"><%: GetLocalResourceObject("Signup_Title") %></asp:Content>
 
 <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
-  <h1>Crear cuenta</h1>
-  <p>Unite a LiteraryHub: descubrí libros, sumate a grupos y asistí a eventos con autores.</p>
+  <h1><%: GetLocalResourceObject("Signup_Title") %></h1>
+  <p><%: GetLocalResourceObject("Signup_Intro") %></p>
 
   <asp:ValidationSummary ID="vsSignup" runat="server" ForeColor="Maroon" ValidationGroup="signup" />
 
@@ -42,10 +42,10 @@
     <div class="form-2col">
       <!-- NOMBRE -->
       <div class="form-row">
-        <label for="txtName">Nombre</label>
+        <label for="txtName"><%: GetLocalResourceObject("Signup_Label_Name") %></label>
         <asp:TextBox ID="txtName" runat="server" CssClass="input" MaxLength="60" />
         <asp:RequiredFieldValidator ID="reqName" runat="server"
-          ControlToValidate="txtName" ErrorMessage="Ingresá tu nombre."
+          ControlToValidate="txtName" ErrorMessage="<%$ Resources: Signup_Name_Required %>"
           Display="Dynamic" SetFocusOnError="true" ValidationGroup="signup" />
         <asp:RegularExpressionValidator ID="revName" runat="server"
           ControlToValidate="txtName"
@@ -56,7 +56,7 @@
 
       <!-- APELLIDO (opcional) -->
       <div class="form-row">
-        <label for="txtLastName">Apellido (opcional)</label>
+        <label for="txtLastName"><%: GetLocalResourceObject("Signup_Label_LastName") %></label>
         <asp:TextBox ID="txtLastName" runat="server" CssClass="input" MaxLength="60" />
         <asp:RegularExpressionValidator ID="revLastName" runat="server"
           ControlToValidate="txtLastName"
@@ -68,42 +68,42 @@
 
     <!-- EMAIL -->
     <div class="form-row">
-      <label for="txtEmail">Email</label>
+      <label for="txtEmail"><%: GetLocalResourceObject("Signup_Label_Email") %></label>
       <asp:TextBox ID="txtEmail" runat="server" CssClass="input" TextMode="Email" MaxLength="120" />
       <asp:RequiredFieldValidator ID="reqEmail" runat="server"
-        ControlToValidate="txtEmail" ErrorMessage="Ingresá tu email."
+        ControlToValidate="txtEmail" ErrorMessage="<%$ Resources: Signup_Email_Required %>"
         Display="Dynamic" SetFocusOnError="true" ValidationGroup="signup" />
       <asp:RegularExpressionValidator ID="revEmail" runat="server"
         ControlToValidate="txtEmail" ValidationExpression="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-        ErrorMessage="Email no válido." Display="Dynamic" ValidationGroup="signup" />
+        ErrorMessage="<%$ Resources: Signup_Email_Invalid %>" Display="Dynamic" ValidationGroup="signup" />
     </div>
 
     <!-- PASSWORD -->
     <div class="form-row">
-      <label for="txtPassword">Contraseña</label>
+      <label for="txtPassword"><%: GetLocalResourceObject("Signup_Label_Password") %></label>
       <asp:TextBox ID="txtPassword" runat="server" CssClass="input" TextMode="Password" MaxLength="64" />
-      <span class="hint">Mín. 8 y máx. 64. Debe incluir: mayúscula, minúscula, número y símbolo.</span>
+      <span class="hint"><%: GetLocalResourceObject("Signup_Password_Hint") %></span>
       <asp:RequiredFieldValidator ID="reqPassword" runat="server"
-        ControlToValidate="txtPassword" ErrorMessage="Ingresá una contraseña."
+        ControlToValidate="txtPassword" ErrorMessage="<%$ Resources: Signup_Password_Required %>"
         Display="Dynamic" SetFocusOnError="true" ValidationGroup="signup" />
       <!-- Complejidad: 1 mayúscula, 1 minúscula, 1 dígito, 1 símbolo; 8–64 -->
       <asp:RegularExpressionValidator ID="revPassword" runat="server"
         ControlToValidate="txtPassword"
         ValidationExpression="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,64}$"
-        ErrorMessage="La contraseña no cumple los requisitos."
+        ErrorMessage="<%$ Resources: Signup_Password_Invalid %>"
         Display="Dynamic" ValidationGroup="signup" />
     </div>
 
     <!-- CONFIRM PASSWORD -->
     <div class="form-row">
-      <label for="txtConfirm">Confirmar contraseña</label>
+      <label for="txtConfirm"><%: GetLocalResourceObject("Signup_Label_Confirm") %></label>
       <asp:TextBox ID="txtConfirm" runat="server" CssClass="input" TextMode="Password" MaxLength="64" />
       <asp:RequiredFieldValidator ID="reqConfirm" runat="server"
-        ControlToValidate="txtConfirm" ErrorMessage="Repetí la contraseña."
+        ControlToValidate="txtConfirm" ErrorMessage="<%$ Resources: Signup_Confirm_Required %>"
         Display="Dynamic" SetFocusOnError="true" ValidationGroup="signup" />
       <asp:CompareValidator ID="cmpPasswords" runat="server"
         ControlToValidate="txtConfirm" ControlToCompare="txtPassword"
-        ErrorMessage="Las contraseñas no coinciden."
+        ErrorMessage="<%$ Resources: Signup_Confirm_Invalid %>"
         Display="Dynamic" ValidationGroup="signup" />
     </div>
       <div class="acceptance-sign-up">
@@ -113,7 +113,7 @@
 
                   <asp:CustomValidator ID="cvCaptcha" runat="server"
                       OnServerValidate="cvCaptcha_ServerValidate"
-                      ErrorMessage="Verificá que no sos un robot."
+                      ErrorMessage="<%$ Resources: Signup_Captcha_Robot %>"
                       Display="Dynamic" ValidationGroup="login" />
                 </div>
 
@@ -121,13 +121,11 @@
                 <div class="form-row">
                     <div class="terminos-condiciones">
                          <asp:CheckBox ID="chkTerms" runat="server"
-                           />
-                        Acepto los
-                         <a href="/Terms.aspx" target="_blank">Términos y condiciones</a> y
-                         <a href="/Privacy.aspx" target="_blank">Privacidad</a>.
+                           /><%: GetLocalResourceObject("Signup_Terms_Prefix") %> <a href="/Terms.aspx" target="_blank"><%: GetLocalResourceObject("Signup_Terms_LinkTerms") %></a> y
+                         <a href="/Privacy.aspx" target="_blank"><%: GetLocalResourceObject("Signup_Terms_LinkPrivacy") %></a>.
                          <asp:CustomValidator ID="cvTerms" runat="server"
                            OnServerValidate="cvTerms_ServerValidate"
-                           ErrorMessage="Debés aceptar los Términos y la Privacidad."
+                           ErrorMessage="<%$ Resources: Signup_Terms_Error %>"
                            Display="Dynamic" ValidationGroup="signup" />
                     </div>
                 </div>  
@@ -136,12 +134,14 @@
 
     <!-- BOTÓN -->
     <div>
-      <asp:Button ID="btnSignup" runat="server" Text="Crear cuenta" CssClass="btn solid"
+      <asp:Button ID="btnSignup" runat="server" Text="<%$ Resources: Signup_Submit %>" CssClass="btn solid"
         OnClick="btnSignup_Click" ValidationGroup="signup" />
       <asp:Label ID="lblSignupResult" runat="server" />
     </div>
 
-    <div>¿Ya tenés cuenta? <a href="/Login.aspx">Iniciar sesión</a></div>
+    <div>¿Ya tenés cuenta? <a href="/Login.aspx"><%: GetLocalResourceObject("Signup_LoginLink") %></a></div>
   </div>
     <script src="https://www.google.com/recaptcha/api.js?hl=es" async defer></script>
 </asp:Content>
+
+

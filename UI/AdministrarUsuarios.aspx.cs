@@ -16,6 +16,10 @@ public partial class AdministrarUsuarios : AdminPage
         {
             gvUsuarios.DataSource = new List<BENombre>();
             gvUsuarios.DataBind();
+
+            var ph = GetLocalResourceObject("AdminUsers_SearchPlaceholder") as string;
+            var tb = FindControl("txtSearch") as System.Web.UI.WebControls.TextBox;
+            if (tb != null && !string.IsNullOrEmpty(ph)) tb.Attributes["placeholder"] = ph;
         }
     }
 

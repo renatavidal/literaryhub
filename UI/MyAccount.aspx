@@ -16,7 +16,7 @@
     <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
   <div class="account">
-    <h1>My Account</h1>
+    <h1><%: GetLocalResourceObject("Acc_Title") %></h1>
 
     <div class="card">
       <h3>Cambiar contraseña</h3>
@@ -27,9 +27,9 @@
     </div>
 
      <div class="card">
-      <h3>Mis listas</h3>
+      <h3><%: GetLocalResourceObject("Acc_Lists_Title") %></h3>
 
-      <h4>Quiero leer</h4>
+      <h4><%: GetLocalResourceObject("Acc_Lists_Want") %></h4>
       <asp:Repeater ID="repWant" runat="server" OnItemCommand="repWant_ItemCommand">
         <ItemTemplate>
           <div class="book">
@@ -38,7 +38,7 @@
             <div style="float:right">
               <asp:Button runat="server" CssClass="btn" Text="Marcar leído"
                 CommandName="MoveToRead" CommandArgument='<%# Eval("BookId") %>' />
-              <asp:Button runat="server" CssClass="btn" Text="Quitar"
+              <asp:Button runat="server" CssClass="btn" Text="<%$ Resources: Acc_Remove %>"
                 CommandName="Remove" CommandArgument='<%# Eval("BookId") %>' />
             </div>
           </div>
@@ -54,7 +54,7 @@
             <img src='<%# Eval("ThumbnailUrl") %>' alt="cover" style="width:48px;height:72px;object-fit:cover;border-radius:6px" />
             <b><%# Eval("Title") %></b> — <%# Eval("Authors") %>
             <div style="float:right">
-              <asp:Button runat="server" CssClass="btn" Text="Quitar"
+              <asp:Button runat="server" CssClass="btn" Text="<%$ Resources: Acc_Remove %>"
                 CommandName="Remove" CommandArgument='<%# Eval("BookId") %>' />
             </div>
           </div>
@@ -63,10 +63,11 @@
     </div>
 
     <div class="card">
-      <h3>Dar de baja la cuenta</h3>
+      <h3><%: GetLocalResourceObject("Acc_Deactivate_Title") %></h3>
       <p>Esto desactiva tu cuenta y oculta tu perfil. Podrás reactivarla contactando soporte.</p>
-      <asp:Button ID="btnDeactivate" runat="server" Text="Darse de baja" CssClass="btn btn-danger" OnClientClick="return confirm('¿Confirmás la baja de tu cuenta?');" OnClick="btnDeactivate_Click" />
+      <asp:Button ID="btnDeactivate" runat="server" Text="<%$ Resources: Acc_Deactivate_Button %>" CssClass="btn btn-danger" OnClientClick="return confirm('<%$ Resources: Acc_Deactivate_Confirm %>');" OnClick="btnDeactivate_Click" />
       <asp:Label ID="lblDeactivateMsg" runat="server" />
     </div>
   </div>
 </asp:Content>
+

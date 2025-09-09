@@ -12,51 +12,53 @@
   </style>
 </asp:Content>
 
-<asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server">Log in</asp:Content>
+<asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server"><%: GetLocalResourceObject("Login_Title") %></asp:Content>
 
 <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
-  <h1>Iniciar sesión</h1>
-  <p>Accedé a tus grupos de lectura, eventos y compras.</p>
+  <h1><%: GetLocalResourceObject("Login_Title") %></h1>
+  <p><%: GetLocalResourceObject("Login_Intro") %></p>
 
   <asp:ValidationSummary ID="vsLogin" runat="server" ForeColor="Maroon" ValidationGroup="login" />
 
   <div class="auth">
     <!-- EMAIL -->
     <div class="form-row">
-      <label for="txtEmail">Email</label>
+      <label for="txtEmail"><%: GetLocalResourceObject("Login_Label_Email") %></label>
       <asp:TextBox ID="txtEmail" runat="server" CssClass="input" TextMode="Email" MaxLength="120" />
       <asp:RequiredFieldValidator ID="reqEmail" runat="server"
-        ControlToValidate="txtEmail" ErrorMessage="Ingresá tu email."
+        ControlToValidate="txtEmail" ErrorMessage="<%$ Resources: Login_Email_Required %>"
         Display="Dynamic" SetFocusOnError="true" ValidationGroup="login" />
       <asp:RegularExpressionValidator ID="revEmail" runat="server"
         ControlToValidate="txtEmail" ValidationExpression="^[^\s@]+@[^\s@]+\.[^\s@]+$"
-        ErrorMessage="Email no válido." Display="Dynamic" ValidationGroup="login" />
+        ErrorMessage="<%$ Resources: Login_Email_Invalid %>" Display="Dynamic" ValidationGroup="login" />
     </div>
 
     <!-- PASSWORD -->
     <div class="form-row">
-      <label for="txtPassword">Contraseña</label>
+      <label for="txtPassword"><%: GetLocalResourceObject("Login_Label_Password") %></label>
       <asp:TextBox ID="txtPassword" runat="server" CssClass="input" TextMode="Password" />
       <asp:RequiredFieldValidator ID="reqPassword" runat="server"
-        ControlToValidate="txtPassword" ErrorMessage="Ingresá tu contraseña."
+        ControlToValidate="txtPassword" ErrorMessage="<%$ Resources: Login_Password_Required %>"
         Display="Dynamic" SetFocusOnError="true" ValidationGroup="login" />
      
       <asp:RegularExpressionValidator ID="revPassword" runat="server"
         ControlToValidate="txtPassword" ValidationExpression="^.{8,128}$"
-        ErrorMessage="La contraseña debe tener entre 8 y 128 caracteres."
+        ErrorMessage="<%$ Resources: Login_Password_Invalid %>"
         Display="Dynamic" ValidationGroup="login" />
     </div>
 
     <div class="row-inline">
-      <a href="/Forgot.aspx">¿Olvidaste tu contraseña?</a>
+      <a href="/Forgot.aspx"><%: GetLocalResourceObject("Login_Forgot") %></a>
     </div>
 
     <div>
-            <asp:Button ID="btnLogin" runat="server" Text="Ingresar" CssClass="btn solid"
+            <asp:Button ID="btnLogin" runat="server" Text="<%$ Resources: Login_Submit %>" CssClass="btn solid"
             OnClick="btnLogin_Click" UseSubmitBehavior="false" />
         <asp:Label ID="lblLoginResult" runat="server" />
     </div>
 
-    <div>¿No tenés cuenta? <a href="/Signup.aspx">Crear cuenta</a></div>
+    <div>¿No tenés cuenta? <a href="/Signup.aspx"><%: GetLocalResourceObject("Login_CreateAccount") %></a></div>
   </div>
 </asp:Content>
+
+

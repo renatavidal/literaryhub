@@ -29,7 +29,6 @@ public partial class Site : MasterPage
 
         lnkBitacora.Visible = UsuarioActualEsAdmin();
         HyperLink3.Visible = UsuarioActualEsAdmin();
-        HyperLink7.Visible = !UsuarioActualEsCliente();
         HyperLink5.Visible = !UsuarioActualEsCliente();
         HyperLink8.Visible = UsuarioActualEsAdmin();
 

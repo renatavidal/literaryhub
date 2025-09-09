@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SA_Description" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="SA_Code" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="SA_Active" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="SA_CreateSuccess" xml:space="preserve">
+    <value>Plan creado.</value>
+  </data>
+  <data name="SA_Title" xml:space="preserve">
+    <value>Administrar Suscripciones</value>
+  </data>
+  <data name="SA_DeactivateSuccess" xml:space="preserve">
+    <value>Plan desactivado.</value>
+  </data>
+  <data name="SA_PriceUSD" xml:space="preserve">
+    <value>Precio USD</value>
+  </data>
+  <data name="SA_UpdateSuccess" xml:space="preserve">
+    <value>Plan actualizado.</value>
+  </data>
+  <data name="SA_Featured" xml:space="preserve">
+    <value>Destacado</value>
+  </data>
+  <data name="SA_Insert" xml:space="preserve">
+    <value>Agregar</value>
+  </data>
+  <data name="SA_Order" xml:space="preserve">
+    <value>Orden</value>
+  </data>
+  <data name="SA_Roles" xml:space="preserve">
+    <value>Roles (CSV)</value>
+  </data>
+</root>

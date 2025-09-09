@@ -1,10 +1,10 @@
 ﻿<%@ Page Title="Términos y condiciones" Language="C#" MasterPageFile="~/site.master"
     AutoEventWireup="true" CodeFile="Terms.aspx.cs" Inherits="Terms" %>
 
-<asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server">Términos y condiciones</asp:Content>
+<asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server"><%: GetLocalResourceObject("Terms_Title") %></asp:Content>
 
 <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
-  <h1>Términos y condiciones</h1>
+  <h1><%: GetLocalResourceObject("Terms_H1") %></h1>
   <p><em>Última actualización: <%= DateTime.Now.ToString("yyyy-MM-dd") %></em></p>
 
   <h2>1. Aceptación</h2>
@@ -44,3 +44,4 @@
   <h2>9. Contacto</h2>
   <p>Para dudas sobre estos términos, contactanos desde la sección <a href="/Contact.aspx">Contáctenos</a>.</p>
 </asp:Content>
+

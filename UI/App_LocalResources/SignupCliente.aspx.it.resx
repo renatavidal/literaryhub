@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SC_Title" xml:space="preserve">
+    <value>Nuovo cliente</value>
+  </data>
+  <data name="SC_Label_Cuil" xml:space="preserve">
+    <value>CUIL/CUIT</value>
+  </data>
+  <data name="SC_Cuil_Required" xml:space="preserve">
+    <value>Inserisci CUIL/CUIT</value>
+  </data>
+  <data name="SC_Cuil_Invalid" xml:space="preserve">
+    <value>Formato CUIL non valido</value>
+  </data>
+  <data name="SC_Label_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="SC_Email_Required" xml:space="preserve">
+    <value>Inserisci l'email.</value>
+  </data>
+  <data name="SC_Email_Invalid" xml:space="preserve">
+    <value>Email non valida.</value>
+  </data>
+  <data name="SC_Label_Name" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="SC_Name_Required" xml:space="preserve">
+    <value>Inserisci il nome.</value>
+  </data>
+  <data name="SC_Name_Invalid" xml:space="preserve">
+    <value>Nome non valido (solo lettere/spazi, 2-60).</value>
+  </data>
+  <data name="SC_Label_LastName" xml:space="preserve">
+    <value>Cognome</value>
+  </data>
+  <data name="SC_LastName_Required" xml:space="preserve">
+    <value>Inserisci il cognome.</value>
+  </data>
+  <data name="SC_LastName_Invalid" xml:space="preserve">
+    <value>Cognome non valido (solo lettere/spazi, 2-60).</value>
+  </data>
+  <data name="SC_Label_Alias" xml:space="preserve">
+    <value>Azienda / Alias</value>
+  </data>
+  <data name="SC_Alias_Required" xml:space="preserve">
+    <value>Inserisci l'alias dell'azienda.</value>
+  </data>
+  <data name="SC_Alias_Invalid" xml:space="preserve">
+    <value>Alias non valido (2-120, lettere/numeri/.,-/()/&amp;/).</value>
+  </data>
+  <data name="SC_Label_Tel" xml:space="preserve">
+    <value>Telefono</value>
+  </data>
+  <data name="SC_Tel_Required" xml:space="preserve">
+    <value>Inserisci il telefono.</value>
+  </data>
+  <data name="SC_Tel_Invalid" xml:space="preserve">
+    <value>Telefono non valido (6-25, cifre + () - . spazi).</value>
+  </data>
+  <data name="SC_Label_Tipo" xml:space="preserve">
+    <value>Tipo di cliente</value>
+  </data>
+  <data name="SC_Tipo_Autor" xml:space="preserve">
+    <value>Autore</value>
+  </data>
+  <data name="SC_Tipo_Libreria" xml:space="preserve">
+    <value>Libreria</value>
+  </data>
+  <data name="SC_Tipo_Required" xml:space="preserve">
+    <value>Scegli il tipo di cliente.</value>
+  </data>
+  <data name="SC_Label_Ubicacion" xml:space="preserve">
+    <value>Posizione</value>
+  </data>
+  <data name="SC_Label_RazonSocial" xml:space="preserve">
+    <value>Ragione sociale</value>
+  </data>
+  <data name="SC_Label_IVA" xml:space="preserve">
+    <value>Condizione IVA</value>
+  </data>
+  <data name="SC_Label_CuitFac" xml:space="preserve">
+    <value>CUIT fatturazione</value>
+  </data>
+  <data name="SC_Label_DomFac" xml:space="preserve">
+    <value>Indirizzo fiscale</value>
+  </data>
+  <data name="SC_DomFac_Required" xml:space="preserve">
+    <value>Inserisci l'indirizzo fiscale.</value>
+  </data>
+  <data name="SC_DomFac_Invalid" xml:space="preserve">
+    <value>Indirizzo non valido (4-200 caratteri, senza interruzioni di riga).</value>
+  </data>
+  <data name="SC_Label_EmailFac" xml:space="preserve">
+    <value>Email fatturazione</value>
+  </data>
+  <data name="SC_EmailFac_Required" xml:space="preserve">
+    <value>Inserisci l'email di fatturazione.</value>
+  </data>
+  <data name="SC_EmailFac_Invalid" xml:space="preserve">
+    <value>Email di fatturazione non valida.</value>
+  </data>
+  <data name="SC_Password_Label" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="SC_Password_Hint" xml:space="preserve">
+    <value>Min 8, max 64. Deve includere: maiuscola, minuscola, numero e simbolo.</value>
+  </data>
+  <data name="SC_Password_Required" xml:space="preserve">
+    <value>Inserisci una password.</value>
+  </data>
+  <data name="SC_Password_Invalid" xml:space="preserve">
+    <value>La password non soddisfa i requisiti.</value>
+  </data>
+  <data name="SC_Confirm_Label" xml:space="preserve">
+    <value>Conferma password</value>
+  </data>
+  <data name="SC_Confirm_Required" xml:space="preserve">
+    <value>Ripeti la password.</value>
+  </data>
+  <data name="SC_Confirm_Mismatch" xml:space="preserve">
+    <value>Le password non coincidono.</value>
+  </data>
+  <data name="SC_Terms_Prefix" xml:space="preserve">
+    <value>Accetto i</value>
+  </data>
+  <data name="SC_Terms_LinkTerms" xml:space="preserve">
+    <value>Termini e condizioni</value>
+  </data>
+  <data name="SC_Terms_LinkPrivacy" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="SC_Terms_Error" xml:space="preserve">
+    <value>Devi accettare i Termini e la Privacy.</value>
+  </data>
+  <data name="SC_Button_Create" xml:space="preserve">
+    <value>Crea cliente</value>
+  </data>
+  <data name="SC_Captcha_Check" xml:space="preserve">
+    <value>Verifica il captcha.</value>
+  </data>
+  <data name="SC_Success" xml:space="preserve">
+    <value>Fatto! Ti abbiamo inviato un'email per verificare il tuo account.</value>
+  </data>
+  <data name="SC_Success_WithId" xml:space="preserve">
+    <value>Cliente creato. Id: </value>
+  </data>
+</root>

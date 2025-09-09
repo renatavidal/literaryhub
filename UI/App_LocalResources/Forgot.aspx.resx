@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Forgot_Pwd_Invalid" xml:space="preserve">
+    <value>La contraseña debe tener entre 8 y 128 caracteres.</value>
+  </data>
+  <data name="Forgot_EmailSent" xml:space="preserve">
+    <value>Si el email existe, te enviamos un link para cambiar tu contraseña</value>
+  </data>
+  <data name="Forgot_Confirm_Required" xml:space="preserve">
+    <value>Ingresá tu contraseña.</value>
+  </data>
+  <data name="Forgot_Pwd_Required" xml:space="preserve">
+    <value>Ingresá tu contraseña.</value>
+  </data>
+  <data name="Forgot_EmailRequired" xml:space="preserve">
+    <value>Ingresá tu email.</value>
+  </data>
+  <data name="Forgot_EmailPlaceholder" xml:space="preserve">
+    <value>Tu email</value>
+  </data>
+  <data name="Forgot_TitleTag" xml:space="preserve">
+    <value>Recuperar contraseña</value>
+  </data>
+  <data name="Forgot_ConfirmPlaceholder" xml:space="preserve">
+    <value>Confirmar contraseña</value>
+  </data>
+  <data name="Forgot_Step2Prompt" xml:space="preserve">
+    <value>Ingresá tu nueva contraseña.</value>
+  </data>
+  <data name="Forgot_SendCode" xml:space="preserve">
+    <value>Enviar código</value>
+  </data>
+  <data name="Forgot_H2" xml:space="preserve">
+    <value>Recuperar contraseña</value>
+  </data>
+  <data name="Forgot_PasswordsMismatch" xml:space="preserve">
+    <value>Las contraseñas no coinciden.</value>
+  </data>
+  <data name="Forgot_NewPwdPlaceholder" xml:space="preserve">
+    <value>Nueva contraseña</value>
+  </data>
+  <data name="Forgot_InvalidLink" xml:space="preserve">
+    <value>El enlace no es válido o ya expiró.</value>
+  </data>
+  <data name="Forgot_Updated" xml:space="preserve">
+    <value>¡Contraseña actualizada! Serás redirigido al Log in en 5 segundos...</value>
+  </data>
+  <data name="Forgot_InvalidSession" xml:space="preserve">
+    <value>Sesión de recuperación inválida. Reintentá el proceso.</value>
+  </data>
+  <data name="Forgot_Confirm_Invalid" xml:space="preserve">
+    <value>La contraseña debe tener entre 8 y 128 caracteres.</value>
+  </data>
+  <data name="Forgot_Reset" xml:space="preserve">
+    <value>Cambiar contraseña</value>
+  </data>
+</root>

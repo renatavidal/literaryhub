@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Acc_Title" xml:space="preserve">
+    <value>Il mio account</value>
+  </data>
+  <data name="Acc_ChangePwd_Title" xml:space="preserve">
+    <value>Cambia password</value>
+  </data>
+  <data name="Acc_ChangePwd_Body" xml:space="preserve">
+    <value>Per aggiornare la password usa il flusso sicuro.</value>
+  </data>
+  <data name="Acc_ChangePwd_Button" xml:space="preserve">
+    <value>Vai a Cambia password</value>
+  </data>
+  <data name="Acc_Lists_Title" xml:space="preserve">
+    <value>Le mie liste</value>
+  </data>
+  <data name="Acc_Lists_Want" xml:space="preserve">
+    <value>Voglio leggere</value>
+  </data>
+  <data name="Acc_Lists_Read" xml:space="preserve">
+    <value>Letti</value>
+  </data>
+  <data name="Acc_MarkRead" xml:space="preserve">
+    <value>Segna come letto</value>
+  </data>
+  <data name="Acc_Remove" xml:space="preserve">
+    <value>Rimuovi</value>
+  </data>
+  <data name="Acc_Deactivate_Title" xml:space="preserve">
+    <value>Disattiva account</value>
+  </data>
+  <data name="Acc_Deactivate_Body" xml:space="preserve">
+    <value>Questo disattiva il tuo account e nasconde il profilo. Puoi riattivarlo contattando il supporto.</value>
+  </data>
+  <data name="Acc_Deactivate_Button" xml:space="preserve">
+    <value>Disattiva</value>
+  </data>
+  <data name="Acc_Deactivate_Confirm" xml:space="preserve">
+    <value>Confermi la disattivazione del tuo account?</value>
+  </data>
+  <data name="Acc_Deactivate_Success" xml:space="preserve">
+    <value>Il tuo account è stato disattivato.</value>
+  </data>
+  <data name="Acc_ErrorPrefix" xml:space="preserve">
+    <value>Errore: </value>
+  </data>
+</root>

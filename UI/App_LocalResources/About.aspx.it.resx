@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Chi siamo?</value>
+  </data>
+  <data name="H1" xml:space="preserve">
+    <value>Informazioni su LiteraryHub</value>
+  </data>
+  <data name="Sec1_Title" xml:space="preserve">
+    <value>Descrizione di base del business</value>
+  </data>
+  <data name="Sec1_Body" xml:space="preserve">
+    <value>LiteraryHub collega lettori, autori e librerie in un ecosistema unico: raccomandazioni personalizzate tramite algoritmi, community di lettura virtuali, eventi esclusivi con autori e un marketplace per acquistare libri in formato digitale e fisico con librerie partner. Include funzionalità social (profili, recensioni, follow degli autori) e un piano premium con benefici e sconti.</value>
+  </data>
+  <data name="Carousel_Aria" xml:space="preserve">
+    <value>Galleria di immagini</value>
+  </data>
+  <data name="Carousel_Prev" xml:space="preserve">
+    <value>Precedente</value>
+  </data>
+  <data name="Carousel_Next" xml:space="preserve">
+    <value>Successivo</value>
+  </data>
+  <data name="Carousel_Dots" xml:space="preserve">
+    <value>Selettore immagine</value>
+  </data>
+  <data name="Sec2_Title" xml:space="preserve">
+    <value>Situazione attuale</value>
+  </data>
+  <data name="Sec2_Body" xml:space="preserve">
+    <value>Startup emergente con team fondatore di tecnologia, marketing digitale ed editoria, supportato da figure di riferimento del mondo letterario. Visione: diventare l'hub digitale letterario leader in 3 anni, con 500.000 utenti attivi/mese, oltre 200 librerie partner e più di 500 autori affermati. Lancio locale ed espansione in 3 paesi il secondo anno.</value>
+  </data>
+  <data name="Sec3_Title" xml:space="preserve">
+    <value>Cosa ci rende unici?</value>
+  </data>
+  <data name="Sec3_Item1" xml:space="preserve">
+    <value>Club di lettura</value>
+  </data>
+  <data name="Sec3_Item2" xml:space="preserve">
+    <value>Commenti contestualizzati</value>
+  </data>
+  <data name="Sec3_Item3" xml:space="preserve">
+    <value>Eventi letterari</value>
+  </data>
+  <data name="Sec3_Item4" xml:space="preserve">
+    <value>Incontri con librerie vicine</value>
+  </data>
+  <data name="Sec3_Item5" xml:space="preserve">
+    <value>Scopri nuovi libri</value>
+  </data>
+  <data name="Sec4_Title" xml:space="preserve">
+    <value>Fattori chiave di successo</value>
+  </data>
+  <data name="Sec4_Item1" xml:space="preserve">
+    <value>Tecnologia di personalizzazione che migliora con l'uso.</value>
+  </data>
+  <data name="Sec4_Item2" xml:space="preserve">
+    <value>Modello di ricavi diversificato (commissioni, abbonamento, eventi, pubblicità selettiva).</value>
+  </data>
+  <data name="Sec4_Item3" xml:space="preserve">
+    <value>Partnership con editori, librerie, Kindle e creatori di contenuti.</value>
+  </data>
+  <data name="Sec4_Item4" xml:space="preserve">
+    <value>Focus sulla community per aumentare la retention.</value>
+  </data>
+  <data name="Sec4_Item5" xml:space="preserve">
+    <value>Scalabilità internazionale (lingue e contesto locale).</value>
+  </data>
+  <data name="Sec4_Item6" xml:space="preserve">
+    <value>Esperienza fluida tra scoprire, acquistare, leggere e discutere.</value>
+  </data>
+  <data name="Sec4_Item7" xml:space="preserve">
+    <value>Analytics utili per autori e librerie.</value>
+  </data>
+  <data name="Sec5_Title" xml:space="preserve">
+    <value>Strategia (Missione, Visione e orizzonte temporale)</value>
+  </data>
+  <data name="Sec5_Body" xml:space="preserve">
+    <value>Orizzonte di 3 anni con valutazioni trimestrali e metodologia agile: consente di adattarsi ai cambiamenti economici, tecnologici ed editoriali, integrando IA, analisi predittiva e alleanze strategiche sostenibili.</value>
+  </data>
+</root>

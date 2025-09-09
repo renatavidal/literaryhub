@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Landing_Feature1_Title" xml:space="preserve">
+    <value>Reading groups</value>
+  </data>
+  <data name="Landing_CTA_Login" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="Landing_Feature1_CTA" xml:space="preserve">
+    <value>Explore groups</value>
+  </data>
+  <data name="Landing_Popular_Title" xml:space="preserve">
+    <value>Popular Books</value>
+  </data>
+  <data name="Landing_Feature2_Body" xml:space="preserve">
+    <value>Join Q&amp;A sessions, book launches and exclusive interviews.</value>
+  </data>
+  <data name="Landing_CTA_Signup" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="Landing_AuthorBanner" xml:space="preserve">
+    <value>Are you an author or own a bookstore? Join, publish and sell!</value>
+  </data>
+  <data name="Landing_Feature2_CTA" xml:space="preserve">
+    <value>View events</value>
+  </data>
+  <data name="Landing_Hero_Title" xml:space="preserve">
+    <value>Discover a world of books</value>
+  </data>
+  <data name="Landing_Feature3_Title" xml:space="preserve">
+    <value>Curated classics</value>
+  </data>
+  <data name="Landing_Feature2_Title" xml:space="preserve">
+    <value>Author events</value>
+  </data>
+  <data name="Landing_Hero_Signup" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="Landing_CTA_Body" xml:space="preserve">
+    <value>Join thousands of readers discovering new books, joining groups and attending live events.</value>
+  </data>
+  <data name="Landing_Feature3_Body" xml:space="preserve">
+    <value>Rediscover timeless works with community notes, annotations and reading guides.</value>
+  </data>
+  <data name="Landing_Hero_Login" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="Landing_Feature1_Body" xml:space="preserve">
+    <value>Find groups by genre, location or language and read together at your own pace.</value>
+  </data>
+  <data name="Landing_Feature3_CTA" xml:space="preserve">
+    <value>View classics</value>
+  </data>
+  <data name="Landing_Hero_Sub" xml:space="preserve">
+    <value>Explore titles, join reading groups, and share your passion for literature.</value>
+  </data>
+</root>

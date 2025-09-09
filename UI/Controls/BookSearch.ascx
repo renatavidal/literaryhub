@@ -115,7 +115,7 @@
                   <%# GetGlobalResourceObject("Global", "Btn_Read") %>
                 </asp:LinkButton>
                 <asp:HyperLink runat="server" CssClass="btn btn-primary"
-                  NavigateUrl='<%# "/Purchase.aspx?gid=" + Eval("Gid") %>'>
+                  NavigateUrl='<%# ResolveClientUrl("/Purchase.aspx?gid=") + Eval("Gid") %>'>
                   <%# GetGlobalResourceObject("Global", "Btn_Buy") %>
                 </asp:HyperLink>
               </div>
@@ -124,10 +124,10 @@
 
           <div class="overlay-actions">
             <div class="action-stack">
-              <asp:HyperLink runat="server" CssClass="btn"
-                NavigateUrl='<%# BookUrl(Eval("Gid")) %>'>
-                <%# GetGlobalResourceObject("Global", "Btn_ViewComment") %>
-              </asp:HyperLink>
+                             <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btn"
+    NavigateUrl='<%# ResolveClientUrl("/BookDetails.aspx?gid=") + Eval("Gid") %>'>
+  <%# GetGlobalResourceObject("Global", "Btn_ViewComment") %>
+</asp:HyperLink>
               <asp:LinkButton runat="server" CssClass="btn"
                 CommandName="want" CommandArgument='<%# Eval("Gid") %>'
                 OnCommand="BookAction_Command" CausesValidation="false" UseSubmitBehavior="false">

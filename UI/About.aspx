@@ -13,17 +13,17 @@
 
     <h2><%: GetLocalResourceObject("Sec1_Title") %></h2>
     <p><%: GetLocalResourceObject("Sec1_Body") %></p>
-<div class="carousel" data-autoplay="true" data-interval="2000" aria-label="<%$ Resources: Carousel_Aria %>">
+<div class="carousel" data-autoplay="true" data-interval="2000" aria-label= Carousel_Aria >
   <div class="carousel-track">
     <img id="slide1" src="/images/authorevent.jpg" alt="Evento con autores" class="carousel-img" />
     <img id="slide2" src="/images/bookclub1.jpg"  alt="Club de lectura"    class="carousel-img" />
     <img id="slide3" src="/images/books.jpg"       alt="Libros"             class="carousel-img" />
   </div>
 
-  <button type="button" class="carousel-btn prev" aria-label="<%$ Resources: Carousel_Prev %>">&#10094;</button>
-<button type="button" class="carousel-btn next" aria-label="<%$ Resources: Carousel_Next %>">&#10095;</button>
+  <button type="button" class="carousel-btn prev" aria-label= Carousel_Prev>&#10094;</button>
+<button type="button" class="carousel-btn next" aria-label= Carousel_Next>&#10095;</button>
 
-  <div class="carousel-dots" role="tablist" aria-label="<%$ Resources: Carousel_Dots %>">
+  <div class="carousel-dots" role="tablist" aria-label= Carousel_Dots >
   <button type="button" role="tab" aria-controls="slide1" aria-label="Imagen 1" class="active"></button>
   <button type="button" role="tab" aria-controls="slide2" aria-label="Imagen 2"></button>
   <button type="button" role="tab" aria-controls="slide3" aria-label="Imagen 3"></button>

@@ -11,7 +11,8 @@ public partial class Purchase : ReaderPage
         var auth = Session["auth"] as UserSession;
         if (auth.IsInRole("Client"))
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "err", "alert('Como cliente no puedes comprar libros, create una cuenta como usuario para disfrutar de la experiencia');", true);
+            var msg = (GetLocalResourceObject("Purch_ClientAlert") as string) ?? "Como cliente no puedes comprar libros, crea una cuenta como usuario para disfrutar de la experiencia.";
+            ScriptManager.RegisterStartupScript(this, GetType(), "err", "alert('" + msg.Replace("'", "\\'") + "');", true);
             Response.Redirect("/Home.aspx");
         }
     }

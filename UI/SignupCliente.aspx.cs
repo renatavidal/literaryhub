@@ -18,10 +18,17 @@ public partial class SignupCliente : System.Web.UI.Page
         if (!ValidateRecaptcha()) 
         {
             lblResultado.CssClass = "error";
-            lblResultado.Text = "Verificá el captcha.";
+            lblResultado.Text = (GetLocalResourceObject("SC_Captcha_Check") as string) ?? "Verificá el captcha.";
             return;
         }
-
+        var svc = new EmailExists();
+        bool disponible = svc.EmailDisponible(txtEmail.Text);
+        if (!disponible)
+        {
+            lblResultado.CssClass = "error";
+            lblResultado.Text = "Ese email ya está registrado.";
+            return;
+        }
         try
         {
             string password = txtPassword.Text ?? "";
@@ -51,7 +58,7 @@ public partial class SignupCliente : System.Web.UI.Page
 
             Response.Redirect("/VerifyEmailPending.aspx?email=" + Server.UrlEncode(c.Email) + "&tipo=cliente"  + "&id=" + id, false);
             lblResultado.CssClass = "success";
-            lblResultado.Text = "Cliente creado. Id: " + id;
+            lblResultado.Text = ((GetLocalResourceObject("SC_Success_WithId") as string) ?? "Cliente creado. Id: ") + id;
         }
         catch (Exception ex)
         {
@@ -110,3 +117,4 @@ public partial class SignupCliente : System.Web.UI.Page
         if (!esLibreria) txtUbicacion.Text = string.Empty; 
     }
 }
+

@@ -29,7 +29,7 @@ public partial class PurchaseConfirmation : ReaderPage
             litAuthors.Text = Server.HtmlEncode(det.Authors);
             litAmount.Text = (det.Currency ?? "USD") + " " + det.Price.ToString("0.00");
             litStatus.Text = StatusText(det.Status);
-            litWhen.Text = "Creada el " + det.CreatedUtc.ToLocalTime().ToString("dd/MM/yyyy HH:mm");
+            litWhen.Text = ((GetLocalResourceObject("PC_CreatedPrefix") as string) ?? "Creada el ") + det.CreatedUtc.ToLocalTime().ToString("dd/MM/yyyy HH:mm");
             boxDetails.Visible = true;
         }
         else
@@ -39,8 +39,9 @@ public partial class PurchaseConfirmation : ReaderPage
         }
     }
 
-    private static string StatusText(byte s)
+    private string StatusText(byte s)
     {
-        return s == 1 ? "Pagada" : (s == 2 ? "Fallida" : "Pendiente");
+        return s == 1 ? ((GetLocalResourceObject("PC_Status_Paid") as string) ?? "Pagada") : (s == 2 ? ((GetLocalResourceObject("PC_Status_Failed") as string) ?? "Fallida") : ((GetLocalResourceObject("PC_Status_Pending") as string) ?? "Pendiente"));
     }
 }
+

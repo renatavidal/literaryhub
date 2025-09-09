@@ -49,17 +49,17 @@
 <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
     <!-- Héroe -->
     <section class="hero">
-        <h1>Descubri un mundo de libros</h1>
-        <p>Explora titulos, unite a grupos de lectura, y comparte tu pasion por la literatura.</p>
+        <h1><%: GetLocalResourceObject("Landing_Hero_Title") %></h1>
+        <p><%: GetLocalResourceObject("Landing_Hero_Sub") %></p>
         <div class="cta-row">
-            <a runat="server" href="/Login.aspx" class="btn ghost">Log in</a>
-            <a runat="server" href="/Signup.aspx" class="btn solid">Sign up</a>
+            <a runat="server" href="/Login.aspx" class="btn ghost"><%: GetLocalResourceObject("Landing_Hero_Login") %></a>
+            <a runat="server" href="/Signup.aspx" class="btn solid"><%: GetLocalResourceObject("Landing_Hero_Signup") %></a>
         </div>
     </section>
 
     <!-- Libros populares -->
     <section class="section">
-        <h2 style="margin:0 0 12px 0;">Popular Books</h2>
+        <h2 style="margin:0 0 12px 0;"><%: GetLocalResourceObject("Landing_Popular_Title") %></h2>
         <div class="cards">
             <article class="card">
                 <div class="title">The Great Gatsby</div>
@@ -86,20 +86,20 @@
 <section class="section">
   <div class="features">
     <div class="feature">
-      <h3>Grupos de lectura</h3>
-      <p>Encontrá grupos por género, ubicación o idioma y lean juntos a tu propio ritmo.</p>
-      <a runat="server" href="/Groups.aspx" class="btn ghost">Explorar grupos</a>
+      <h3><%: GetLocalResourceObject("Landing_Feature1_Title") %></h3>
+      <p><%: GetLocalResourceObject("Landing_Feature1_Body") %></p>
+      <a runat="server" href="/Groups.aspx" class="btn ghost"><%: GetLocalResourceObject("Landing_Feature1_CTA") %></a>
     </div>
     <div class="feature">
-      <h3>Eventos con autores</h3>
+      <h3><%: GetLocalResourceObject("Landing_Feature2_Title") %></h3>
       <p>Participá en sesiones de preguntas y respuestas (Q&amp;A), lanzamientos de libros e
          entrevistas exclusivas con tus autores favoritos.</p>
-      <a runat="server" href="/Events.aspx" class="btn ghost">Ver eventos</a>
+      <a runat="server" href="/Events.aspx" class="btn ghost"><%: GetLocalResourceObject("Landing_Feature2_CTA") %></a>
     </div>
     <div class="feature">
-      <h3>Clásicos seleccionados</h3>
-      <p>Redescubrí obras atemporales con notas de la comunidad, anotaciones y guías de lectura.</p>
-      <a runat="server" href="/Genres.aspx" class="btn ghost">Ver clásicos</a>
+      <h3><%: GetLocalResourceObject("Landing_Feature3_Title") %></h3>
+      <p><p><%: GetLocalResourceObject("Landing_Feature3_Body") %></p>
+      <a runat="server" href="/Genres.aspx" class="btn ghost"><%: GetLocalResourceObject("Landing_Feature3_CTA") %></a>
     </div>
   </div>
 </section>
@@ -110,12 +110,13 @@
     Sumate a miles de lectores que descubren nuevos libros, se unen a grupos de lectura
     y asisten a eventos en vivo con autores.
   </p>
-    <div class="autor-libreria"> <a runat="server" href="/SignupCliente.aspx" class="signupcliente"> ¿Eres un/a autor/a o tienes una libreria? ¡Sumate, publica y vende!</a></div>
+    <div class="autor-libreria"> <a runat="server" href="/SignupCliente.aspx" class="signupcliente"><%: GetLocalResourceObject("Landing_AuthorBanner") %></a></div>
   <div class="cta-row">
-    <a runat="server" href="/Login.aspx" class="btn ghost">Log in</a>
-    <a runat="server" href="/Signup.aspx" class="btn cta">Sign Up</a>
+    <a runat="server" href="/Login.aspx" class="btn ghost"><%: GetLocalResourceObject("Landing_CTA_Login") %></a>
+    <a runat="server" href="/Signup.aspx" class="btn cta"><%: GetLocalResourceObject("Landing_CTA_Signup") %></a>
   </div>
 </section>
 
 </asp:Content>
+
 

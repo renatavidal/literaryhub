@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-  <title>Recuperar contraseña</title>
+  <title><%: GetLocalResourceObject("Forgot_TitleTag") %></title>
   <style>
     body{font-family:Arial;background:#faf7f4;margin:0}
     .box{max-width:420px;margin:40px auto;background:#fff;padding:24px;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.1)}
@@ -17,14 +17,14 @@
 <body>
   <form id="form1" runat="server">
     <div class="box">
-      <h2>Recuperar contraseña</h2>
+      <h2><%: GetLocalResourceObject("Forgot_H2") %></h2>
 
       <!-- Paso 1: pedir email -->
       <asp:Panel ID="pnlStep1" runat="server">
         <div class="row">
           <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" placeholder="Tu email" />
         </div>
-        <asp:Button ID="btnSendCode" runat="server" Text="Enviar código" CssClass="btn" OnClick="btnSendCode_Click" />
+        <asp:Button ID="btnSendCode" runat="server" Text="<%$ Resources: Forgot_SendCode %>" CssClass="btn" OnClick="btnSendCode_Click" />
         <asp:Label ID="lblMsg1" runat="server" CssClass="msg"></asp:Label>
       </asp:Panel>
 
@@ -34,24 +34,24 @@
         <div class="row">
           <asp:TextBox ID="txtNewPass" runat="server" TextMode="Password" placeholder="Nueva contraseña" />
              <asp:RequiredFieldValidator ID="reqPassword" runat="server"
-           ControlToValidate="txtNewPass" ErrorMessage="Ingresá tu contraseña."
+           ControlToValidate="txtNewPass" ErrorMessage="<%$ Resources: Forgot_Pwd_Required %>"
            Display="Dynamic" SetFocusOnError="true" ValidationGroup="login" />
             <asp:RegularExpressionValidator ID="revPassword" runat="server"
               ControlToValidate="txtNewPass" ValidationExpression="^.{8,128}$"
-              ErrorMessage="La contraseña debe tener entre 8 y 128 caracteres."
+              ErrorMessage="<%$ Resources: Forgot_Pwd_Invalid %>"
               Display="Dynamic" ValidationGroup="login" />
         </div>
         <div class="row">
           <asp:TextBox ID="txtNewPass2" runat="server" TextMode="Password" placeholder="Confirmar contraseña" />
               <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server"
-            ControlToValidate="txtNewPass2" ErrorMessage="Ingresá tu contraseña."
+            ControlToValidate="txtNewPass2" ErrorMessage="<%$ Resources: Forgot_Pwd_Required %>"
             Display="Dynamic" SetFocusOnError="true" ValidationGroup="login" />
              <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
                ControlToValidate="txtNewPass2" ValidationExpression="^.{8,128}$"
-               ErrorMessage="La contraseña debe tener entre 8 y 128 caracteres."
+               ErrorMessage="<%$ Resources: Forgot_Pwd_Invalid %>"
                Display="Dynamic" ValidationGroup="login" />
         </div>
-        <asp:Button ID="btnReset" runat="server" Text="Cambiar contraseña" CssClass="btn" OnClick="btnReset_Click" />
+        <asp:Button ID="btnReset" runat="server" Text="<%$ Resources: Forgot_Reset %>" CssClass="btn" OnClick="btnReset_Click" />
         <asp:Label ID="lblMsg2" runat="server" CssClass="msg"></asp:Label>
       </asp:Panel>
 
@@ -62,3 +62,4 @@
   </form>
 </body>
 </html>
+

@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Privacy_H1" xml:space="preserve">
+    <value>Política de privacidad</value>
+  </data>
+  <data name="Privacy_Title" xml:space="preserve">
+    <value>Privacidad</value>
+  </data>
+  <data name="Privacy_Data_1" xml:space="preserve">
+    <value>Cuenta (nombre, email, idioma) y preferencias de lectura.</value>
+  </data>
+  <data name="Privacy_Use_2" xml:space="preserve">
+    <value>Comunicaciones sobre grupos, eventos y novedades (opt-in/opt-out).</value>
+  </data>
+  <data name="Privacy_Use_1" xml:space="preserve">
+    <value>Recomendaciones personalizadas, operación del servicio y prevención de fraude.</value>
+  </data>
+  <data name="Privacy_Data_Title" xml:space="preserve">
+    <value>Datos que recopilamos</value>
+  </data>
+  <data name="Privacy_Legal_Body" xml:space="preserve">
+    <value>Consentimiento, ejecución de contrato y legítimo interés. Compartimos solo con procesadores necesarios (pagos, analytics) bajo acuerdos de tratamiento.</value>
+  </data>
+  <data name="Privacy_Cookies_Body" xml:space="preserve">
+    <value>Usamos cookies esenciales y analíticas. Podés gestionarlas desde la configuración del navegador.</value>
+  </data>
+  <data name="Privacy_Placeholder" xml:space="preserve">
+    <value>Espacio para banner/ilustración</value>
+  </data>
+  <data name="Privacy_Rights_Body" xml:space="preserve">
+    <value>Podés acceder, corregir, eliminar y exportar tus datos. Escribinos a &lt;a href="mailto:privacy@literaryhub.example"&gt;privacy@literaryhub.example&lt;/a&gt;.</value>
+  </data>
+  <data name="Privacy_Security_Body" xml:space="preserve">
+    <value>Conservamos por el tiempo necesario para prestar el servicio o por obligaciones legales. Aplicamos las medidas de seguridad indicadas en &lt;a href="/Security.aspx"&gt;Políticas de seguridad&lt;/a&gt;.</value>
+  </data>
+  <data name="Privacy_Cookies_Title" xml:space="preserve">
+    <value>Cookies</value>
+  </data>
+  <data name="Privacy_Security_Title" xml:space="preserve">
+    <value>Conservación y seguridad</value>
+  </data>
+  <data name="Privacy_Data_3" xml:space="preserve">
+    <value>Datos de compra (proveedores externos para pago).</value>
+  </data>
+  <data name="Privacy_Rights_Title" xml:space="preserve">
+    <value>Tus derechos</value>
+  </data>
+  <data name="Privacy_Intro" xml:space="preserve">
+    <value>Explica qué datos recopilamos, cómo los usamos y tus derechos. Plantilla informativa (no asesoría legal).</value>
+  </data>
+  <data name="Privacy_Data_2" xml:space="preserve">
+    <value>Actividad en la plataforma (grupos, reseñas, progreso de lectura).</value>
+  </data>
+  <data name="Privacy_Use_Title" xml:space="preserve">
+    <value>Cómo usamos los datos</value>
+  </data>
+  <data name="Privacy_Legal_Title" xml:space="preserve">
+    <value>Base legal y terceros</value>
+  </data>
+</root>

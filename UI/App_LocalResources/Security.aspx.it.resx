@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Security_Title" xml:space="preserve">
+    <value>Politiche di sicurezza</value>
+  </data>
+  <data name="Security_H1" xml:space="preserve">
+    <value>Politiche di sicurezza</value>
+  </data>
+  <data name="Security_Intro" xml:space="preserve">
+    <value>Proteggiamo riservatezza, integrità e disponibilità dei dati della nostra community.</value>
+  </data>
+  <data name="Security_Sec_InfoSec" xml:space="preserve">
+    <value>Sicurezza delle informazioni</value>
+  </data>
+  <data name="Security_InfoSec_Item1" xml:space="preserve">
+    <value>Crittografia TLS in transito; dati sensibili cifrati a riposo.</value>
+  </data>
+  <data name="Security_InfoSec_Item2" xml:space="preserve">
+    <value>Controlli di accesso basati sui ruoli e autenticazione rafforzata.</value>
+  </data>
+  <data name="Security_InfoSec_Item3" xml:space="preserve">
+    <value>Registrazione eventi e monitoraggio per rilevare anomalie.</value>
+  </data>
+  <data name="Security_Sec_Payments" xml:space="preserve">
+    <value>Pagamenti</value>
+  </data>
+  <data name="Security_Payments_Body" xml:space="preserve">
+    <value>Transazioni elaborate da provider certificati; non archiviamo i dati completi delle carte.</value>
+  </data>
+  <data name="Security_Sec_Infrastructure" xml:space="preserve">
+    <value>Infrastruttura</value>
+  </data>
+  <data name="Security_Infrastructure_Item1" xml:space="preserve">
+    <value>Backup programmati e test di ripristino.</value>
+  </data>
+  <data name="Security_Infrastructure_Item2" xml:space="preserve">
+    <value>Patch periodiche e revisione delle dipendenze.</value>
+  </data>
+  <data name="Security_Infrastructure_Item3" xml:space="preserve">
+    <value>Separazione degli ambienti (dev, test, prod).</value>
+  </data>
+  <data name="Security_Sec_VulnReport" xml:space="preserve">
+    <value>Segnalazione vulnerabilità</value>
+  </data>
+  <data name="Security_Vuln_Body" xml:space="preserve">
+    <value>Se trovi una vulnerabilità, contattaci a </value>
+  </data>
+</root>

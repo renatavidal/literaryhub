@@ -61,7 +61,7 @@ public partial class SuscripcionesAdmin : System.Web.UI.Page
             _bll.ActualizarPlan(s);
             gvPlanes.EditIndex = -1;
             BindGV();
-            lblMsg.CssClass = "success"; lblMsg.Text = "Plan actualizado.";
+            lblMsg.CssClass = "success"; lblMsg.Text = (GetLocalResourceObject("SA_UpdateSuccess") as string) ?? "Plan actualizado.";
         }
         catch (Exception ex)
         {
@@ -76,7 +76,7 @@ public partial class SuscripcionesAdmin : System.Web.UI.Page
         {
             _bll.ArchivarPlan(id);
             BindGV();
-            lblMsg.CssClass = "success"; lblMsg.Text = "Plan desactivado.";
+            lblMsg.CssClass = "success"; lblMsg.Text = (GetLocalResourceObject("SA_DeactivateSuccess") as string) ?? "Plan desactivado.";
         }
         catch (Exception ex)
         {
@@ -103,7 +103,7 @@ public partial class SuscripcionesAdmin : System.Web.UI.Page
             {
                 _bll.CrearPlan(s);
                 BindGV();
-                lblMsg.CssClass = "success"; lblMsg.Text = "Plan creado.";
+                lblMsg.CssClass = "success"; lblMsg.Text = (GetLocalResourceObject("SA_CreateSuccess") as string) ?? "Plan creado.";
             }
             catch (Exception ex)
             {
@@ -112,3 +112,4 @@ public partial class SuscripcionesAdmin : System.Web.UI.Page
         }
     }
 }
+

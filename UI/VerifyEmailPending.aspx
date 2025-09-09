@@ -24,14 +24,12 @@
   </style>
 </asp:Content>
 
-<asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server">
-  Verificación de email pendiente
-</asp:Content>
+<asp:Content ID="Title" ContentPlaceHolderID="TitleContent" runat="server"><%: GetLocalResourceObject("Verify_Title") %></asp:Content>
 
 <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
   <div class="verify-card">
     <div class="envelope" aria-hidden="true">✉️</div>
-    <h1 style="margin:0 0 6px 0;">Confirmá tu correo</h1>
+    <h1 style="margin:0 0 6px 0;"><%: GetLocalResourceObject("Verify_H1") %></h1>
 
     <p class="muted" style="margin:0 0 12px 0;">
       Te enviamos un enlace de verificación a
@@ -40,14 +38,15 @@
     </p>
 
     <div class="verify-actions">
-      <asp:Button ID="btnResend" runat="server" CssClass="btn solid" Text="Reenviar verificación" OnClick="btnResend_Click" />
-      <asp:HyperLink ID="lnkLogout" runat="server" CssClass="btn ghost" Text="Cerrar sesión" NavigateUrl="/Logout.aspx" />
+      <asp:Button ID="btnResend" runat="server" CssClass="btn solid" Text="<%$ Resources: Verify_Resend %>" OnClick="btnResend_Click" />
+      <asp:HyperLink ID="lnkLogout" runat="server" CssClass="btn ghost" Text="<%$ Resources: Verify_Logout %>" NavigateUrl="/Logout.aspx" />
     </div>
 
     <div class="hint">
-      Revisá la carpeta de spam y asegurate de que <code>literary.hub.contact@gmail.com</code> esté permitido.
+      <%: GetLocalResourceObject("Verify_Hint") %>
     </div>
 
     <asp:Label ID="lblStatus" runat="server" />
   </div>
 </asp:Content>
+

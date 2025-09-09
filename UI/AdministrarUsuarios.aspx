@@ -15,13 +15,13 @@
 
 <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
   <div class="admin">
-    <h1>Administrar Usuarios</h1>
+    <h1><%: GetLocalResourceObject("AdminUsers_Title") %></h1>
 
     <div class="card">
       <div class="row">
         <label for="txtTexto">Nombre / Apellido / Email</label>
         <asp:TextBox ID="txtTexto" runat="server" CssClass="input" />
-        <asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="btn" OnClick="btnBuscar_Click" />
+        <asp:Button ID="btnBuscar" runat="server" Text="<%$ Resources: AdminUsers_Search %>" CssClass="btn" OnClick="btnBuscar_Click" />
       </div>
       <asp:Label ID="lblMsg" runat="server" CssClass="muted" />
     </div>
@@ -31,16 +31,16 @@
                     OnRowCommand="gvUsuarios_RowCommand">
         <Columns>
           <asp:BoundField HeaderText="ID" DataField="Id" />
-          <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-          <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
-          <asp:BoundField HeaderText="Email" DataField="Email" />
-          <asp:CheckBoxField HeaderText="Verificado" DataField="EmailVerified" />
-          <asp:CheckBoxField HeaderText="Activo" DataField="Activo" />
-          <asp:TemplateField HeaderText="Acciones">
+          <asp:BoundField HeaderText="<%$ Resources: AdminUsers_Name %>" DataField="Nombre" />
+          <asp:BoundField HeaderText="<%$ Resources: AdminUsers_LastName %>" DataField="Apellido" />
+          <asp:BoundField HeaderText="<%$ Resources: AdminUsers_Email %>" DataField="Email" />
+          <asp:CheckBoxField HeaderText="<%$ Resources: AdminUsers_Verified %>" DataField="EmailVerified" />
+          <asp:CheckBoxField HeaderText="<%$ Resources: AdminUsers_Enabled %>" DataField="Activo" />
+          <asp:TemplateField HeaderText="<%$ Resources: AdminUsers_Actions %>">
             <ItemTemplate>
-              <asp:Button runat="server" Text="Alta" CommandName="Alta" CommandArgument='<%# Eval("Id") %>' CssClass="btn" />
-              <asp:Button runat="server" Text="Baja" CommandName="Baja" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-danger"
-                          OnClientClick="return confirm('¿Confirmás la BAJA?');" />
+              <asp:Button runat="server" Text="<%$ Resources: AdminUsers_Edit %>" CommandName="Alta" CommandArgument='<%# Eval("Id") %>' CssClass="btn" />
+              <asp:Button runat="server" Text="<%$ Resources: AdminUsers_Delete %>" CommandName="Baja" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-danger"
+                          OnClientClick="return confirm('<%$ Resources: AdminUsers_ConfirmDelete %>');" />
             </ItemTemplate>
           </asp:TemplateField>
         </Columns>
@@ -48,3 +48,4 @@
     </div>
   </div>
 </asp:Content>
+

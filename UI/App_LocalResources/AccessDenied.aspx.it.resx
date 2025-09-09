@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Accesso negato</value>
+  </data>
+  <data name="H1" xml:space="preserve">
+    <value>Accesso negato (403)</value>
+  </data>
+  <data name="Intro" xml:space="preserve">
+    <value>Non hai i permessi per accedere a questa sezione.</value>
+  </data>
+  <data name="Btn_Login" xml:space="preserve">
+    <value>Accedi</value>
+  </data>
+  <data name="Btn_Home" xml:space="preserve">
+    <value>Vai alla home</value>
+  </data>
+  <data name="Link_Back" xml:space="preserve">
+    <value>Indietro</value>
+  </data>
+  <data name="Link_Contact" xml:space="preserve">
+    <value>Contattaci</value>
+  </data>
+  <data name="Footer" xml:space="preserve">
+    <value>Se ti serve l'accesso, scrivici o contatta un amministratore.</value>
+  </data>
+</root>

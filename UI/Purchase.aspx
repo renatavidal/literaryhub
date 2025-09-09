@@ -16,7 +16,7 @@
     <!-- Columna izq: resumen del libro -->
     <div class="buy-book">
       <img id="imgCover" class="cover" src="/Content/blank-cover.png" alt="Portada" />
-      <h2 id="hTitle">Cargando…</h2>
+      <h2 id="hTitle"><%: GetLocalResourceObject("Purch_Loading") %></h2>
       <div class="muted" id="hAuthors"></div>
       <div class="muted" id="hInfo"></div>
       <div style="margin-top:10px;font-weight:bold" id="hPrice"></div>
@@ -42,7 +42,7 @@
         var sale = v.saleInfo || {};
         var img = (info.imageLinks && (info.imageLinks.thumbnail || info.imageLinks.smallThumbnail)) || "/Content/blank-cover.png";
         id("imgCover").src = img;
-        s(id("hTitle"), info.title || "(Sin título)");
+        s(id("hTitle"), info.title || "<%= GetLocalResourceObject("Purch_Untitled") %>");
         s(id("hAuthors"), (info.authors||[]).join(", "));
         s(id("hInfo"), (info.publishedDate||"") + (info.publisher? " · " + info.publisher : ""));
 
@@ -69,3 +69,4 @@
     })();
   </script>
 </asp:Content>
+

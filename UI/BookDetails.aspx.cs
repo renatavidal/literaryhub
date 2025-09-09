@@ -17,7 +17,8 @@ public partial class BookDetails : ReaderPage
         var auth = Session["auth"] as UserSession;
         if (auth.IsInRole("Client") )
         {
-            ScriptManager.RegisterStartupScript(this, GetType(), "err", "alert('Como cliente no puedes comprar libros, create una cuenta como usuario para disfrutar de la experiencia');", true);
+            var alertMsg = (GetLocalResourceObject("Book_ClientAlert") as string) ?? "Como cliente no puedes comprar libros, crea una cuenta como usuario para disfrutar de la experiencia.";
+            ScriptManager.RegisterStartupScript(this, GetType(), "err", "alert('" + alertMsg.Replace("'", "\\'") + "');", true);
             Response.Redirect("/Home.aspx");
         }
 
@@ -60,11 +61,11 @@ public partial class BookDetails : ReaderPage
         {
             var bll = new BLLCatalog();
             bll.SetUserBookStatus(CurrentUserId, BuildBookFromHidden(), UserBookStatus.WantToRead);
-            litStatus.Text = "<span style='color:green'>¡Marcado como “Quiero leer”!</span>";
+            litStatus.Text = "<span style='color:green'>" + Server.HtmlEncode((GetLocalResourceObject("Book_StatusWantSuccess") as string) ?? "Marcado como \"Quiero leer\"!") + "</span>";
         }
         catch (Exception ex)
         {
-            litStatus.Text = "<span style='color:#b00'>No se pudo actualizar el estado. " + Server.HtmlEncode(ex.Message) + "</span>";
+            var __prefix = (GetLocalResourceObject("Book_StatusUpdateErrorPrefix") as string) ?? "No se pudo actualizar el estado. "; litStatus.Text = "<span style='color:#b00'>" + Server.HtmlEncode(__prefix + ex.Message) + "</span>";
         }
     }
 
@@ -74,11 +75,11 @@ public partial class BookDetails : ReaderPage
         {
             var bll = new BLLCatalog();
             bll.SetUserBookStatus(CurrentUserId, BuildBookFromHidden(), UserBookStatus.Read);
-            litStatus.Text = "<span style='color:green'>¡Marcado como “Leído”!</span>";
+            litStatus.Text = "<span style='color:green'>" + Server.HtmlEncode((GetLocalResourceObject("Book_StatusReadSuccess") as string) ?? "Marcado como \"Leído\"!") + "</span>";
         }
         catch (Exception ex)
         {
-            litStatus.Text = "<span style='color:#b00'>No se pudo actualizar el estado. " + Server.HtmlEncode(ex.Message) + "</span>";
+            var __prefix = (GetLocalResourceObject("Book_StatusUpdateErrorPrefix") as string) ?? "No se pudo actualizar el estado. "; litStatus.Text = "<span style='color:#b00'>" + Server.HtmlEncode(__prefix + ex.Message) + "</span>";
         }
     }
 
@@ -89,7 +90,7 @@ public partial class BookDetails : ReaderPage
             var text = (txtComment.Text ?? "").Trim();
             if (text.Length == 0)
             {
-                litStatus.Text = "<span style='color:#b00'>El comentario no puede estar vacío.</span>";
+                litStatus.Text = "<span style='color:#b00'>" + Server.HtmlEncode((GetLocalResourceObject("Book_CommentEmpty") as string) ?? "El comentario no puede estar vacío.") + "</span>";
                 return;
             }
             if (text.Length > 2000) text = text.Substring(0, 2000);
@@ -98,11 +99,12 @@ public partial class BookDetails : ReaderPage
             bll.AddComment(CurrentUserId, BuildBookFromHidden(), text);
 
             txtComment.Text = string.Empty;
-            litStatus.Text = "<span style='color:green'>¡Comentario publicado!</span>";
+            litStatus.Text = "<span style='color:green'>" + Server.HtmlEncode((GetLocalResourceObject("Book_CommentPublished") as string) ?? "¡Comentario publicado!") + "</span>";
         }
         catch (Exception ex)
         {
-            litStatus.Text = "<span style='color:#b00'>No se pudo publicar el comentario. " + Server.HtmlEncode(ex.Message) + "</span>";
+            var __prefix2 = (GetLocalResourceObject("Book_CommentPublishErrorPrefix") as string) ?? "No se pudo publicar el comentario. "; litStatus.Text = "<span style='color:#b00'>" + Server.HtmlEncode(__prefix2 + ex.Message) + "</span>";
         }
     }
 }
+

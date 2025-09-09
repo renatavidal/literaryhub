@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Landing_Feature1_Title" xml:space="preserve">
+    <value>Grupos de lectura</value>
+  </data>
+  <data name="Landing_CTA_Login" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="Landing_Feature1_CTA" xml:space="preserve">
+    <value>Explorar grupos</value>
+  </data>
+  <data name="Landing_Popular_Title" xml:space="preserve">
+    <value>Libros populares</value>
+  </data>
+  <data name="Landing_Feature2_Body" xml:space="preserve">
+    <value>Participá en sesiones de preguntas y respuestas (Q&amp;A), lanzamientos de libros e entrevistas exclusivas.</value>
+  </data>
+  <data name="Landing_CTA_Signup" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="Landing_AuthorBanner" xml:space="preserve">
+    <value>¿Sos autor/a o tenés una librería? ¡Sumate, publicá y vende!</value>
+  </data>
+  <data name="Landing_Feature2_CTA" xml:space="preserve">
+    <value>Ver eventos</value>
+  </data>
+  <data name="Landing_Hero_Title" xml:space="preserve">
+    <value>Descubrí un mundo de libros</value>
+  </data>
+  <data name="Landing_Feature3_Title" xml:space="preserve">
+    <value>Clásicos seleccionados</value>
+  </data>
+  <data name="Landing_Feature2_Title" xml:space="preserve">
+    <value>Eventos con autores</value>
+  </data>
+  <data name="Landing_Hero_Signup" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="Landing_CTA_Body" xml:space="preserve">
+    <value>Sumate a miles de lectores que descubren nuevos libros, se unen a grupos de lectura y asisten a eventos en vivo con autores.</value>
+  </data>
+  <data name="Landing_Feature3_Body" xml:space="preserve">
+    <value>Redescubrí obras atemporales con notas de la comunidad, anotaciones y guías de lectura.</value>
+  </data>
+  <data name="Landing_Hero_Login" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="Landing_Feature1_Body" xml:space="preserve">
+    <value>Encontrá grupos por género, ubicación o idioma y lean juntos a tu propio ritmo.</value>
+  </data>
+  <data name="Landing_Feature3_CTA" xml:space="preserve">
+    <value>Ver clásicos</value>
+  </data>
+  <data name="Landing_Hero_Sub" xml:space="preserve">
+    <value>Explorá títulos, unite a grupos de lectura y compartí tu pasión por la literatura.</value>
+  </data>
+</root>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Help_TitleTag" xml:space="preserve">
+    <value>Centro assistenza - LiteraryHub</value>
+  </data>
+  <data name="Help_H1" xml:space="preserve">
+    <value>Centro assistenza (FAQ)</value>
+  </data>
+  <data name="Help_Q1" xml:space="preserve">
+    <value>Come creo un account su LiteraryHub?</value>
+  </data>
+  <data name="Help_Q2" xml:space="preserve">
+    <value>Cosa faccio se non ho ricevuto l'email di verifica?</value>
+  </data>
+  <data name="Help_Q3" xml:space="preserve">
+    <value>Come cambio la mia password?</value>
+  </data>
+  <data name="Help_Q4" xml:space="preserve">
+    <value>Posso partecipare ai gruppi di lettura senza abbonamento a pagamento?</value>
+  </data>
+  <data name="Help_Q5" xml:space="preserve">
+    <value>Come posso contattare il supporto?</value>
+  </data>
+  <data name="Help_A1" xml:space="preserve">
+    <value>Fai clic su &lt;strong&gt;Sign up&lt;/strong&gt;, compila i tuoi dati e conferma l'email. Fatto!</value>
+  </data>
+  <data name="Help_A2" xml:space="preserve">
+    <value>Controlla la cartella spam. Se non c'è, dalla pagina &lt;strong&gt;Verifica in sospeso&lt;/strong&gt; puoi reinviare l'email.</value>
+  </data>
+  <data name="Help_A3" xml:space="preserve">
+    <value>Vai al tuo profilo, seleziona &lt;em&gt;Impostazioni account&lt;/em&gt; e fai clic su &lt;strong&gt;Cambia password&lt;/strong&gt;.</value>
+  </data>
+  <data name="Help_A4" xml:space="preserve">
+    <value>Sì, ci sono gruppi gratuiti. Con un abbonamento Premium accedi a gruppi esclusivi.</value>
+  </data>
+  <data name="Help_A5" xml:space="preserve">
+    <value>Puoi scriverci a &lt;a href="mailto:literary.hub.contact@gmail.com"&gt;literary.hub.contact@gmail.com&lt;/a&gt; o dalla sezione &lt;strong&gt;Contattaci&lt;/strong&gt; sul sito.</value>
+  </data>
+  <data name="Help_Back" xml:space="preserve">
+    <value>Torna alla home</value>
+  </data>
+</root>

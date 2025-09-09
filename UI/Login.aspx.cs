@@ -45,12 +45,12 @@ using BE;
 
                 if (p == null)
                 {
-                    lblLoginResult.Text = "Credenciales inválidas";
+                    lblLoginResult.Text = (GetLocalResourceObject("Login_InvalidCreds") as string) ?? "Credenciales inválidas";
                     return;
                 }
             if (p.Activo == false)
             {
-                lblLoginResult.Text = "Usuario DESACTIVADO, si considera que esto fue un error contactenos en literary.hub.contact@gmail.com";
+                lblLoginResult.Text = (GetLocalResourceObject("Login_UserDeactivated") as string) ?? "Usuario DESACTIVADO, si considerás que esto fue un error contactenos en literary.hub.contact@gmail.com";
                 return;
             }
                 Session["auth"] = new UserSession
@@ -83,7 +83,7 @@ using BE;
             }
             catch (Exception)
             {
-                lblLoginResult.Text = "Hubo un problema al iniciar sesión. Probá de nuevo.";
+                lblLoginResult.Text = (GetLocalResourceObject("Login_GenericError") as string) ?? "Hubo un problema al iniciar sesión. Probá de nuevo.";
             }
         }
         private bool IsSafeLocalUrl(string url)
@@ -107,4 +107,5 @@ using BE;
         }
 
     }
+
 

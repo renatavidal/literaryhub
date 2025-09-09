@@ -173,7 +173,8 @@ namespace MPP
                 Email = Convert.ToString(r["Email"]),
                 PasswordHash = Convert.ToString(r["PasswordHash"]),
                 EmailVerified = Convert.ToBoolean(r["EmailVerified"]),
-                Roles = new[] { "Reader", "Client" }    
+                Roles = new[] { "Reader", "Client" },
+                Activo = Convert.ToBoolean(r["Activo"])
             };
         }
        

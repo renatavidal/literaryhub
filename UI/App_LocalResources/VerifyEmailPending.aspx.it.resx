@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Verify_Title" xml:space="preserve">
+    <value>Verifica email in sospeso</value>
+  </data>
+  <data name="Verify_H1" xml:space="preserve">
+    <value>Conferma la tua email</value>
+  </data>
+  <data name="Verify_Resend" xml:space="preserve">
+    <value>Reinvia verifica</value>
+  </data>
+  <data name="Verify_Logout" xml:space="preserve">
+    <value>Esci</value>
+  </data>
+  <data name="Verify_Hint" xml:space="preserve">
+    <value>Controlla la cartella spam e consenti literary.hub.contact@gmail.com.</value>
+  </data>
+  <data name="Verify_Status_Sent" xml:space="preserve">
+    <value>Ti abbiamo inviato un'email con il link di verifica.</value>
+  </data>
+  <data name="Verify_Status_Invalid" xml:space="preserve">
+    <value>Link non valido o scaduto.</value>
+  </data>
+  <data name="Verify_Status_Verified" xml:space="preserve">
+    <value>La tua email è stata verificata!</value>
+  </data>
+  <data name="Verify_Status_Resent" xml:space="preserve">
+    <value>Fatto. Abbiamo reinviato il link di verifica. Controlla la posta in arrivo.</value>
+  </data>
+  <data name="Verify_Status_ResendError" xml:space="preserve">
+    <value>Impossibile reinviare l'email ora. Riprova tra qualche minuto.</value>
+  </data>
+</root>

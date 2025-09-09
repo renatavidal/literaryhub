@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
@@ -58,30 +117,82 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PageTitle" xml:space="preserve"><value>¿Quiénes somos?</value></data>
-  <data name="H1" xml:space="preserve"><value>Sobre LiteraryHub</value></data>
-  <data name="Sec1_Title" xml:space="preserve"><value>Descripción básica del negocio</value></data>
-  <data name="Sec1_Body" xml:space="preserve"><value>LiteraryHub conecta lectores, autores y librerías en un ecosistema único: recomendaciones personalizadas por algoritmos, comunidades de lectura virtuales, eventos exclusivos con autores y un marketplace para comprar libros en formato digital y físico con librerías asociadas. Incluye funciones sociales (perfiles, reseñas, seguimiento de autores) y un plan premium con beneficios y descuentos.</value></data>
-  <data name="Carousel_Aria" xml:space="preserve"><value>Galería de imágenes</value></data>
-  <data name="Carousel_Prev" xml:space="preserve"><value>Anterior</value></data>
-  <data name="Carousel_Next" xml:space="preserve"><value>Siguiente</value></data>
-  <data name="Carousel_Dots" xml:space="preserve"><value>Selector de imagen</value></data>
-  <data name="Sec2_Title" xml:space="preserve"><value>Situación actual</value></data>
-  <data name="Sec2_Body" xml:space="preserve"><value>Startup emergente con equipo fundador de tecnología, marketing digital y editorial, asesorado por referentes del mundo literario. Visión: ser el hub digital literario líder en 3 años, con 500.000 usuarios activos/mes, +200 librerías asociadas y +500 autores reconocidos. Lanzamiento local y expansión a 3 países el segundo año.</value></data>
-  <data name="Sec3_Title" xml:space="preserve"><value>¿Qué nos hace únicos?</value></data>
-  <data name="Sec3_Item1" xml:space="preserve"><value><strong>Enfoque integral:</strong> recomendaciones + compra + comunidades en un solo lugar.</value></data>
-  <data name="Sec3_Item2" xml:space="preserve"><value><strong>Hibridación digital-física:</strong> integra librerías locales y eventos presenciales.</value></data>
-  <data name="Sec3_Item3" xml:space="preserve"><value><strong>Recomendaciones avanzadas:</strong> patrones de lectura, progreso y valoraciones contextualizadas.</value></data>
-  <data name="Sec3_Item4" xml:space="preserve"><value><strong>Experiencia social enriquecida:</strong> comentarios por página evitando spoilers.</value></data>
-  <data name="Sec3_Item5" xml:space="preserve"><value><strong>Puente autores-lectores:</strong> exposición y eventos que mejoran el ingreso del autor.</value></data>
-  <data name="Sec4_Title" xml:space="preserve"><value>Factores clave de éxito</value></data>
-  <data name="Sec4_Item1" xml:space="preserve"><value>Tecnología de personalización que mejora con el uso.</value></data>
-  <data name="Sec4_Item2" xml:space="preserve"><value>Modelo de ingresos diversificado (comisiones, suscripción, eventos, publicidad selectiva).</value></data>
-  <data name="Sec4_Item3" xml:space="preserve"><value>Alianzas con editoriales, librerías, Kindle y creadores de contenido.</value></data>
-  <data name="Sec4_Item4" xml:space="preserve"><value>Foco en comunidad para aumentar retención.</value></data>
-  <data name="Sec4_Item5" xml:space="preserve"><value>Escalabilidad internacional (idiomas y contexto local).</value></data>
-  <data name="Sec4_Item6" xml:space="preserve"><value>UX fluida entre descubrir, comprar, leer y debatir.</value></data>
-  <data name="Sec4_Item7" xml:space="preserve"><value>Analytics útiles para autores y librerías.</value></data>
-  <data name="Sec5_Title" xml:space="preserve"><value>Estrategia (Misión, Visión y marco temporal)</value></data>
-  <data name="Sec5_Body" xml:space="preserve"><value>Horizonte de 3 años con evaluaciones trimestrales y metodología ágil: permite adaptarse a cambios económicos, tecnológicos y editoriales, incorporando IA, análisis predictivo y alianzas estratégicas sostenibles.</value></data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>¿Quiénes somos?</value>
+  </data>
+  <data name="H1" xml:space="preserve">
+    <value>Sobre LiteraryHub</value>
+  </data>
+  <data name="Sec1_Title" xml:space="preserve">
+    <value>Descripción básica del negocio</value>
+  </data>
+  <data name="Sec1_Body" xml:space="preserve">
+    <value>LiteraryHub conecta lectores, autores y librerías en un ecosistema único: recomendaciones personalizadas por algoritmos, comunidades de lectura virtuales, eventos exclusivos con autores y un marketplace para comprar libros en formato digital y físico con librerías asociadas. Incluye funciones sociales (perfiles, reseñas, seguimiento de autores) y un plan premium con beneficios y descuentos.</value>
+  </data>
+  <data name="Carousel_Aria" xml:space="preserve">
+    <value>Galería de imágenes</value>
+  </data>
+  <data name="Carousel_Prev" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
+  <data name="Carousel_Next" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="Carousel_Dots" xml:space="preserve">
+    <value>Selector de imagen</value>
+  </data>
+  <data name="Sec2_Title" xml:space="preserve">
+    <value>Situación actual</value>
+  </data>
+  <data name="Sec2_Body" xml:space="preserve">
+    <value>Startup emergente con equipo fundador de tecnología, marketing digital y editorial, asesorado por referentes del mundo literario. Visión: ser el hub digital literario líder en 3 años, con 500.000 usuarios activos/mes, +200 librerías asociadas y +500 autores reconocidos. Lanzamiento local y expansión a 3 países el segundo año.</value>
+  </data>
+  <data name="Sec3_Title" xml:space="preserve">
+    <value>¿Qué nos hace únicos?</value>
+  </data>
+  <data name="Sec3_Item1" xml:space="preserve">
+    <value>Clubes de lectura</value>
+  </data>
+  <data name="Sec3_Item2" xml:space="preserve">
+    <value>Comentarios contextualizados</value>
+  </data>
+  <data name="Sec3_Item3" xml:space="preserve">
+    <value>Eventos literarios</value>
+  </data>
+  <data name="Sec3_Item4" xml:space="preserve">
+    <value>Encuentros con librerias cercanas</value>
+  </data>
+  <data name="Sec3_Item5" xml:space="preserve">
+    <value>Descubri nuevos libros</value>
+  </data>
+  <data name="Sec4_Title" xml:space="preserve">
+    <value>Factores clave de éxito</value>
+  </data>
+  <data name="Sec4_Item1" xml:space="preserve">
+    <value>Tecnología de personalización que mejora con el uso.</value>
+  </data>
+  <data name="Sec4_Item2" xml:space="preserve">
+    <value>Modelo de ingresos diversificado (comisiones, suscripción, eventos, publicidad selectiva).</value>
+  </data>
+  <data name="Sec4_Item3" xml:space="preserve">
+    <value>Alianzas con editoriales, librerías, Kindle y creadores de contenido.</value>
+  </data>
+  <data name="Sec4_Item4" xml:space="preserve">
+    <value>Foco en comunidad para aumentar retención.</value>
+  </data>
+  <data name="Sec4_Item5" xml:space="preserve">
+    <value>Escalabilidad internacional (idiomas y contexto local).</value>
+  </data>
+  <data name="Sec4_Item6" xml:space="preserve">
+    <value>UX fluida entre descubrir, comprar, leer y debatir.</value>
+  </data>
+  <data name="Sec4_Item7" xml:space="preserve">
+    <value>Analytics útiles para autores y librerías.</value>
+  </data>
+  <data name="Sec5_Title" xml:space="preserve">
+    <value>Estrategia (Misión, Visión y marco temporal)</value>
+  </data>
+  <data name="Sec5_Body" xml:space="preserve">
+    <value>Horizonte de 3 años con evaluaciones trimestrales y metodología ágil: permite adaptarse a cambios económicos, tecnológicos y editoriales, incorporando IA, análisis predictivo y alianzas estratégicas sostenibles.</value>
+  </data>
 </root>

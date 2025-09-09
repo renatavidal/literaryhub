@@ -25,13 +25,13 @@ public partial class Contact : PublicPage
             }
 
             bll.Contacto(email, text, userId);
-            lblResult.Text = "¡Gracias! Recibimos tu mensaje y te responderemos a la brevedad.";
+            lblResult.Text = (GetLocalResourceObject("Contact_Success") as string) ?? "¡Gracias! Recibimos tu mensaje y te responderemos a la brevedad.";
 
 
         }
         catch (Exception)
         {
-            lblResult.Text = "Hubo un problema al iniciar sesión. Probá de nuevo.";
+            lblResult.Text = (GetLocalResourceObject("Contact_Error") as string) ?? "Hubo un problema al iniciar sesión. Probá de nuevo.";
         }
     }
 }

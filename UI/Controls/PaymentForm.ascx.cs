@@ -31,6 +31,9 @@ public partial class Controls_PaymentForm : System.Web.UI.UserControl
             ddlYear.Items.Clear();
             for (int i = 0; i <= 12; i++)
                 ddlYear.Items.Add(new System.Web.UI.WebControls.ListItem((y + i).ToString(), (y + i).ToString()));
+
+            var ph = GetLocalResourceObject("Pay_Number_Placeholder") as string;
+            if (!string.IsNullOrEmpty(ph)) txtNumber.Attributes["placeholder"] = ph;
         }
     }
 
@@ -87,8 +90,8 @@ public partial class Controls_PaymentForm : System.Web.UI.UserControl
         }
         catch (Exception ex)
         {
-            litStatus.Text = "<div class='hint' style='color:#b00'>No se pudo procesar el pago: "
-                         + this.Page.Server.HtmlEncode(ex.Message) + "</div>";
+            var prefix = (GetLocalResourceObject("Pay_ErrorPrefix") as string) ?? "No se pudo procesar el pago: ";
+            litStatus.Text = "<div class='hint' style='color:#b00'>" + prefix + this.Page.Server.HtmlEncode(ex.Message) + "</div>";
         }
     }
     protected void valLuhn_ServerValidate(object source, System.Web.UI.WebControls.ServerValidateEventArgs args)
@@ -135,7 +138,6 @@ public partial class Controls_PaymentForm : System.Web.UI.UserControl
 
     private static string DetectBrand(string pan)
     {
-        // Visa, MasterCard, Amex (simple)
         if (Regex.IsMatch(pan, @"^4\d{12}(\d{3})?(\d{3})?$")) return "VISA";
         if (Regex.IsMatch(pan, @"^(5[1-5]\d{4}|222[1-9]\d{2}|22[3-9]\d{3}|2[3-6]\d{4}|27[01]\d{3}|2720\d{2})\d{10}$")) return "MASTERCARD";
         if (Regex.IsMatch(pan, @"^3[47]\d{13}$")) return "AMEX";

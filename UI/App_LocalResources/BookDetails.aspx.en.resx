@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Book_Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="Book_CommentEmpty" xml:space="preserve">
+    <value>Comment cannot be empty.</value>
+  </data>
+  <data name="Book_AuthorsLabel" xml:space="preserve">
+    <value>Author(s):</value>
+  </data>
+  <data name="Book_Comment_Hint" xml:space="preserve">
+    <value>Max 2000 characters.</value>
+  </data>
+  <data name="Book_PublishedLabel" xml:space="preserve">
+    <value>Published:</value>
+  </data>
+  <data name="Book_StatusReadSuccess" xml:space="preserve">
+    <value>Marked as "Read"!</value>
+  </data>
+  <data name="Book_Comment_Publish" xml:space="preserve">
+    <value>Publish comment</value>
+  </data>
+  <data name="Book_CommentPublishErrorPrefix" xml:space="preserve">
+    <value>Could not publish the comment. </value>
+  </data>
+  <data name="Book_CommentPublished" xml:space="preserve">
+    <value>Comment published!</value>
+  </data>
+  <data name="Book_Comment_Label" xml:space="preserve">
+    <value>Leave a comment</value>
+  </data>
+  <data name="Book_ClientAlert" xml:space="preserve">
+    <value>As a client you cannot purchase books. Create a user account to enjoy the experience.</value>
+  </data>
+  <data name="Book_StatusWantSuccess" xml:space="preserve">
+    <value>Marked as "Want to read"!</value>
+  </data>
+  <data name="Book_StatusUpdateErrorPrefix" xml:space="preserve">
+    <value>Could not update status. </value>
+  </data>
+  <data name="Book_Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="Book_Untitled" xml:space="preserve">
+    <value>(Untitled)</value>
+  </data>
+  <data name="Book_CoverAlt" xml:space="preserve">
+    <value>Cover</value>
+  </data>
+  <data name="Book_Want" xml:space="preserve">
+    <value>Want to read</value>
+  </data>
+</root>

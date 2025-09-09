@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Acc_Lists_Want" xml:space="preserve">
+    <value>Want to read</value>
+  </data>
+  <data name="Acc_ChangePwd_Body" xml:space="preserve">
+    <value>To update your password use the secure flow.</value>
+  </data>
+  <data name="Acc_Deactivate_Title" xml:space="preserve">
+    <value>Deactivate account</value>
+  </data>
+  <data name="Acc_ChangePwd_Button" xml:space="preserve">
+    <value>Go to Change Password</value>
+  </data>
+  <data name="Acc_Title" xml:space="preserve">
+    <value>My Account</value>
+  </data>
+  <data name="Acc_Lists_Title" xml:space="preserve">
+    <value>My lists</value>
+  </data>
+  <data name="Acc_Deactivate_Button" xml:space="preserve">
+    <value>Deactivate</value>
+  </data>
+  <data name="Acc_Lists_Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="Acc_MarkRead" xml:space="preserve">
+    <value>Mark as read</value>
+  </data>
+  <data name="Acc_ErrorPrefix" xml:space="preserve">
+    <value>Error: </value>
+  </data>
+  <data name="Acc_Deactivate_Body" xml:space="preserve">
+    <value>This deactivates your account and hides your profile. You can reactivate it by contacting support.</value>
+  </data>
+  <data name="Acc_Deactivate_Success" xml:space="preserve">
+    <value>Your account has been deactivated.</value>
+  </data>
+  <data name="Acc_Deactivate_Confirm" xml:space="preserve">
+    <value>Confirm deactivation of your account?</value>
+  </data>
+  <data name="Acc_Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Acc_ChangePwd_Title" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+</root>

@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Help_TitleTag" xml:space="preserve">
+    <value>Servicio de Ayuda - LiteraryHub</value>
+  </data>
+  <data name="Help_Q5" xml:space="preserve">
+    <value>¿Cómo contacto al soporte técnico?</value>
+  </data>
+  <data name="Help_Back" xml:space="preserve">
+    <value>Volver al inicio</value>
+  </data>
+  <data name="Help_Q4" xml:space="preserve">
+    <value>¿Puedo participar en grupos de lectura sin suscripción paga?</value>
+  </data>
+  <data name="Help_H1" xml:space="preserve">
+    <value>Servicio de Ayuda (FAQs)</value>
+  </data>
+  <data name="Help_Q3" xml:space="preserve">
+    <value>¿Cómo cambio mi contraseña?</value>
+  </data>
+  <data name="Help_Q2" xml:space="preserve">
+    <value>¿Qué hago si no recibí el correo de verificación?</value>
+  </data>
+  <data name="Help_Q1" xml:space="preserve">
+    <value>¿Cómo creo una cuenta en LiteraryHub?</value>
+  </data>
+  <data name="Help_A5" xml:space="preserve">
+    <value>Podés escribirnos a &lt;a href="mailto:literary.hub.contact@gmail.com"&gt;literary.hub.contact@gmail.com&lt;/a&gt; o desde la sección &lt;strong&gt;Contáctenos&lt;/strong&gt; en la web.</value>
+  </data>
+  <data name="Help_A3" xml:space="preserve">
+    <value>Ingresá en tu perfil, seleccioná &lt;em&gt;Configuración de cuenta&lt;/em&gt; y hacé clic en &lt;strong&gt;Cambiar contraseña&lt;/strong&gt;.</value>
+  </data>
+  <data name="Help_A1" xml:space="preserve">
+    <value>Hacé clic en &lt;strong&gt;Sign up&lt;/strong&gt;, completá tus datos y confirmá tu email. ¡Listo!</value>
+  </data>
+  <data name="Help_A4" xml:space="preserve">
+    <value>Sí, hay grupos gratuitos disponibles. Con una suscripción Premium accedés a grupos exclusivos.</value>
+  </data>
+  <data name="Help_A2" xml:space="preserve">
+    <value>Revisá tu carpeta de spam. Si no está, desde la página de &lt;strong&gt;Verificación pendiente&lt;/strong&gt; podés reenviar el correo.</value>
+  </data>
+</root>

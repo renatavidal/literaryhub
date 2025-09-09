@@ -54,23 +54,23 @@
 </asp:Content>
 
 <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
-  <h1>Planes de suscripción</h1>
-  <p class="muted">Elegí el plan que mejor se adapte a vos. Los precios están expresados en USD.</p>
+  <h1><%: GetLocalResourceObject("Subs_Title") %></h1>
+  <p class="muted"><%: GetLocalResourceObject("Subs_Intro") %></p>
     <!-- ======= BARRA DE COMPARACIÓN ======= -->
   <div class="compare-bar" style="margin:18px 0; padding:14px; border:1px solid var(--stroke); border-radius:12px; background:var(--paper); display:grid; gap:10px">
     <div style="display:grid; gap:10px">
-      <strong>Comparar planes</strong>
+      <strong><%: GetLocalResourceObject("Subs_Compare_Title") %></strong>
       <div class="selectors" style="display:grid; grid-template-columns:repeat(3, minmax(160px, 1fr)); gap:10px">
         <asp:DropDownList ID="ddlA" runat="server" CssClass="input"></asp:DropDownList>
         <asp:DropDownList ID="ddlB" runat="server" CssClass="input"></asp:DropDownList>
         <asp:DropDownList ID="ddlC" runat="server" CssClass="input"></asp:DropDownList>
       </div>
       <div>
-        <asp:Button ID="btnCompare" runat="server" Text="Comparar" OnClick="btnCompare_Click"
+        <asp:Button ID="btnCompare" runat="server" Text="<%$ Resources: Subs_Compare_Button %>" OnClick="btnCompare_Click"
                     CssClass="btn-choose" />
       </div>
     </div>
-    <small class="muted" id="comparemessage">Elegí 2 o 3 planes.</small>
+    <small class="muted" id="comparemessage"><%: GetLocalResourceObject("Subs_Compare_SelectMessage") %><%: GetLocalResourceObject("Subs_Compare_SelectMessage") %></small>
   </div>
       <asp:PlaceHolder ID="phCompare" runat="server" />
   <asp:Repeater ID="rptPlanes" runat="server">
@@ -81,19 +81,17 @@
 
         <div>
           <div class="price">$<%# Eval("PrecioUSD","{0:0.##}") %></div>
-          <div class="per">/mes</div>
+          <div class="per"><%: GetLocalResourceObject("Subs_PerMonth") %></div>
         </div>
 
         <ul class="features">
-          <li><span class="ok">✓</span> Roles incluidos: <strong><%# Eval("Roles") %></strong></li>
+          <li><span class="ok">✓</span> <%: GetLocalResourceObject("Subs_Feature_RolesPrefix") %> <strong><%# Eval("Roles") %></strong></li>
           <li><span class="ok">✓</span> Acceso a la comunidad</li>
           <li><span class="ok">✓</span> Panel de usuario</li>
           <li><span class="ok">✓</span> Soporte básico</li>
         </ul>
 
-        <a class="btn-choose" href='<%# "/Checkout.aspx?plan=" + Eval("Codigo") %>'>
-          Elegir plan
-        </a>
+        <a class="btn-choose" href='<%# "/Checkout.aspx?plan=" + Eval("Codigo") %>'><%: GetLocalResourceObject("Subs_ChoosePlan") %></a>
             <!-- Botón que precarga el selector A/B con este plan -->
           <asp:LinkButton runat="server" CommandName="prefill"
               CommandArgument='<%# Eval("Codigo") %>' CssClass="btn-ghost">Comparar este</asp:LinkButton>
@@ -103,3 +101,5 @@
   </asp:Repeater>
     
 </asp:Content>
+
+

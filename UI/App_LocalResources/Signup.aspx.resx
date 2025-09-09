@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Signup_Label_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Signup_Password_Invalid" xml:space="preserve">
+    <value>La contraseña no cumple los requisitos.</value>
+  </data>
+  <data name="Signup_Password_Required" xml:space="preserve">
+    <value>Ingresá una contraseña.</value>
+  </data>
+  <data name="Signup_Label_Name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Signup_Email_Invalid" xml:space="preserve">
+    <value>Email no válido.</value>
+  </data>
+  <data name="Signup_Success" xml:space="preserve">
+    <value>¡Listo! Te enviamos un correo para verificar tu cuenta.</value>
+  </data>
+  <data name="Signup_Email_Taken" xml:space="preserve">
+    <value>Ese email ya está registrado.</value>
+  </data>
+  <data name="Signup_Captcha_Check" xml:space="preserve">
+    <value>Verificá el captcha.</value>
+  </data>
+  <data name="Signup_Title" xml:space="preserve">
+    <value>Crear cuenta</value>
+  </data>
+  <data name="Signup_Label_LastName" xml:space="preserve">
+    <value>Apellido (opcional)</value>
+  </data>
+  <data name="Signup_LastName_Invalid" xml:space="preserve">
+    <value>Apellido inválido (solo letras y espacios, 2-60).</value>
+  </data>
+  <data name="Signup_Email_Required" xml:space="preserve">
+    <value>Ingresá tu email.</value>
+  </data>
+  <data name="Signup_Label_Password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="Signup_Password_Hint" xml:space="preserve">
+    <value>Mín. 8 y máx. 64. Debe incluir: mayúscula, minúscula, número y símbolo.</value>
+  </data>
+  <data name="Signup_Name_Required" xml:space="preserve">
+    <value>Ingresá tu nombre.</value>
+  </data>
+  <data name="Signup_GenericError" xml:space="preserve">
+    <value>No pudimos crear tu cuenta. Intentá de nuevo.</value>
+  </data>
+  <data name="Signup_Name_Invalid" xml:space="preserve">
+    <value>Nombre inválido (solo letras y espacios, 2-60).</value>
+  </data>
+  <data name="Signup_Intro" xml:space="preserve">
+    <value>Unite a LiteraryHub: descubrí libros, sumate a grupos y asistí a eventos con autores.</value>
+  </data>
+  <data name="Signup_Terms_Error" xml:space="preserve">
+    <value>Debés aceptar los Términos y la Privacidad.</value>
+  </data>
+  <data name="Signup_Already" xml:space="preserve">
+    <value>¿Ya tenés cuenta?</value>
+  </data>
+  <data name="Signup_Terms_LinkPrivacy" xml:space="preserve">
+    <value>Privacidad</value>
+  </data>
+  <data name="Signup_Terms_Prefix" xml:space="preserve">
+    <value>Acepto los</value>
+  </data>
+  <data name="Signup_Captcha_Robot" xml:space="preserve">
+    <value>Verificá que no sos un robot.</value>
+  </data>
+  <data name="Signup_Confirm_Invalid" xml:space="preserve">
+    <value>La contraseña debe tener entre 8 y 128 caracteres.</value>
+  </data>
+  <data name="Signup_Label_Confirm" xml:space="preserve">
+    <value>Confirmar contraseña</value>
+  </data>
+  <data name="Signup_Submit" xml:space="preserve">
+    <value>Crear cuenta</value>
+  </data>
+  <data name="Signup_LoginLink" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="Signup_Terms_LinkTerms" xml:space="preserve">
+    <value>Términos y condiciones</value>
+  </data>
+  <data name="Signup_Confirm_Required" xml:space="preserve">
+    <value>Repetí la contraseña.</value>
+  </data>
+</root>

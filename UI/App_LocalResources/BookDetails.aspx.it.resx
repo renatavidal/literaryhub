@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Book_CoverAlt" xml:space="preserve">
+    <value>Copertina</value>
+  </data>
+  <data name="Book_Loading" xml:space="preserve">
+    <value>Caricamento...</value>
+  </data>
+  <data name="Book_AuthorsLabel" xml:space="preserve">
+    <value>Autore/i:</value>
+  </data>
+  <data name="Book_PublishedLabel" xml:space="preserve">
+    <value>Pubblicato:</value>
+  </data>
+  <data name="Book_Want" xml:space="preserve">
+    <value>Voglio leggere</value>
+  </data>
+  <data name="Book_Read" xml:space="preserve">
+    <value>Letto</value>
+  </data>
+  <data name="Book_Comment_Label" xml:space="preserve">
+    <value>Lascia un commento</value>
+  </data>
+  <data name="Book_Comment_Hint" xml:space="preserve">
+    <value>Max 2000 caratteri.</value>
+  </data>
+  <data name="Book_Comment_Publish" xml:space="preserve">
+    <value>Pubblica commento</value>
+  </data>
+  <data name="Book_Untitled" xml:space="preserve">
+    <value>(Senza titolo)</value>
+  </data>
+  <data name="Book_ClientAlert" xml:space="preserve">
+    <value>Come cliente non puoi acquistare libri. Crea un account utente per usufruire dell'esperienza.</value>
+  </data>
+  <data name="Book_StatusWantSuccess" xml:space="preserve">
+    <value>Contrassegnato come "Voglio leggere"!</value>
+  </data>
+  <data name="Book_StatusReadSuccess" xml:space="preserve">
+    <value>Contrassegnato come "Letto"!</value>
+  </data>
+  <data name="Book_StatusUpdateErrorPrefix" xml:space="preserve">
+    <value>Impossibile aggiornare lo stato. </value>
+  </data>
+  <data name="Book_CommentEmpty" xml:space="preserve">
+    <value>Il commento non può essere vuoto.</value>
+  </data>
+  <data name="Book_CommentPublished" xml:space="preserve">
+    <value>Commento pubblicato!</value>
+  </data>
+  <data name="Book_CommentPublishErrorPrefix" xml:space="preserve">
+    <value>Impossibile pubblicare il commento. </value>
+  </data>
+</root>

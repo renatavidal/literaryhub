@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PC_Thanks" xml:space="preserve">
+    <value>Grazie per il tuo acquisto!</value>
+  </data>
+  <data name="PC_OrderNumber" xml:space="preserve">
+    <value>Numero ordine:</value>
+  </data>
+  <data name="PC_Label_Title" xml:space="preserve">
+    <value>Titolo:</value>
+  </data>
+  <data name="PC_Label_Authors" xml:space="preserve">
+    <value>Autori:</value>
+  </data>
+  <data name="PC_Label_Amount" xml:space="preserve">
+    <value>Importo:</value>
+  </data>
+  <data name="PC_Label_Status" xml:space="preserve">
+    <value>Stato:</value>
+  </data>
+  <data name="PC_BackHome" xml:space="preserve">
+    <value>Torna alla home</value>
+  </data>
+  <data name="PC_CreatedPrefix" xml:space="preserve">
+    <value>Creata il </value>
+  </data>
+  <data name="PC_Status_Paid" xml:space="preserve">
+    <value>Pagata</value>
+  </data>
+  <data name="PC_Status_Failed" xml:space="preserve">
+    <value>Non riuscita</value>
+  </data>
+  <data name="PC_Status_Pending" xml:space="preserve">
+    <value>In attesa</value>
+  </data>
+</root>

@@ -34,7 +34,7 @@ public partial class Signup : PublicPage
         if (!ValidateRecaptcha())
         {
             lblSignupResult.CssClass = "error";
-            lblSignupResult.Text = "Verificá el captcha.";
+            lblSignupResult.Text = (GetLocalResourceObject("Signup_Captcha_Check") as string) ?? "Verificá el captcha.";
             return;
         }
         var svc = new EmailExists();
@@ -42,7 +42,7 @@ public partial class Signup : PublicPage
         if (!disponible)
         {
             lblSignupResult.CssClass = "error";
-            lblSignupResult.Text = "Ese email ya está registrado.";
+            lblSignupResult.Text = (GetLocalResourceObject("Signup_Email_Taken") as string) ?? "Ese email ya está registrado.";
             return;
         }
         try
@@ -51,14 +51,14 @@ public partial class Signup : PublicPage
             int newUserId = bll.Registrar(email, name, lastName, password, false);
 
             lblSignupResult.CssClass = "success";
-            lblSignupResult.Text = "¡Listo! Te enviamos un correo para verificar tu cuenta.";
+            lblSignupResult.Text = (GetLocalResourceObject("Signup_Success") as string) ?? "¡Listo! Te enviamos un correo para verificar tu cuenta.";
 
             Response.Redirect("/VerifyEmailPending.aspx?email=" + Server.UrlEncode(email) + "&tipo=usuario" +  "&id=" + newUserId, false);
         }
         catch (Exception)
         {
             lblSignupResult.CssClass = "error";
-            lblSignupResult.Text = "No pudimos crear tu cuenta. Intentá de nuevo.";
+            lblSignupResult.Text = (GetLocalResourceObject("Signup_GenericError") as string) ?? "No pudimos crear tu cuenta. Intentá de nuevo.";
         }
         finally
         {
@@ -106,4 +106,6 @@ public partial class Signup : PublicPage
         }
     }
 }
+
+
 

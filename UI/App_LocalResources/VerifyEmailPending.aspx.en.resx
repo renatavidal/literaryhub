@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Verify_Status_Invalid" xml:space="preserve">
+    <value>Invalid or expired link.</value>
+  </data>
+  <data name="Verify_Status_Verified" xml:space="preserve">
+    <value>Your email has been verified!</value>
+  </data>
+  <data name="Verify_Status_Resent" xml:space="preserve">
+    <value>Done. We resent the verification link. Check your inbox.</value>
+  </data>
+  <data name="Verify_Title" xml:space="preserve">
+    <value>Email verification pending</value>
+  </data>
+  <data name="Verify_Hint" xml:space="preserve">
+    <value>Check your spam folder and allow literary.hub.contact@gmail.com.</value>
+  </data>
+  <data name="Verify_Resend" xml:space="preserve">
+    <value>Resend verification</value>
+  </data>
+  <data name="Verify_H1" xml:space="preserve">
+    <value>Confirm your email</value>
+  </data>
+  <data name="Verify_Status_ResendError" xml:space="preserve">
+    <value>We could not resend the email now. Please try again in a few minutes.</value>
+  </data>
+  <data name="Verify_Logout" xml:space="preserve">
+    <value>Sign out</value>
+  </data>
+  <data name="Verify_Status_Sent" xml:space="preserve">
+    <value>We sent you an email with the verification link.</value>
+  </data>
+</root>

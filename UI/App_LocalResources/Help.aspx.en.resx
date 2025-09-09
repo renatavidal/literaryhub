@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Help_TitleTag" xml:space="preserve">
+    <value>Help Center - LiteraryHub</value>
+  </data>
+  <data name="Help_Q5" xml:space="preserve">
+    <value>How can I contact support?</value>
+  </data>
+  <data name="Help_Back" xml:space="preserve">
+    <value>Back to home</value>
+  </data>
+  <data name="Help_Q4" xml:space="preserve">
+    <value>Can I join reading groups without a paid subscription?</value>
+  </data>
+  <data name="Help_H1" xml:space="preserve">
+    <value>Help Center (FAQs)</value>
+  </data>
+  <data name="Help_Q3" xml:space="preserve">
+    <value>How do I change my password?</value>
+  </data>
+  <data name="Help_Q2" xml:space="preserve">
+    <value>What if I did not receive the verification email?</value>
+  </data>
+  <data name="Help_Q1" xml:space="preserve">
+    <value>How do I create an account on LiteraryHub?</value>
+  </data>
+  <data name="Help_A5" xml:space="preserve">
+    <value>You can email us at &lt;a href="mailto:literary.hub.contact@gmail.com"&gt;literary.hub.contact@gmail.com&lt;/a&gt; or via the &lt;strong&gt;Contact us&lt;/strong&gt; page.</value>
+  </data>
+  <data name="Help_A3" xml:space="preserve">
+    <value>Go to your profile, select &lt;em&gt;Account settings&lt;/em&gt; and click &lt;strong&gt;Change password&lt;/strong&gt;.</value>
+  </data>
+  <data name="Help_A1" xml:space="preserve">
+    <value>Click &lt;strong&gt;Sign up&lt;/strong&gt;, fill in your details and confirm your email. Done!</value>
+  </data>
+  <data name="Help_A4" xml:space="preserve">
+    <value>Yes, there are free groups available. With a Premium subscription you get access to exclusive groups.</value>
+  </data>
+  <data name="Help_A2" xml:space="preserve">
+    <value>Check your spam folder. If it's not there, from the &lt;strong&gt;Verification pending&lt;/strong&gt; page you can resend the email.</value>
+  </data>
+</root>

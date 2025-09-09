@@ -87,7 +87,7 @@ public partial class MyAccount : ReaderPage
             }
             catch { /* nunca frenar la baja por un error de bitácora */ }
 
-            lblDeactivateMsg.Text = "Tu cuenta fue desactivada.";
+            lblDeactivateMsg.Text = (GetLocalResourceObject("Acc_Deactivate_Success") as string) ?? "Tu cuenta fue desactivada.";
 
             // Opcional: cerrar sesión inmediatamente
             Session.Clear();
@@ -96,7 +96,8 @@ public partial class MyAccount : ReaderPage
         }
         catch (Exception ex)
         {
-            lblDeactivateMsg.Text = "Error: " + ex.Message;
+            lblDeactivateMsg.Text = ((GetLocalResourceObject("Acc_ErrorPrefix") as string) ?? "Error: ") + ex.Message;
         }
     }
 }
+

@@ -153,6 +153,31 @@ namespace DAL
             { oCnn.Close(); }
 
         }
+        public DataSet LeerDataSet(string consulta, Hashtable hdatos)
+        {
+            var ds = new DataSet();
+            try
+            {
+                using (var da = new SqlDataAdapter())
+                {
+                    Cmd = new SqlCommand(consulta, oCnn);
+                    Cmd.CommandType = CommandType.StoredProcedure;
+
+                    if (hdatos != null)
+                    {
+                        foreach (string k in hdatos.Keys)
+                            Cmd.Parameters.AddWithValue(k, hdatos[k] ?? DBNull.Value);
+                    }
+
+                    da.SelectCommand = Cmd;
+                    da.Fill(ds); 
+                }
+                return ds;
+            }
+            catch (SqlException) { throw; }
+            catch (Exception) { throw; }
+        }
+
 
     }
 }

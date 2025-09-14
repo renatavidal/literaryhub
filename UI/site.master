@@ -70,37 +70,17 @@
           <span class="slider"></span>
         </label>
       </div>
-        <asp:HyperLink ID="lnkBitacora" runat="server"
-            class="sc-item" NavigateUrl="/Bitacora.aspx" Visible="false">
-          <span class="sc-icon">🗒️</span><span class="sc-text">Bitácora</span>
-          <span class="sc-arrow">›</span>
-        </asp:HyperLink>
-        <asp:HyperLink ID="HyperLink2" runat="server"
-            class="sc-item" NavigateUrl="/Suscripciones.aspx" Visible="true">
-          <span class="sc-icon">🗒️</span><span class="sc-text">Planes de Suscripciones</span>
-          <span class="sc-arrow">›</span>
-        </asp:HyperLink>
-                <asp:HyperLink ID="HyperLink3" runat="server"
-            class="sc-item" NavigateUrl="/SuscripcionesAdmin.aspx" Visible="false">
-          <span class="sc-icon">🗒️</span><span class="sc-text">Administrar Suscripciones</span>
-          <span class="sc-arrow">›</span>
-        </asp:HyperLink>
-        <asp:HyperLink ID="HyperLink" runat="server"
-    class="sc-item" NavigateUrl="/Suscripciones.aspx" Visible="true">
-  <span class="sc-icon">🗒️</span><span class="sc-text">Planes de Suscripciones</span>
-  <span class="sc-arrow">›</span>
-</asp:HyperLink>
+       
+       
+              
+      
                         <asp:HyperLink ID="HyperLink5" runat="server"
             class="sc-item" NavigateUrl="/MyAccount.aspx" Visible="false">
           <span class="sc-icon">🗒️</span><span class="sc-text">Mi Cuenta</span>
           <span class="sc-arrow">›</span>
         </asp:HyperLink>
        
-                        <asp:HyperLink ID="HyperLink8" runat="server"
-    class="sc-item" NavigateUrl="/AdministrarUsuarios.aspx" Visible="false">
-  <span class="sc-icon">🗒️</span><span class="sc-text">Administrar Usuarios / Clientes</span>
-  <span class="sc-arrow">›</span>
-</asp:HyperLink>
+
 
 
 
@@ -136,13 +116,34 @@
             <!-- Menú vertical -->
             <aside class="sidebar" aria-label="Navegación secundaria">
                 <div class="sidebar-header">Browse</div>
-                <ul class="nav-vertical">
-                    <li><a href="/Books.aspx">Popular Books</a></li>
-                    <li><a href="/Groups.aspx">Reading Groups</a></li>
-                    <li><a href="/Genres.aspx">Classics</a></li>
-                    <li><a href="/NewReleases.aspx">New Releases</a></li>
-                    <li><a href="/Recommendations.aspx">For You</a></li>
-                </ul>
+                                           <asp:HyperLink ID="HyperLink8" runat="server"
+    class="sc-item" NavigateUrl="/AdministrarUsuarios.aspx" Visible="false">
+  <span class="sc-icon">🗒️</span><span class="sc-text">Administrar Usuarios / Clientes</span>
+
+</asp:HyperLink>
+                           <asp:HyperLink ID="HyperLink" runat="server"
+    class="sc-item" NavigateUrl="/Suscripciones.aspx" Visible="true">
+  <span class="sc-icon">🗒️</span><span class="sc-text">Planes de Suscripciones</span>
+
+</asp:HyperLink>
+                          <asp:HyperLink ID="HyperLink3" runat="server"
+    class="sc-item" NavigateUrl="/SuscripcionesAdmin.aspx" Visible="false">
+  <span class="sc-icon">🗒️</span><span class="sc-text">Administrar Suscripciones</span>
+
+</asp:HyperLink>
+                   <asp:HyperLink ID="lnkBitacora" runat="server"
+     class="sc-item" NavigateUrl="/Bitacora.aspx" Visible="false">
+   <span class="sc-icon">🗒️</span><span class="sc-text">Bitácora</span>
+                       </asp:HyperLink>
+                                <asp:HyperLink ID="HyperLink1" runat="server"
+  class="sc-item" NavigateUrl="/Newsletter.aspx" Visible="false">
+<span class="sc-icon">🗒️</span><span class="sc-text">Newsletter</span>
+                    </asp:HyperLink>
+                                <asp:HyperLink ID="HyperLink2" runat="server"
+  class="sc-item" NavigateUrl="/NewsletterAdmin.aspx" Visible="false">
+<span class="sc-icon">🗒️</span><span class="sc-text">Administrar Newsletter</span>
+                    </asp:HyperLink>
+              
 
                 <div class="sidebar-lang">
                     <label for="ddlLangSide">Idioma</label>

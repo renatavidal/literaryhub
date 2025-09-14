@@ -28,9 +28,12 @@ public partial class Site : MasterPage
         pnlAuth.Visible = (sess != null);
 
         lnkBitacora.Visible = UsuarioActualEsAdmin();
+        HyperLink.Visible = (sess != null);
         HyperLink3.Visible = UsuarioActualEsAdmin();
-        HyperLink5.Visible = !UsuarioActualEsCliente();
+        HyperLink5.Visible = (sess != null);
         HyperLink8.Visible = UsuarioActualEsAdmin();
+        HyperLink1.Visible = (sess != null);
+        HyperLink2.Visible = UsuarioActualEsAdmin();
 
         string lang = "es";
         HttpCookie c = (Request != null) ? Request.Cookies["lh-lang"] : null;

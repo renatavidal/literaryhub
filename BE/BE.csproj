@@ -46,6 +46,7 @@
     <Compile Include="BECliente.cs" />
     <Compile Include="BEComment.cs" />
     <Compile Include="BEEmailVerificationToken.cs" />
+    <Compile Include="BENewsletter.cs" />
     <Compile Include="BEPaymentMethod.cs" />
     <Compile Include="BEPersona.cs" />
     <Compile Include="BEPurchase.cs" />

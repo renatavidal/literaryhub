@@ -53,7 +53,7 @@ public partial class SuscripcionesAdmin : System.Web.UI.Page
             PrecioUSD = decimal.Parse(((System.Web.UI.WebControls.TextBox)row.FindControl("txtPrecio")).Text, CultureInfo.InvariantCulture),
             Orden = int.Parse(((System.Web.UI.WebControls.TextBox)row.FindControl("txtOrden")).Text),
             EsDestacado = ((System.Web.UI.WebControls.CheckBox)row.Cells[6].Controls[0]).Checked,
-            Activo = ((System.Web.UI.WebControls.CheckBox)row.Cells[7].Controls[0]).Checked
+            Activo = true
         };
 
         try

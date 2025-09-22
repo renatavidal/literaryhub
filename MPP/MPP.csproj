@@ -45,8 +45,10 @@
     <Compile Include="MPPBook.cs" />
     <Compile Include="MPPCliente.cs" />
     <Compile Include="MPPComment.cs" />
+    <Compile Include="MPPFinanzas.cs" />
     <Compile Include="MPPNewsletter.cs" />
     <Compile Include="MPPPayment.cs" />
+    <Compile Include="MPPSubscription.cs" />
     <Compile Include="MPPUserBook.cs" />
     <Compile Include="MPPUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -49,6 +49,7 @@
     <Compile Include="BENewsletter.cs" />
     <Compile Include="BEPaymentMethod.cs" />
     <Compile Include="BEPersona.cs" />
+    <Compile Include="BEPlan.cs" />
     <Compile Include="BEPurchase.cs" />
     <Compile Include="BEPurchaseDetails.cs" />
     <Compile Include="BESuscripcion.cs" />

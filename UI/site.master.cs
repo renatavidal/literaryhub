@@ -2,6 +2,7 @@
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 public partial class Site : MasterPage
 {
@@ -34,6 +35,7 @@ public partial class Site : MasterPage
         HyperLink8.Visible = UsuarioActualEsAdmin();
         HyperLink1.Visible = (sess != null);
         HyperLink2.Visible = UsuarioActualEsAdmin();
+        HyperLink4.Visible = UsuarioActualEsAdmin();
 
         string lang = "es";
         HttpCookie c = (Request != null) ? Request.Cookies["lh-lang"] : null;

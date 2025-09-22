@@ -129,6 +129,11 @@
                           <asp:HyperLink ID="HyperLink3" runat="server"
     class="sc-item" NavigateUrl="/SuscripcionesAdmin.aspx" Visible="false">
   <span class="sc-icon">🗒️</span><span class="sc-text">Administrar Suscripciones</span>
+</asp:HyperLink>
+                              
+                          <asp:HyperLink ID="HyperLink4" runat="server"
+    class="sc-item" NavigateUrl="/AdminFinanzas.aspx" Visible="false">
+  <span class="sc-icon">🗒️</span><span class="sc-text">Administrar Cuentas y notas de credito</span>
 
 </asp:HyperLink>
                    <asp:HyperLink ID="lnkBitacora" runat="server"

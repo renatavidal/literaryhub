@@ -84,8 +84,12 @@
 
   <asp:ValidationSummary ID="valSum" runat="server" ValidationGroup="pay" CssClass="hint" />
 
-  <asp:Button ID="btnPay" runat="server" Text="<%$ Resources: Pay_PayButton %>"
-    CssClass="btn" CausesValidation="true" ValidationGroup="pay" OnClick="btnPay_Click" />
+<asp:Button ID="btnPay" runat="server"
+    Text="<%$ Resources: Pay_PayButton %>"
+    CssClass="btn"
+    ValidationGroup="pay"
+    CausesValidation="true"
+    OnClick="btnPay_Click" />
   <asp:Literal ID="litStatus" runat="server" />
 </div>
 

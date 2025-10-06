@@ -165,6 +165,18 @@
     /* clamps para títulos */
     .clamp-2{ display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden }
     .clamp-1{ display:-webkit-box; -webkit-line-clamp:1; -webkit-box-orient:vertical; overflow:hidden }
+     .survey-backdrop{position:fixed;inset:0;background:rgba(17,24,39,.45);display:none;z-index:9999}
+  .survey-box{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);width:min(720px,90vw);
+              background:#fff;border-radius:14px;padding:18px;box-shadow:0 20px 40px rgba(0,0,0,.25)}
+  .survey-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .survey-title{font-size:20px;font-weight:700;margin:0}
+  .survey-close{border:none;background:#f3f4f6;border-radius:8px;padding:6px 10px;cursor:pointer}
+  .survey-q{margin-top:12px}
+  .survey-actions{margin-top:16px;display:flex;gap:10px;align-items:center}
+  .btn-primary{border:none;background:#111827;color:#fff;padding:8px 14px;border-radius:8px;cursor:pointer}
+  .btn-secondary{border:none;background:#f3f4f6;padding:8px 14px;border-radius:8px;cursor:pointer}
+  .survey-msg{font-weight:600}.survey-ok{color:#059669}.survey-err{color:#b91c1c}
+
   </style>
 
   <div class="hero">
@@ -261,4 +273,111 @@
       </div>
     </ItemTemplate>
   </asp:Repeater>
+
+<div id="surveyBackdrop" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9999">
+  <div style="position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:#fff;padding:16px;border-radius:12px;width:min(720px,90vw)">
+    <h3 style="margin:0 0 8px 0">Encuesta</h3>
+    <div id="surveyContent">Cargando…</div>
+    <div style="margin-top:12px;display:flex;gap:8px">
+      <button type="button" id="surveySend">Enviar</button>
+      <button type="button" id="surveySkip">Omitir</button>
+      <button type="button" id="surveyClose">Cerrar</button>
+      <span id="surveyMsg" style="font-weight:600"></span>
+    </div>
+  </div>
+</div>
+
+<script>
+    (function () {
+        var bd = document.getElementById('surveyBackdrop');
+        var box = document.getElementById('surveyContent');
+        var msg = document.getElementById('surveyMsg');
+        var current = null;
+
+        function open() { bd.style.display = 'block'; }
+        function close() { bd.style.display = 'none'; current = null; }
+        document.getElementById('surveyClose').onclick = close;
+
+        function render(s) {
+            if (!s) { close(); return; }
+            current = s;
+            var html = '';
+            s.questions.forEach(function (q) {
+                if (q.qType === 1) {
+                    html += '<div style="margin:8px 0"><div><b>Q' + q.qIndex + '.</b> ' + q.text + '</div>'
+                        + '<label><input type="radio" name="q' + q.qIndex + '" value="1"> Sí</label>'
+                        + '<label style="margin-left:8px"><input type="radio" name="q' + q.qIndex + '" value="0"> No</label></div>';
+                } else {
+                    html += '<div style="margin:8px 0"><div><b>Q' + q.qIndex + '.</b> ' + q.text + '</div>'
+                        + '<select name="q' + q.qIndex + '"><option value="">(sin respuesta)</option>'
+                        + '<option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>';
+                }
+            });
+            box.innerHTML = html;
+        }
+
+        function answers() {
+            var a = [null, null, null, null, null];
+            if (!current) return a;
+            current.questions.forEach(function (q) {
+                var name = 'q' + q.qIndex, v = null;
+                if (q.qType === 1) {
+                    var r = document.querySelector('input[name=' + name + ']:checked');
+                    if (r) v = parseInt(r.value, 10);
+                } else {
+                    var s = document.querySelector('select[name=' + name + ']');
+                    if (s && s.value) v = parseInt(s.value, 10);
+                }
+                a[q.qIndex - 1] = (v === 0 || v > 0) ? v : null;
+            });
+            return a;
+        }
+
+        function show(ok, t) { msg.style.color = ok ? '#059669' : '#b91c1c'; msg.textContent = t || ''; setTimeout(function () { msg.textContent = ''; }, 2000); }
+
+        // === Llamar SIEMPRE al cargar Home ===
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('<%= ResolveUrl("~/Encuestas.aspx/GetNext") %>', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json; charset=utf-8' },
+          body: '{}' // <-- importante para PageMethod
+      })
+          .then(function (r) { return r.json(); })
+          .then(function (p) {
+              var d = p.d || p;
+              if (d && d.ok && d.survey) { render(d.survey); open(); }
+              // si ok y survey=null, o error no-login, simplemente no mostramos
+          })
+          .catch(function () { /* silencio */ });
+  });
+
+    document.getElementById('surveySend').onclick = function () {
+        if (!current) return false;
+        var a = answers();
+        fetch('<%= ResolveUrl("~/Encuestas.aspx/Submit") %>', {
+      method:'POST', headers:{'Content-Type':'application/json; charset=utf-8'},
+      body: JSON.stringify({ surveyId: current.id, a1:a[0], a2:a[1], a3:a[2], a4:a[3], a5:a[4] })
+    })
+    .then(function(r){return r.json();})
+    .then(function(p){ var d=p.d||p; if(d.ok){ show(true,'¡Gracias!'); close(); } else { show(false,d.error||'Error'); }})
+    .catch(function(){ show(false,'Network error'); });
+    return false;
+  };
+
+  document.getElementById('surveySkip').onclick = function(){
+    if(!current) return false;
+    fetch('<%= ResolveUrl("~/Encuestas.aspx/Skip") %>', {
+                method: 'POST', headers: { 'Content-Type': 'application/json; charset=utf-8' },
+                body: JSON.stringify({ surveyId: current.id })
+            })
+                .then(function (r) { return r.json(); })
+                .then(function (p) { var d = p.d || p; if (d.ok) { show(true, 'Omitida'); close(); } else { show(false, d.error || 'Error'); } })
+                .catch(function () { show(false, 'Network error'); });
+            return false;
+        };
+    })();
+</script>
+
+
+
 </asp:Content>

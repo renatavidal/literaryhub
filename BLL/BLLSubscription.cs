@@ -16,6 +16,7 @@ namespace BLL
         {
             return _mpp.GetCreditNoteRemainingByUser(noteId, userId);
         }
+      
 
         public int Checkout(int userId, string planCode, string currency, List<BEPaymentSplit> splits, string userEmail)
         {
@@ -39,13 +40,25 @@ namespace BLL
             // 5) Aviso por mail
             try
             {
-                var subj = "¡Gracias por tu suscripción!";
-                var html = $"<p>Tu orden <strong>#{orderId}</strong> fue acreditada.</p>" +
-                           $"<p>Ya actualizamos tus permisos según el plan <strong>{planCode}</strong>.</p>";
-                var txt = $"Tu orden #{orderId} fue acreditada. " +
-                           $"Ya actualizamos tus permisos según el plan {planCode}.";
+                var appName = "LiteraryHub";
+                var footer = "© " + appName + ". Todos los derechos reservados.";
 
-                _mailer.Send(userEmail, subj, html, txt);
+                var tokens = new Dictionary<string, string>();
+                tokens["AppName"] = appName;
+                tokens["Title"] = "¡Gracias por tu suscripción!";
+                tokens["Preheader"] = $"<p>Tu orden <strong>#{orderId}</strong> fue acreditada.</p>" +
+                     $"<p>Ya actualizamos tus permisos según el plan <strong>{planCode}</strong>.</p>";
+                tokens["Tagline"] = "Lectura, comunidad y libros";
+                tokens["IntroHtml"] = $"Tu orden #{orderId} fue acreditada. " +
+                               $"Ya actualizamos tus permisos según el plan {planCode}.";
+
+                tokens["SupportEmail"] = "soporte@literaryhub.com";
+                tokens["FooterText"] = "© LiteraryHub. Todos los derechos reservados.";
+                tokens["CompanyName"] = "LiteraryHub";
+                tokens["CompanyAddress"] = "Buenos Aires, AR";
+
+                string templatePath = System.Web.Hosting.HostingEnvironment.MapPath("/Templates/Email/BaseTemplate.html");
+                _mailer.SendTemplate(userEmail, "Verificación de email", templatePath, tokens);
             }
             catch { /* no hago fallar la compra por el mail */ }
 

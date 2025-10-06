@@ -121,6 +121,11 @@
   <span class="sc-icon">🗒️</span><span class="sc-text">Administrar Usuarios / Clientes</span>
 
 </asp:HyperLink>
+                                                           <asp:HyperLink ID="HyperLink7" runat="server"
+    class="sc-item" NavigateUrl="/EncuestasAdmin.aspx" Visible="false">
+  <span class="sc-icon">🗒️</span><span class="sc-text">Encuestas</span>
+
+</asp:HyperLink>
                            <asp:HyperLink ID="HyperLink" runat="server"
     class="sc-item" NavigateUrl="/Suscripciones.aspx" Visible="true">
   <span class="sc-icon">🗒️</span><span class="sc-text">Planes de Suscripciones</span>

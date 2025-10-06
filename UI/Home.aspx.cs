@@ -100,6 +100,11 @@ public partial class Home : ReaderPage
                 var books = GetBooksForGenre(g, 10, "es"); // 10 libros, español (cambia a null para todos)
                 sections.Add(new GenreSection { Genre = g, Books = books });
             }
+            if (!IsPostBack && ShouldShowSurveyOnHome())
+            {
+                ClientScript.RegisterStartupScript(
+                    GetType(), "surveyFlag", "window.SHOW_SURVEY_MODAL=true;", true);
+            }
 
             rptSections.DataSource = sections;
             rptSections.DataBind();
@@ -116,7 +121,19 @@ public partial class Home : ReaderPage
         inner.DataBind();
     }
 
- 
+    private bool ShouldShowSurveyOnHome()
+    {
+        var auth = Session["auth"] as UserSession;
+        if (auth == null || auth.UserId <= 0) return false;  // no logueado => no mostrar
+        var roles = new List<String>();
+        if (auth.Roles != null && auth.Roles.Length > 0)
+            roles.AddRange(auth.Roles);
+        bool isAdmin = roles.Contains("Admin");
+        bool isCliente = roles.Contains("Cliente"); // ajustá el nombre exacto de tu rol
+
+        // Tu regla: si NO es cliente NI admin => mostrar
+        return !(isAdmin || isCliente);
+    }
 
     // ------------------ Google Books ------------------
 

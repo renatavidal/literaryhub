@@ -46,12 +46,14 @@
     <Compile Include="BECliente.cs" />
     <Compile Include="BEComment.cs" />
     <Compile Include="BEEmailVerificationToken.cs" />
+    <Compile Include="BEEncuestas.cs" />
     <Compile Include="BENewsletter.cs" />
     <Compile Include="BEPaymentMethod.cs" />
     <Compile Include="BEPersona.cs" />
     <Compile Include="BEPlan.cs" />
     <Compile Include="BEPurchase.cs" />
     <Compile Include="BEPurchaseDetails.cs" />
+    <Compile Include="BERating.cs" />
     <Compile Include="BESuscripcion.cs" />
     <Compile Include="BEUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

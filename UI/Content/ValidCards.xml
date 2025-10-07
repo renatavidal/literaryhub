@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Cards updated="2025-10-07">
+	<Brand name="VISA">
+		<Pan value="4111111111111111" />
+		<Pan value="4012888888881881" />
+		<Pan value="4222222222222" />
+	</Brand>
+
+	<Brand name="MASTERCARD">
+		<Pan value="5555555555554444" />
+		<Pan value="5105105105105100" />
+		<Pan value="2223003122003222" />
+	</Brand>
+
+	<Brand name="AMEX">
+		<Pan value="378282246310005" />
+		<Pan value="371449635398431" />
+		<Pan value="378734493671000" />
+	</Brand>
+
+	<Brand name="DISCOVER">
+		<Pan value="6011111111111117" />
+		<Pan value="6011000990139424" />
+	</Brand>
+
+	<Brand name="JCB">
+		<Pan value="3566002020360505" />
+	</Brand>
+
+	<Brand name="DINERS">
+		<Pan value="30569309025904" />
+		<Pan value="38520000023237" />
+	</Brand>
+
+	<Brand name="UNIONPAY">
+		<Pan value="6200000000000005" />
+	</Brand>
+</Cards>

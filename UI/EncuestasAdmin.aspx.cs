@@ -61,10 +61,10 @@ public partial class EncuestasAdmin : AdminPage
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public static void Create(string title, bool isActive,
      string q1Text, int? q1Type, string q2Text, int? q2Type, string q3Text, int? q3Type,
-     string q4Text, int? q4Type, string q5Text, int? q5Type)
+     string q4Text, int? q4Type, string q5Text, int? q5Type, DateTime q7Text)
     {
 
-        var s = new BESurvey { Title = title, IsActive = isActive };
+        var s = new BESurvey { Title = title, IsActive = isActive, CreationDate = q7Text };
 
         AddQuestion(s, 1, q1Text, q1Type);
         AddQuestion(s, 2, q2Text, q2Type);

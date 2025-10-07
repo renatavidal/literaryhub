@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BE
 {
@@ -10,6 +11,7 @@ namespace BE
         public string Title { get; set; }
         public bool IsActive { get; set; }
         public List<BESurveyQuestion> Questions { get; set; } = new List<BESurveyQuestion>();
+        public DateTime CreationDate { get; set; }
     }
 
     public class BESurveyQuestion

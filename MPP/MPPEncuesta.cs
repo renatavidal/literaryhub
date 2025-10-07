@@ -24,7 +24,8 @@ namespace MPP
                 {"@Q4Text", s.Questions.Count>3 ? (object)s.Questions[3].Text : DBNull.Value},
                 {"@Q4Type", s.Questions.Count>3 ? (object)(int)s.Questions[3].QType : DBNull.Value},
                 {"@Q5Text", s.Questions.Count>4 ? (object)s.Questions[4].Text : DBNull.Value},
-                {"@Q5Type", s.Questions.Count>4 ? (object)(int)s.Questions[4].QType : DBNull.Value}
+                {"@Q5Type", s.Questions.Count>4 ? (object)(int)s.Questions[4].QType : DBNull.Value},
+                {"@q7Text", s.CreationDate }
             };
             var dt = _datos.Leer("usp_Survey_Create", h);
             return (dt.Rows.Count > 0) ? Convert.ToInt32(dt.Rows[0]["SurveyId"]) : 0;

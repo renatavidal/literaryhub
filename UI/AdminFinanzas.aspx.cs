@@ -8,7 +8,7 @@ using BLL;
 public partial class AdminFinanzas : System.Web.UI.Page
 {
     private readonly BLLFinanzasAdmin _bll = new BLLFinanzasAdmin();
-    private readonly BLLUsuario _bllUsuario = new BLLUsuario(); // si en tu proyecto es BLLCliente, reemplazalo
+    private readonly BLLUsuario _bllUsuario = new BLLUsuario();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -22,7 +22,7 @@ public partial class AdminFinanzas : System.Web.UI.Page
     private void CargarUsuarios()
     {
         ddlUser.Items.Clear();
-        var lista = _bllUsuario.ListarUsuariosParaFiltro(); // devuelve List<BEIdTexto>
+        var lista = _bllUsuario.ListarUsuariosParaFiltro();
         foreach (var it in lista)
             ddlUser.Items.Add(new System.Web.UI.WebControls.ListItem(it.Texto, it.Id.ToString()));
     }

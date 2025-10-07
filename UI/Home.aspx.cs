@@ -17,12 +17,10 @@ using System.Web.UI;
 
 public partial class Home : ReaderPage
 {
-    // Requiere login y email verificado
     protected override bool RequireLogin { get { return true; } }
     protected override bool RequireVerifiedEmail { get { return true; } }
     protected override string[] RequiredRoles { get { return null; } }
 
-    // Generos a mostrar (podés ajustar idioma con langRestrict)
     private static readonly string[] Genres = new[] {
         "Fiction", "Fantasy", "Romance", "Mystery",
         "Science", "History", "Self-Help", "Poetry"
@@ -69,7 +67,7 @@ public partial class Home : ReaderPage
             Authors = authors,
             Thumbnail = thumb,
             InfoLink = infoLink,
-            PriceLabel = "" // si no tenés precio, dejalo vacío o poné "-"
+            PriceLabel = "" 
         };
     }
     protected string BookUrl(object gidObj, string action = null)
@@ -97,7 +95,7 @@ public partial class Home : ReaderPage
             var sections = new List<GenreSection>();
             foreach (var g in Genres)
             {
-                var books = GetBooksForGenre(g, 10, "es"); // 10 libros, español (cambia a null para todos)
+                var books = GetBooksForGenre(g, 10, "es"); 
                 sections.Add(new GenreSection { Genre = g, Books = books });
             }
             if (!IsPostBack && ShouldShowSurveyOnHome())
@@ -124,22 +122,19 @@ public partial class Home : ReaderPage
     private bool ShouldShowSurveyOnHome()
     {
         var auth = Session["auth"] as UserSession;
-        if (auth == null || auth.UserId <= 0) return false;  // no logueado => no mostrar
+        if (auth == null || auth.UserId <= 0) return false;  
         var roles = new List<String>();
         if (auth.Roles != null && auth.Roles.Length > 0)
             roles.AddRange(auth.Roles);
         bool isAdmin = roles.Contains("Admin");
-        bool isCliente = roles.Contains("Cliente"); // ajustá el nombre exacto de tu rol
+        bool isCliente = roles.Contains("Cliente"); 
 
-        // Tu regla: si NO es cliente NI admin => mostrar
         return !(isAdmin || isCliente);
     }
 
-    // ------------------ Google Books ------------------
 
     private List<BookVM> GetBooksForGenre(string genre, int max, string lang)
     {
-        // Cache por 15 min
         string cacheKey = "gb:" + genre + ":" + (lang ?? "all") + ":" + max;
         var cached = Cache[cacheKey] as List<BookVM>;
         if (cached != null) return cached;
@@ -200,7 +195,6 @@ public partial class Home : ReaderPage
             return new List<BookVM>();
         }
     }
-    // Trae lo mínimo del libro por GID (C#5-safe)
     private static BEBook FetchBookByGid(string gid)
     {
         if (string.IsNullOrWhiteSpace(gid)) return null;

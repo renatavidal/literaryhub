@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using Abstracciones;
 using Servicios;
 using static System.Net.Mime.MediaTypeNames;
+using System.Collections;
+using System.Data;
 
 namespace BLL
 {
@@ -24,7 +26,10 @@ namespace BLL
             _mpp = new MPPUsuario();
             _email = new SmtpEmailService();
         }
-
+        public DataTable ByUser(int userId)
+        {
+           return _mpp.ByUser(userId);
+        }
         public int Registrar(string email, string nombre, string apellido, string passwordPlano, bool emailVerifiedInicial = false)
         {
             if (string.IsNullOrWhiteSpace(email)) throw new ArgumentException("Email requerido.");

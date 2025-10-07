@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using System.Web.Hosting;
+using System.Xml.Linq;
+using System.IO;
+using System.Linq;
 using BE;
 using BLL;        // para BLLCatalog si lo usás en modo standalone
 using Servicios;  // CardUtils y CryptoUtil
@@ -109,7 +113,24 @@ public partial class Controls_PaymentForm : System.Web.UI.UserControl
         s.PanIV = iv;
         return s;
     }
+    private bool  IsAllowedCard(string cardNumber)
+    {
+        // Normalizo a dígitos
+        var pan = CardUtils.OnlyDigits(cardNumber);
+        if (string.IsNullOrEmpty(pan)) return false;
 
+        // Ruta al XML: ~/App_Data/ValidCards.xml
+        var path = HostingEnvironment.MapPath("~/Content/ValidCards.xml");
+        if (string.IsNullOrEmpty(path) || !File.Exists(path)) return false;
+
+        // Lee todos los <Pan value="..."> (ignora la marca)
+        var doc = XDocument.Load(path);
+        var allowed = doc.Descendants("Pan")
+                         .Select(p => CardUtils.OnlyDigits((string)p.Attribute("value") ?? ""))
+                         .Where(v => !string.IsNullOrEmpty(v));
+
+        return allowed.Contains(pan);
+    }
     // ===== Modo “standalone”: sigue funcionando como antes =====
     protected void btnPay_Click(object sender, EventArgs e)
     {
@@ -118,6 +139,14 @@ public partial class Controls_PaymentForm : System.Web.UI.UserControl
 
         // Si está en modo colector, no procesa la compra: lo maneja la página contenedora
         if (!_standalone) return;
+
+
+        if (!IsAllowedCard(NumberDigits))
+        {
+            litStatus.Text = "<div class='hint' style='color:#b00'>Tarjeta no permitida.</div>";
+            return;
+        }
+
 
         try
         {

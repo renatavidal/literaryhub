@@ -44,6 +44,8 @@
         <select id="selQ4"><option value="">(tipo)</option><option value="1">Sí/No</option><option value="2">Rating 1..5</option></select></div>
       <div class="row"><input id="txtQ5" placeholder="Pregunta 5 (opcional)"/>
         <select id="selQ5"><option value="">(tipo)</option><option value="1">Sí/No</option><option value="2">Rating 1..5</option></select></div>
+         <div class="row"><input id="txtQ7" placeholder="Fecha de vencimiento"/>
+              <input type="datetime-local" id="svExpire" step="60" placeholder="aaaa-mm-dd hh:mm" />
 
       <div style="margin-top:12px;display:flex;gap:8px">
         <button type="button" class="btn btnp" id="newCreate">Crear</button>
@@ -64,6 +66,7 @@
       document.getElementById('newCreate').onclick = function () {
           const title = (document.getElementById('svTitle').value || '').trim();
           const isActive = document.getElementById('svActive').checked;
+          const ex = document.getElementById('svExpire').value; 
           if (!title) { alert('Título requerido'); return; }
 
           function t(i) { return (document.getElementById('txtQ' + i).value || '').trim() || null; }
@@ -76,6 +79,7 @@
 
           const payload = {
               title, isActive,
+              q7Text: ex ? new Date(ex).toISOString() : null, 
               q1Text: t(1), q1Type: y(1), q2Text: t(2), q2Type: y(2), q3Text: t(3), q3Type: y(3),
               q4Text: t(4), q4Type: y(4), q5Text: t(5), q5Type: y(5)
           };

@@ -26,7 +26,11 @@ namespace MPP
         {
             _datos = acceso ?? throw new ArgumentNullException(nameof(acceso));
         }
-
+        public DataTable ByUser(int userId)
+        {
+            var h = new Hashtable { { "@UserId", userId } };
+            return _datos.Leer("usp_Purchases_ByUser", h);
+        }
         public BEUsuarioAuth GetUsuarioAuthByEmail(string email)
         {
             var h = new Hashtable { { "@Email", email } };

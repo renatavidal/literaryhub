@@ -68,6 +68,39 @@
       <asp:Button ID="btnDeactivate" runat="server" Text="<%$ Resources: Acc_Deactivate_Button %>" CssClass="btn btn-danger" OnClientClick="return confirm('<%$ Resources: Acc_Deactivate_Confirm %>');" OnClick="btnDeactivate_Click" />
       <asp:Label ID="lblDeactivateMsg" runat="server" />
     </div>
+
+<div class="card">
+  <h3>Cuenta corriente</h3>
+  <div class="grid-2">
+    <div class="form-row">
+      <label>Saldo actual</label>
+      <asp:Label ID="lblSaldo" runat="server" CssClass="pill" />
+    </div>
+  </div>
+
+  <h4 style="margin-top:12px">Movimientos</h4>
+  <asp:GridView ID="gvCuenta" runat="server" AutoGenerateColumns="true"
+                GridLines="None" CssClass="table"></asp:GridView>
+
+  <h4 style="margin-top:16px">Notas</h4>
+  <asp:GridView ID="gvNotas" runat="server" AutoGenerateColumns="true"
+                GridLines="None" CssClass="table"></asp:GridView>
+</div>
+
+<div class="card">
+  <h3>Mis compras</h3>
+  <asp:GridView ID="gvCompras" runat="server" AutoGenerateColumns="false"
+                GridLines="None" CssClass="table">
+    <Columns>
+      <asp:BoundField DataField="PurchaseId" HeaderText="ID" />
+      <asp:BoundField DataField="BookId"     HeaderText="BookId" />
+      <asp:BoundField DataField="Price"      HeaderText="Price" DataFormatString="{0:0.##}" />
+      <asp:BoundField DataField="Currency"   HeaderText="Currency" />
+      <asp:BoundField DataField="CreatedUtc" HeaderText="Fecha (UTC)" DataFormatString="{0:yyyy-MM-dd HH:mm}" />
+    </Columns>
+  </asp:GridView>
+</div>
+
   </div>
 </asp:Content>
 

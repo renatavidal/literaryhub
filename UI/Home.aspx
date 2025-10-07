@@ -12,30 +12,29 @@
     .section{margin:28px 0}
     .section h2{font-family:Georgia,serif;color:#3b2f2a;margin:0 0 14px}
 
-    /* grid base */
+
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px}
 
-    /* ====== Palette & tokens (TIERRA) ====== */
+ 
     :root{
       --stroke:#e8dacd;
       --ink:#3b2f2a;
       --muted:#7a6b5e;
 
-      --brand:#a47148;                 /* base del sitio */
-      --brand-dark:#6b4226;            /* marrón oscuro */
+      --brand:#a47148;                
+      --brand-dark:#6b4226;           
 
-      /* vibrantes tierra (terracota + marrón oscuro) */
-      --brand-vibrant:#C37A42;         /* terracota vibrante */
-      --brand-deep:#6B4226;            /* marrón profundo */
+      --brand-vibrant:#C37A42;        
+      --brand-deep:#6B4226;            
 
       --brand-vibrant-rgb:195,122,66;
       --brand-deep-rgb:107,66,38;
     }
 
-    /* ====== Cards ====== */
+
     .book-card{
-      position:relative;               /* para overlay */
-      overflow:hidden;                 /* respeta borde redondeado */
+      position:relative;              
+      overflow:hidden;                 
       border-radius:16px;
       background:rgba(var(--brand-vibrant-rgb), .20);
       border:1px solid rgba(var(--brand-vibrant-rgb), .38);
@@ -56,8 +55,6 @@
     .book-title{ font-size:18px; line-height:1.2; color:var(--brand-dark); margin:0 }
     .book-sub{ font-size:13px; color:var(--muted); margin:0 }
     .book-price{ font-size:12px; color:var(--brand-dark); font-weight:700 }
-
-    /* ====== Efecto de hover (blur + overlay) ====== */
     .dim-on-hover{ transition:filter .18s ease; position:relative; z-index:1; }
     .book-card:hover > .dim-on-hover{ filter:blur(1.5px) brightness(.92); }
 

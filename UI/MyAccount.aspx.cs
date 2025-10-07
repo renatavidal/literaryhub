@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Web.UI.WebControls;
 using BLL;
 
@@ -6,6 +7,8 @@ public partial class MyAccount : ReaderPage
 {
     protected override bool RequireLogin { get { return true; } }
     protected override bool RequireVerifiedEmail { get { return true; } }
+    private readonly BLLFinanzasAdmin _bll = new BLLFinanzasAdmin();
+    private readonly BLLUsuario _bllUsuario = new BLLUsuario(); // si en tu proyecto es BLLCliente, reemplazalo
 
     private int CurrentUserId
     {
@@ -21,6 +24,22 @@ public partial class MyAccount : ReaderPage
             return auth.UserId;
         }
     }
+    private void BindFinanzas()
+    {
+        var uid = CurrentUserId;
+        lblSaldo.Text = _bll.SaldoCuenta(uid).ToString("0.##", CultureInfo.InvariantCulture);
+        gvNotas.DataSource = _bll.NotasPorUsuario(uid);
+        gvNotas.DataBind();
+        gvCuenta.DataSource = _bll.CuentaPorUsuario(uid);
+        gvCuenta.DataBind();
+    }
+
+    private void BindCompras()
+    {
+        gvCompras.DataSource = _bllUsuario.ByUser(CurrentUserId);
+        gvCompras.DataBind();
+    }
+
     private void BindBooks()
     {
         repWant.DataSource = BLLBooks.GetWantToRead(CurrentUserId);
@@ -35,6 +54,8 @@ public partial class MyAccount : ReaderPage
         if (!IsPostBack)
         {
             BindBooks();
+            BindFinanzas();
+            BindCompras();
         }
     }
 

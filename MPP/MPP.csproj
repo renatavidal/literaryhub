@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MPPAdvert.cs" />
     <Compile Include="MPPBitacora.cs" />
     <Compile Include="MPPBook.cs" />
     <Compile Include="MPPCliente.cs" />

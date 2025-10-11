@@ -783,3 +783,36 @@ body.theme-dark {
         background: #2f2a26;
         color: #f2ebe5;
     }
+
+#adSlot {
+    display: block;
+    border: 1px solid #e5e7eb;
+    padding: 12px;
+    border-radius: 12px;
+    background: #fff
+}
+
+#adSlot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 12px
+}
+
+#adSlot .ad-title {
+    display: block;
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.25;
+    text-align: center
+}
+
+#adSlot .ad-desc {
+    padding: 12px 8px;
+    color: #4b5563;
+    min-height: 80px;
+    text-align: center
+}

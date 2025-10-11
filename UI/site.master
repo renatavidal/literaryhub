@@ -154,8 +154,12 @@
 <span class="sc-icon">🗒️</span><span class="sc-text">Administrar Newsletter</span>
                     </asp:HyperLink>
                                                 <asp:HyperLink ID="HyperLink9" runat="server"
-  class="sc-item" NavigateUrl="/NewsletterAdmin.aspx" Visible="false">
+  class="sc-item" NavigateUrl="/AdminReports.aspx" Visible="false">
 <span class="sc-icon">🗒️</span><span class="sc-text">Reportes</span>
+                    </asp:HyperLink>
+                                                                <asp:HyperLink ID="HyperLink10" runat="server"
+  class="sc-item" NavigateUrl="/AdsAdmin.aspx" Visible="false">
+<span class="sc-icon">🗒️</span><span class="sc-text">Publicidad</span>
                     </asp:HyperLink>
               
 
@@ -167,7 +171,12 @@
                         <asp:ListItem Text="Italiano" Value="it"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
+                            <!-- Slot de publicidad -->
+<div class="container" style="margin:2px; max-width: 100px">
+  <div id="adSlot" class="ad-card"></div>
+</div>
             </aside>
+
 
             <!-- Contenido principal -->
             <main class="content">
@@ -218,6 +227,47 @@
                 if (cb && cb.checked) { document.body.classList.add('theme-dark'); localStorage.setItem('lh-theme', 'dark'); }
                 else { document.body.classList.remove('theme-dark'); localStorage.setItem('lh-theme', 'light'); }
             }
+            (function () {
+                var host = document.getElementById('adSlot');
+                if (!host) return;
+
+                function esc(t) { return (t || '').replace(/[<&>]/g, s => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[s])); }
+
+                function render(ad) {
+                    if (!ad) { host.innerHTML = ''; return; }
+
+                    var hasLink = !!ad.linkUrl;
+                    var hasImg = !!ad.imageUrl;
+
+                    var top = '';
+                    if (hasLink && hasImg) {
+                        top = `<a href="${esc(ad.linkUrl)}" target="_blank" rel="noopener noreferrer">
+               <img src="${esc(ad.imageUrl)}" alt="" style="margin:3px; max-width: 100px">
+             </a>`;
+                    } else if (!hasLink) {
+                        // sin link: mostramos descripción en vez de imagen
+                        top = `<div class="ad-desc">${esc(ad.body || '')}</div>`;
+                    } else if (hasImg) {
+                        // hay imagen pero sin link (raro, pero válido)
+                        top = `<img src="${esc(ad.imageUrl)}" alt="">`;
+                    }
+
+                    var title = `<span class="ad-title">${esc(ad.title || '')}</span>`;
+                    host.innerHTML = top + title;
+                }
+
+                function fetchAd() {
+                    fetch('<%= ResolveUrl("~/AdsPublic.aspx/GetRandom") %>', {
+                        method: 'POST', headers: { 'Content-Type': 'application/json; charset=utf-8' }, body: '{}'
+                    }).then(r => r.json()).then(p => {
+                        var d = p.d || p;
+                        render(d && d.ad ? d.ad : null);
+                    }).catch(() => { });
+                }
+
+                fetchAd();
+                setInterval(fetchAd, 15000);
+            })();
         </script>
 
 </html>

@@ -50,6 +50,10 @@
     .compare-features{ list-style:none; display:grid; gap:8px; padding:0; margin:0 }
     .badge.mini{ display:inline-block; padding:2px 8px; border-radius:999px; background:var(--chip); color:var(--brand); font-weight:700; font-size:.8rem }
     .btn-ghost{ border:1px solid var(--brand); padding:8px 12px; border-radius:10px; text-decoration:none; color:var(--brand) }
+    .sub-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+    .pill{display:inline-block;padding:4px 10px;border-radius:999px;background:#f3f4f6}
+    .btn{padding:8px 12px;border-radius:8px;border:1px solid var(--stroke);background:var(--bg-soft);cursor:pointer}
+    .btn-danger{background:#fbeaea;border-color:#f2c2c2}
   </style>
 </asp:Content>
 
@@ -99,6 +103,29 @@
     </ItemTemplate>
     <FooterTemplate></div></FooterTemplate>
   </asp:Repeater>
+     <div class="sub-top">
+    <div>
+      <div style="font-size:18px;font-weight:700">
+        <asp:Literal ID="litSubName" runat="server" />
+      </div>
+      <div class="pill" style="margin-top:6px">
+        <asp:Literal ID="litSubDates" runat="server" />
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px">
+      <asp:HyperLink ID="lnkValorarPlan" runat="server" CssClass="btn" Text="Valorar" />
+      <asp:Button ID="btnCancelSub" runat="server" CssClass="btn btn-danger"
+                  Text="Cancelar suscripción"
+                  OnClientClick="return confirm('Esto quitará privilegios del plan y te dejará como Reader. ¿Continuar?');"
+                  OnClick="btnCancelSub_Click" />
+    </div>
+  </div>
+
+  <div style="margin-top:8px">
+    <asp:Label ID="lblSubMsg" runat="server" />
+  </div>
+
     
 </asp:Content>
 

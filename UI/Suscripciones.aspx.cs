@@ -22,8 +22,52 @@ public partial class Suscripciones : ReaderPage
             BindListado(planes);
             BindSelectors(planes);
             PreselectFromQuery();
+            BindSubscription();
             rptPlanes.Visible = true;
         }
+    }
+    protected void btnCancelSub_Click(object sender, EventArgs e)
+    {
+        var auth = Session["auth"] as UserSession;
+        if (auth == null) return;
+
+        try
+        {
+            new BLL.BLLSubscription().CancelForUser(auth.UserId);
+
+            // Actualizar la sesión para reflejar que quedó como Reader
+            auth.Roles = new[] { "Reader" };
+            Session["auth"] = auth;
+
+            lblSubMsg.Text = "Suscripción cancelada. Tu rol ahora es Reader.";
+        }
+        catch (Exception ex)
+        {
+            lblSubMsg.Text = "Error: " + Server.HtmlEncode(ex.Message);
+        }
+    }
+
+    private void BindSubscription()
+    {
+        var auth = Session["auth"] as UserSession;
+        if (auth == null) return;
+
+        var bll = new BLLSubscription();
+        var sub = bll.GetActiveForUser(auth.UserId);
+        if (sub == null || !sub.IsActive)
+        {
+            return;
+        }
+
+        litSubName.Text = Server.HtmlEncode(sub.PlanName ?? ("Plan #" + sub.PlanId));
+
+        string dates = "";
+        if (sub.PaidUtc.HasValue) dates += "Desde: " + sub.PaidUtc.Value.ToString("yyyy-MM-dd HH:mm") + " UTC";
+        if (sub.ExpiresUtc.HasValue) dates += " — Hasta: " + sub.ExpiresUtc.Value.ToString("yyyy-MM-dd HH:mm") + " UTC";
+        litSubDates.Text = dates;
+
+        // Botón Valorar → CheckoutOk con id del plan
+        lnkValorarPlan.NavigateUrl = ResolveUrl("~/CheckoutOk.aspx?id=" + sub.PlanId);
     }
 
     // -------- CARGA ROBUSTA DESDE BLL --------

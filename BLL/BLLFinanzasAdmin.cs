@@ -19,5 +19,11 @@ namespace BLL
 
         public decimal SaldoCuenta(int userId) => _mpp.GetAccountBalance(userId);
         public decimal SaldoNC(int noteId) => _mpp.GetCreditNoteRemaining(noteId);
+        public (int creditNoteId, string number) RefundPurchase(int userId, int purchaseId, string reason = null)
+        {
+            if (userId <= 0) throw new ArgumentException("Usuario inválido.");
+            if (purchaseId <= 0) throw new ArgumentException("Compra inválida.");
+            return _mpp.RefundPurchase(userId, purchaseId, reason);
+        }
     }
 }

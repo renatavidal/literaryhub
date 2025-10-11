@@ -42,11 +42,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MPPAdvert.cs" />
+    <Compile Include="MPPBackup.cs" />
     <Compile Include="MPPBitacora.cs" />
     <Compile Include="MPPBook.cs" />
     <Compile Include="MPPChat.cs" />
     <Compile Include="MPPCliente.cs" />
     <Compile Include="MPPComment.cs" />
+    <Compile Include="MPPCompras.cs" />
     <Compile Include="MPPEncuesta.cs" />
     <Compile Include="MPPFinanzas.cs" />
     <Compile Include="MPPNewsletter.cs" />

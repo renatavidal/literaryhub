@@ -118,7 +118,7 @@
               var val = getSelected();
               select(val);
               save(val);          
-              return false;        // SIEMPRE cancelar postback
+              return false;       
           };
 
           // Estado inicial

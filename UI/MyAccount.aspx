@@ -11,6 +11,9 @@
     @media(max-width:780px){ .grid-2{ grid-template-columns:1fr } }
     .btn{ padding:10px 14px; border-radius:10px; border:1px solid var(--stroke); background:var(--bg-soft) }
     .btn-danger{ background:#fbeaea; border-color:#f2c2c2 }
+    .table{ width:100%; border-collapse:collapse }
+.table th,.table td{ padding:8px 10px; text-align:left; vertical-align:top; white-space:nowrap }
+.table th:nth-child(3), .table td:nth-child(3){ white-space:normal } /* Título puede romper línea */
   </style>
     </asp:Content>
     <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
@@ -90,15 +93,31 @@
 <div class="card">
   <h3>Mis compras</h3>
   <asp:GridView ID="gvCompras" runat="server" AutoGenerateColumns="false"
-                GridLines="None" CssClass="table">
-    <Columns>
-      <asp:BoundField DataField="PurchaseId" HeaderText="ID" />
-      <asp:BoundField DataField="BookId"     HeaderText="BookId" />
-      <asp:BoundField DataField="Price"      HeaderText="Price" DataFormatString="{0:0.##}" />
-      <asp:BoundField DataField="Currency"   HeaderText="Currency" />
-      <asp:BoundField DataField="CreatedUtc" HeaderText="Fecha (UTC)" DataFormatString="{0:yyyy-MM-dd HH:mm}" />
-    </Columns>
-  </asp:GridView>
+              CssClass="table" GridLines="None"
+              DataKeyNames="PurchaseId"
+              OnRowCommand="gvCompras_RowCommand">
+  <Columns>
+    <asp:BoundField DataField="PurchaseId" HeaderText="ID" ItemStyle-Width="70px" />
+    <asp:BoundField DataField="BookId"     HeaderText="BookId" ItemStyle-Width="80px" />
+    <asp:BoundField DataField="Title"      HeaderText="Título" />
+    <asp:TemplateField HeaderText="Precio" ItemStyle-Width="120px">
+      <ItemTemplate>
+        <%# Eval("Price","{0:0.##}") %> <%# Eval("Currency") %>
+      </ItemTemplate>
+    </asp:TemplateField>
+    <asp:BoundField DataField="CreatedUtc" HeaderText="Fecha (UTC)"
+                    DataFormatString="{0:yyyy-MM-dd HH:mm}" ItemStyle-Width="150px" />
+    <asp:TemplateField HeaderText="">
+      <ItemTemplate>
+        <asp:LinkButton runat="server" Text="Devolución" CommandName="Refund"
+          CommandArgument='<%# Eval("PurchaseId") + "|" + Eval("BookId") + "|" + Eval("Title") %>'
+          OnClientClick="return confirm('¿Generar nota de crédito por esta compra?');" />
+      </ItemTemplate>
+    </asp:TemplateField>
+  </Columns>
+</asp:GridView>
+
+
 </div>
 
   </div>

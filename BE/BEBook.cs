@@ -18,6 +18,14 @@ namespace BE
         public enum UserBookStatus : byte { None = 0, WantToRead = 1, Read = 2 }
     }
     public enum UserBookStatus : byte { None = 0, WantToRead = 1, Read = 2 }
-
+    public class BECompraListItem
+    {
+        public int PurchaseId { get; set; }
+        public int BookId { get; set; }
+        public string Title { get; set; }
+        public decimal Price { get; set; }
+        public string Currency { get; set; }
+        public DateTime CreatedUtc { get; set; }
+    }
 
 }

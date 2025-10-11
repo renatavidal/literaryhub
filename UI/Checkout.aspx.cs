@@ -151,7 +151,7 @@ public partial class Checkout : System.Web.UI.Page
         }
 
         int orderId = _bll.Checkout(auth.UserId, planCode, currency, splits, auth.Email);
-        Response.Redirect("/CheckoutOk.aspx?id=" + orderId);
+       
     }
 
 }

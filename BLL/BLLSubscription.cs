@@ -12,11 +12,19 @@ namespace BLL
         private readonly IEmailService _mailer;   // ya lo tenés
 
         public BLLSubscription(IEmailService mailer) { _mailer = mailer; }
+        public BLLSubscription() { }
         public decimal GetCreditNoteRemainingByUser(int noteId, int userId)
         {
             return _mpp.GetCreditNoteRemainingByUser(noteId, userId);
         }
-      
+        public BEActiveSubscription GetActiveForUser(int userId) { 
+          return _mpp.GetActiveForUser(userId);
+        }
+        public void CancelForUser(int userId)
+        {
+            if (userId <= 0) throw new ArgumentException("Usuario inválido.");
+            _mpp.CancelForUser(userId);
+        }
 
         public int Checkout(int userId, string planCode, string currency, List<BEPaymentSplit> splits, string userEmail)
         {
@@ -64,6 +72,7 @@ namespace BLL
 
             return orderId;
         }
+
         public BE.BEPlan GetPlanByCode(string code)
         {
             return _mpp.GetPlanByCode(code);

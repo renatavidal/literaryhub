@@ -161,6 +161,10 @@
   class="sc-item" NavigateUrl="/SupportChat.aspx" Visible="false">
 <span class="sc-icon">🗒️</span><span class="sc-text">Chats</span>
                     </asp:HyperLink>
+                <asp:HyperLink ID="lnkBackups" runat="server"
+    class="sc-item" NavigateUrl="/BackupsAdmin.aspx" Visible="false">
+  <span class="sc-icon">💾</span><span class="sc-text">Backups</span>
+</asp:HyperLink>
                                                 <asp:HyperLink ID="HyperLink9" runat="server"
   class="sc-item" NavigateUrl="/AdminReports.aspx" Visible="false">
 <span class="sc-icon">🗒️</span><span class="sc-text">Reportes</span>

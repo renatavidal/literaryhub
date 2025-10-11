@@ -24,6 +24,40 @@ public partial class MyAccount : ReaderPage
             return auth.UserId;
         }
     }
+    private void BindCompras()
+    {
+        var auth = Session["auth"] as UserSession;
+        if (auth == null) return;
+
+        gvCompras.DataSource = new BLL.BLLCompras().ByUser(auth.UserId);
+        gvCompras.DataBind();
+    }
+    protected void gvCompras_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        if (e.CommandName != "Refund") return;
+
+        var auth = Session["auth"] as UserSession;
+        if (auth == null) return;
+        int userId = auth.UserId;
+
+        var parts = Convert.ToString(e.CommandArgument).Split('|');
+        int purchaseId = int.Parse(parts[0]);
+        string title = parts.Length > 2 ? parts[2] : null;
+
+        string reason = string.IsNullOrWhiteSpace(title)
+            ? "Devolución"
+            : "Devolución: " + title;
+
+        var fin = new BLL.BLLFinanzasAdmin();
+        var res = fin.RefundPurchase(userId, purchaseId, reason);
+        ClientScript.RegisterStartupScript(GetType(), "ok",
+            "alert('Nota de crédito generada: " + res.Item2 + "');", true);
+
+        BindFinanzas();  // saldo + movimientos + notas
+        BindCompras();   // <- ahora ya no deberías verla
+    }
+
+
     private void BindFinanzas()
     {
         var uid = CurrentUserId;
@@ -34,11 +68,7 @@ public partial class MyAccount : ReaderPage
         gvCuenta.DataBind();
     }
 
-    private void BindCompras()
-    {
-        gvCompras.DataSource = _bllUsuario.ByUser(CurrentUserId);
-        gvCompras.DataBind();
-    }
+   
 
     private void BindBooks()
     {

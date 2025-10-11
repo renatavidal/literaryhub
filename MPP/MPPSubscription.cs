@@ -96,7 +96,29 @@ namespace MPP
             p.PrecioUSD = Convert.ToDecimal(r["PrecioUSD"]);
             return p;
         }
-       
+        public BEActiveSubscription GetActiveForUser(int userId)
+        {
+            var t = _db.Leer("usp_User_ActiveSubscription",
+                             new Hashtable { { "@UserId", userId } });
+            if (t.Rows.Count == 0) return null;
+
+            var r = t.Rows[0];
+            return new BEActiveSubscription
+            {
+                OrderId = Convert.ToInt32(r["OrderId"]),
+                PlanId = Convert.ToInt32(r["PlanId"]),
+                PlanName = Convert.ToString(r["PlanName"]),
+                PaidUtc = r["PaidUtc"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(r["PaidUtc"]),
+                ExpiresUtc = r["ExpiresUtc"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(r["ExpiresUtc"]),
+                IsActive = Convert.ToInt32(r["IsActive"]) == 1
+            };
+        }
+        public void CancelForUser(int userId)
+        {
+            var acc = new Acceso();
+            acc.Escribir("usp_User_CancelSubscription", new Hashtable { { "@UserId", userId } });
+        }
+
 
         public decimal GetCreditNoteRemaining(int noteId)
         {

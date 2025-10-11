@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BEActiveSubscription.cs" />
     <Compile Include="BEAdvert.cs" />
+    <Compile Include="BEBackup.cs" />
     <Compile Include="BEBitacora.cs" />
     <Compile Include="BEBook.cs" />
     <Compile Include="BEChat.cs" />

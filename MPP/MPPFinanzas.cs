@@ -27,6 +27,18 @@ namespace MPP
         {
             return _db.Escribir("dbo.usp_Note_Delete", new Hashtable { { "@NoteId", noteId } });
         }
+        public (int creditNoteId, string number) RefundPurchase(int userId, int purchaseId, string reason = null)
+        {
+            var h = new Hashtable {
+                {"@PurchaseId", purchaseId},
+                {"@UserId", userId},
+                {"@Reason", (object)reason ?? DBNull.Value}
+            };
+            var dt = _db.Leer("usp_Purchase_Refund", h);
+            int id = Convert.ToInt32(dt.Rows[0]["CreditNoteId"]);
+            string num = Convert.ToString(dt.Rows[0]["Number"]);
+            return (id, num);
+        }
 
         public DataTable ListarCuentaPorUsuario(int userId)
         {

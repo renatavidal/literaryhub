@@ -188,10 +188,15 @@
                         <asp:ListItem Text="Italiano" Value="it"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
+                <div class="a11y-tools">
+                <button id="btnRead" class="a11y-btn" type="button" aria-label="Leer en voz alta" title="Leer en voz alta">🔊</button>
+                <button id="btnPause" class="a11y-btn" type="button" aria-label="Pausar lectura" title="Pausar" style="display:none">⏸</button>
+                <button id="btnStop"  class="a11y-btn" type="button" aria-label="Detener lectura" title="Detener" style="display:none">⏹</button>
+                </div>
                             <!-- Slot de publicidad -->
-<div class="container" style="margin:2px; max-width: 100px">
-  <div id="adSlot" class="ad-card"></div>
-</div>
+            <div class="ad-wrap">
+              <div id="adSlot" class="ad-card"></div>
+            </div>
             </aside>
 
 
@@ -259,7 +264,7 @@
                     var top = '';
                     if (hasLink && hasImg) {
                         top = `<a href="${esc(ad.linkUrl)}" target="_blank" rel="noopener noreferrer">
-               <img src="${esc(ad.imageUrl)}" alt="" style="margin:3px; max-width: 100px">
+               <img src="${esc(ad.imageUrl)}" alt="" style="margin:3px; max-width: 200px">
              </a>`;
                     } else if (!hasLink) {
                         // sin link: mostramos descripción en vez de imagen
@@ -285,6 +290,64 @@
                 fetchAd();
                 setInterval(fetchAd, 15000);
             })();
+            (function () {
+                if (!('speechSynthesis' in window)) return; // sin soporte, no mostrar
+                var btnR = document.getElementById('btnRead'),
+                    btnP = document.getElementById('btnPause'),
+                    btnS = document.getElementById('btnStop'),
+                    synth = window.speechSynthesis, utter;
+
+                // Detectar idioma por el selector de idioma del topbar
+                function getLang() {
+                    var ddl = document.getElementById('<%= ddlLangTop.ClientID %>');
+                     var v = ddl ? ddl.value : 'es';
+                     return v || 'es';
+                 }
+
+                 function mainText() {
+                     // Leemos el contenido principal; asegurate de tener <main id="main"> en master
+                     var m = document.getElementById('main') || document.body;
+                     // quitar textos de navegación/controles
+                     return m.innerText.replace(/\s{2,}/g, ' ').trim();
+                 }
+
+                 function start() {
+                     stop();
+                     var text = mainText();
+                     if (!text) return;
+                     utter = new SpeechSynthesisUtterance(text);
+                     utter.lang = getLang();                     // 'es', 'en', 'it'
+                     utter.rate = 1;                             // velocidad
+                     utter.onend = stop;
+                     synth.speak(utter);
+                     btnR.style.display = 'none'; btnP.style.display = ''; btnS.style.display = '';
+                 }
+
+                 function pauseResume() {
+                     if (synth.speaking) {
+                         if (synth.paused) { synth.resume(); btnP.textContent = '⏸'; btnP.title = 'Pausar'; }
+                         else { synth.pause(); btnP.textContent = '▶'; btnP.title = 'Reanudar'; }
+                     }
+                 }
+
+                 function stop() {
+                     if (synth.speaking) synth.cancel();
+                     btnR.style.display = ''; btnP.style.display = 'none'; btnS.style.display = 'none';
+                     btnP.textContent = '⏸'; btnP.title = 'Pausar';
+                 }
+
+                 btnR && (btnR.onclick = start);
+                 btnP && (btnP.onclick = pauseResume);
+                 btnS && (btnS.onclick = stop);
+
+                 // Atajos: Alt+R (leer), Alt+P (pausa), Alt+X (detener)
+                 document.addEventListener('keydown', function (e) {
+                     if (!e.altKey) return;
+                     if (e.key.toLowerCase() === 'r') { e.preventDefault(); start(); }
+                     if (e.key.toLowerCase() === 'p') { e.preventDefault(); pauseResume(); }
+                     if (e.key.toLowerCase() === 'x') { e.preventDefault(); stop(); }
+                 });
+             })();
         </script>
 
 </html>

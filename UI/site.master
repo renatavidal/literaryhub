@@ -153,6 +153,14 @@
   class="sc-item" NavigateUrl="/NewsletterAdmin.aspx" Visible="false">
 <span class="sc-icon">🗒️</span><span class="sc-text">Administrar Newsletter</span>
                     </asp:HyperLink>
+                                                <asp:HyperLink ID="HyperLink12" runat="server"
+  class="sc-item" NavigateUrl="/ChatsAdmin.aspx" Visible="false">
+<span class="sc-icon">🗒️</span><span class="sc-text">Chats</span>
+                    </asp:HyperLink>
+                                                <asp:HyperLink ID="HyperLink11" runat="server"
+  class="sc-item" NavigateUrl="/SupportChat.aspx" Visible="false">
+<span class="sc-icon">🗒️</span><span class="sc-text">Chats</span>
+                    </asp:HyperLink>
                                                 <asp:HyperLink ID="HyperLink9" runat="server"
   class="sc-item" NavigateUrl="/AdminReports.aspx" Visible="false">
 <span class="sc-icon">🗒️</span><span class="sc-text">Reportes</span>

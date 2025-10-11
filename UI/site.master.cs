@@ -39,6 +39,8 @@ public partial class Site : MasterPage
         HyperLink7.Visible = UsuarioActualEsAdmin();
         HyperLink9.Visible = UsuarioActualEsAdmin();
         HyperLink10.Visible = UsuarioActualEsAdmin();
+        HyperLink12.Visible = UsuarioActualEsAdmin();
+        HyperLink11.Visible = sess != null;
 
         string lang = "es";
         HttpCookie c = (Request != null) ? Request.Cookies["lh-lang"] : null;

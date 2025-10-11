@@ -44,6 +44,7 @@
     <Compile Include="MPPAdvert.cs" />
     <Compile Include="MPPBitacora.cs" />
     <Compile Include="MPPBook.cs" />
+    <Compile Include="MPPChat.cs" />
     <Compile Include="MPPCliente.cs" />
     <Compile Include="MPPComment.cs" />
     <Compile Include="MPPEncuesta.cs" />

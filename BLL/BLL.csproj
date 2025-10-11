@@ -47,6 +47,7 @@
     <Compile Include="BLLBitacora.cs" />
     <Compile Include="BLLBooks.cs" />
     <Compile Include="BLLCatalog.cs" />
+    <Compile Include="BLLChat.cs" />
     <Compile Include="BLLCliente.cs" />
     <Compile Include="BLLEncuesta.cs" />
     <Compile Include="BLLEntry.cs" />

@@ -41,6 +41,7 @@ public partial class Site : MasterPage
         HyperLink10.Visible = UsuarioActualEsAdmin();
         HyperLink12.Visible = UsuarioActualEsAdmin();
         lnkBackups.Visible = UsuarioActualEsAdmin();
+        HyperLink15.Visible = UsuarioActualEsAdmin();
         HyperLink11.Visible = sess != null && !UsuarioActualEsAdmin();
 
         string lang = "es";

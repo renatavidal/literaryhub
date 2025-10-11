@@ -169,6 +169,11 @@
   class="sc-item" NavigateUrl="/AdminReports.aspx" Visible="false">
 <span class="sc-icon">🗒️</span><span class="sc-text">Reportes</span>
                     </asp:HyperLink>
+                
+                                                <asp:HyperLink ID="HyperLink15" runat="server"
+  class="sc-item" NavigateUrl="/AdminPermisos.aspx" Visible="false">
+<span class="sc-icon">🗒️</span><span class="sc-text">Gestionar Roles</span>
+                    </asp:HyperLink>
                                                                 <asp:HyperLink ID="HyperLink10" runat="server"
   class="sc-item" NavigateUrl="/AdsAdmin.aspx" Visible="false">
 <span class="sc-icon">🗒️</span><span class="sc-text">Publicidad</span>

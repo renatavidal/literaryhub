@@ -55,6 +55,7 @@
     <Compile Include="BLLEntry.cs" />
     <Compile Include="BLLFinanzasAdmin.cs" />
     <Compile Include="BLLNewsletter.cs" />
+    <Compile Include="BLLPermissions.cs" />
     <Compile Include="BLLPersona.cs" />
     <Compile Include="BLLProductRating.cs" />
     <Compile Include="BLLSubscription.cs" />

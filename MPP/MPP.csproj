@@ -53,6 +53,7 @@
     <Compile Include="MPPFinanzas.cs" />
     <Compile Include="MPPNewsletter.cs" />
     <Compile Include="MPPPayment.cs" />
+    <Compile Include="MPPPermissions.cs" />
     <Compile Include="MPPProductRating.cs" />
     <Compile Include="MPPRevenue.cs" />
     <Compile Include="MPPSubscription.cs" />

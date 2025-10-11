@@ -153,6 +153,10 @@
   class="sc-item" NavigateUrl="/NewsletterAdmin.aspx" Visible="false">
 <span class="sc-icon">🗒️</span><span class="sc-text">Administrar Newsletter</span>
                     </asp:HyperLink>
+                                                <asp:HyperLink ID="HyperLink9" runat="server"
+  class="sc-item" NavigateUrl="/NewsletterAdmin.aspx" Visible="false">
+<span class="sc-icon">🗒️</span><span class="sc-text">Reportes</span>
+                    </asp:HyperLink>
               
 
                 <div class="sidebar-lang">

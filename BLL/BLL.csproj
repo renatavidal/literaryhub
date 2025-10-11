@@ -48,6 +48,7 @@
     <Compile Include="BLLCatalog.cs" />
     <Compile Include="BLLCliente.cs" />
     <Compile Include="BLLEncuesta.cs" />
+    <Compile Include="BLLEntry.cs" />
     <Compile Include="BLLFinanzasAdmin.cs" />
     <Compile Include="BLLNewsletter.cs" />
     <Compile Include="BLLPersona.cs" />

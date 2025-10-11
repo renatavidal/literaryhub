@@ -50,6 +50,7 @@
     <Compile Include="MPPNewsletter.cs" />
     <Compile Include="MPPPayment.cs" />
     <Compile Include="MPPProductRating.cs" />
+    <Compile Include="MPPRevenue.cs" />
     <Compile Include="MPPSubscription.cs" />
     <Compile Include="MPPUserBook.cs" />
     <Compile Include="MPPUsuario.cs" />

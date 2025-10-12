@@ -22,8 +22,14 @@ public partial class Site : MasterPage
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (IsPostBack) return;
+        if (!IsPostBack)
+        {
+            var lang = GetLangFromCookie();
+            if (ddlLangTop.Items.FindByValue(lang) != null)
+                ddlLangTop.SelectedValue = lang;
 
+            RegisterApplyLanguageScript(lang);
+        }
 
         var sess = (UserSession)(Session != null ? Session["auth"] : null);
         pnlAnon.Visible = (sess == null);
@@ -46,16 +52,6 @@ public partial class Site : MasterPage
         HyperLink11.Visible = sess != null && !UsuarioActualEsAdmin();
         upSearch.Visible = sess != null;
 
-        string lang = "es";
-        HttpCookie c = (Request != null) ? Request.Cookies["lh-lang"] : null;
-        if (c != null && !string.IsNullOrEmpty(c.Value))
-        {
-            lang = c.Value;
-        }
-        var it = ddlLangTop.Items.FindByValue(lang);
-        if (it != null) ddlLangTop.ClearSelection();
-        if (it != null) it.Selected = true;
-
         if (sess != null)
         {
             var email = sess.Email ?? "";
@@ -65,19 +61,41 @@ public partial class Site : MasterPage
         }
     }
 
-    // Recargar misma URL para que ApplyCulture corra con el nuevo idioma
+
+
+    private string GetLangFromCookie()
+    {
+        var c = Request.Cookies["lh-lang"];
+        var v = (c != null && !string.IsNullOrEmpty(c.Value)) ? c.Value : "es";
+        return v;
+    }
+
+    private void SaveLangCookie(string lang)
+    {
+        var cookie = new HttpCookie("lh-lang", lang) { Path = "/", Expires = DateTime.UtcNow.AddYears(1) };
+        Response.Cookies.Add(cookie);
+        Session["lh-lang"] = lang;
+    }
+
+    private void RegisterApplyLanguageScript(string lang)
+    {
+        var js = "window.lhApplyGoogleLang && window.lhApplyGoogleLang('"+lang+"');";
+        if (ScriptManager.GetCurrent(Page) != null)
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "gt-apply", js, true);
+        else
+            Page.ClientScript.RegisterStartupScript(Page.GetType(), "gt-apply", js, true);
+    }
+
     protected void ddlLangTop_SelectedIndexChanged(object sender, EventArgs e)
     {
-        var lang = ddlLangTop.SelectedValue;     
-
-        var cookie = new HttpCookie("lh-lang", lang);
-        cookie.Path = "/";
-        cookie.Expires = DateTime.UtcNow.AddYears(1);
-        Response.Cookies.Add(cookie);
-
+        var lang = ddlLangTop.SelectedValue ?? "es";
+        SaveLangCookie(lang);
+        RegisterApplyLanguageScript(lang);
         Response.Redirect(Request.RawUrl, endResponse: false);
-        Context.ApplicationInstance.CompleteRequest();
     }
+
+
+
 
     string GetInitial(string email)
     {

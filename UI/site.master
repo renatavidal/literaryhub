@@ -53,14 +53,17 @@
   </Triggers>
 </asp:UpdatePanel>
                 <div class="top-actions">
-<label for="ddlLangTop" class="sr-only">Idioma</label>
-<asp:DropDownList ID="ddlLangTop" runat="server"
-                  CssClass="lang-select"
-                  AutoPostBack="true"
-                  OnSelectedIndexChanged="ddlLangTop_SelectedIndexChanged">
-    <asp:ListItem Text="ES" Value="es" Selected="True" />
-    <asp:ListItem Text="EN" Value="en" />
-    <asp:ListItem Text="IT" Value="it" />
+<label for="ddlLangTop">Idioma</label>
+<asp:DropDownList ID="ddlLangTop" runat="server" CssClass="lang-select full"
+                  AutoPostBack="true" OnSelectedIndexChanged="ddlLangTop_SelectedIndexChanged"
+                  CausesValidation="false">
+
+    <asp:ListItem Text="Español"  Value="es" Selected="True" />
+    <asp:ListItem Text="English"  Value="en" />
+    <asp:ListItem Text="Italiano" Value="it" />
+    <asp:ListItem Text="Français" Value="fr" />
+    <asp:ListItem Text="Deutsch"  Value="de" />
+    <asp:ListItem Text="Português" Value="pt" />
 </asp:DropDownList>
 
 <!-- Anónimo -->
@@ -212,14 +215,7 @@
                     </asp:HyperLink>
               
 
-                <div class="sidebar-lang">
-                    <label for="ddlLangSide">Idioma</label>
-                    <asp:DropDownList ID="ddlLangSide" runat="server" CssClass="lang-select full">
-                        <asp:ListItem Text="Español" Value="es" Selected="True"></asp:ListItem>
-                        <asp:ListItem Text="English" Value="en"></asp:ListItem>
-                        <asp:ListItem Text="Italiano" Value="it"></asp:ListItem>
-                    </asp:DropDownList>
-                </div>
+              
                 <div class="a11y-tools">
                 <button id="btnRead" class="a11y-btn" type="button" aria-label="Leer en voz alta" title="Leer en voz alta">🔊</button>
                 <button id="btnPause" class="a11y-btn" type="button" aria-label="Pausar lectura" title="Pausar" style="display:none">⏸</button>
@@ -256,7 +252,10 @@
             </div>
         </footer>
     </form>
+    <div id="google_translate_element" style="display:none"></div>
 </body>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
         <script>
             function toggleMenu() {
                 var dd = document.getElementById('accountMenu');
@@ -379,7 +378,48 @@
                      if (e.key.toLowerCase() === 'p') { e.preventDefault(); pauseResume(); }
                      if (e.key.toLowerCase() === 'x') { e.preventDefault(); stop(); }
                  });
-             })();
+            })();
+         
+           
+
         </script>
+
+<script>
+    // 1) Google carga su combo oculto (.goog-te-combo)
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+            { pageLanguage: 'es', autoDisplay: false },
+            'google_translate_element'
+        );
+    }
+
+    // 2) Función global para aplicar un idioma (la llama C#)
+    window.lhApplyGoogleLang = function (code) {
+        var map = { es: 'es', en: 'en', it: 'it', fr: 'fr', de: 'de', pt: 'pt' };
+        var target = map[code] || 'es';
+
+        function apply() {
+            var combo = document.querySelector('.goog-te-combo');
+            if (!combo) { setTimeout(apply, 150); return; }  // espera a que Google inyecte el combo
+            combo.value = target;
+            combo.dispatchEvent(new Event('change', { bubbles: true, cancelable: true }));
+        }
+        apply();
+    };
+
+    // Reaplicar tras postbacks parciales (UpdatePanel)
+    if (window.Sys && Sys.WebForms && Sys.WebForms.PageRequestManager) {
+        var prm = Sys.WebForms.PageRequestManager.getInstance();
+        prm.add_endRequest(function () {
+            // re-aplica el idioma guardado por cookie propia (lh-lang) si existe
+            try {
+                var m = document.cookie.match(/(?:^|;\s*)lh-lang=([^;]+)/);
+                var lang = m ? decodeURIComponent(m[1]) : 'es';
+                window.lhApplyGoogleLang(lang);
+            } catch (_) { }
+        });
+    }
+</script>
+
 
 </html>

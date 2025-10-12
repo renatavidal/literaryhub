@@ -158,8 +158,9 @@ html, body {
     }
 
 .auth-actions .btn {
-    margin-left: 6px;
+    margin-left: 2px;
 }
+
 
 
 
@@ -1026,4 +1027,11 @@ body.theme-dark {
 
 .hc .sug-item:hover {
     background: #111
+}
+#pnlAnon {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: max-content;
+    min-width:200px;
 }

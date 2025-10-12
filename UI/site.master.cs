@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
@@ -43,6 +44,7 @@ public partial class Site : MasterPage
         lnkBackups.Visible = UsuarioActualEsAdmin();
         HyperLink15.Visible = UsuarioActualEsAdmin();
         HyperLink11.Visible = sess != null && !UsuarioActualEsAdmin();
+        upSearch.Visible = sess != null;
 
         string lang = "es";
         HttpCookie c = (Request != null) ? Request.Cookies["lh-lang"] : null;
@@ -104,6 +106,51 @@ public partial class Site : MasterPage
             return CurrentUser.IsInRole("Client");
         return false;
     }
+    private string[] CurrentUserRoles()
+    {
+        var auth = Session["auth"] as UserSession;
+        return (auth != null && auth.Roles != null) ? auth.Roles : new string[0];
+    }
 
+    private void BindSuggestions(string q)
+    {
+        q = (q ?? "").Trim();
+
+        var roles = CurrentUserRoles();
+        var data = PageDirectory.Search(q, roles)
+                                .Select(p => new
+                                {
+                                    Title = p.Title,
+                                    Url = ResolveUrl(p.Url) // "~/" -> "/..."
+                                })
+                                .ToList();
+
+        repSuggest.DataSource = data;
+        repSuggest.DataBind();
+        pnlSuggest.Visible = data.Count > 0 && q.Length > 0;
+        upSearch.Update();
+    }
+
+    // ====== eventos ======
+    protected void txtTopSearch_TextChanged(object sender, EventArgs e)
+    {
+        BindSuggestions(txtTopSearch.Text);
+    }
+
+    protected void repSuggest_ItemCommand(object source, System.Web.UI.WebControls.RepeaterCommandEventArgs e)
+    {
+        if (e.CommandName == "go")
+        {
+            var url = Convert.ToString(e.CommandArgument);
+            if (!string.IsNullOrEmpty(url))
+            {
+                // cerramos el panel y redirigimos
+                pnlSuggest.Visible = false;
+                upSearch.Update();
+                Response.Redirect(url, false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+        }
+    }
 
 }

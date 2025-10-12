@@ -11,6 +11,7 @@
 </head>
 <body class="theme-brown">
     <form id="form1" runat="server">
+         <asp:ScriptManager ID="sm" runat="server" EnablePartialRendering="true" />
         <!-- Topbar / Menú horizontal -->
         <header class="topbar">
             <div class="container topbar-inner">
@@ -22,8 +23,35 @@
                         <li><a href="/Privacy.aspx">Privacy</a></li>
                         <li><a href="/About.aspx">About</a></li>
                     </ul>
-                </nav>
 
+                </nav>
+                   <asp:UpdatePanel ID="upSearch" runat="server" UpdateMode="Conditional">
+  <ContentTemplate>
+    <div class="top-search">
+      <asp:TextBox ID="txtTopSearch" runat="server"
+                   CssClass="search-inp"
+                   AutoPostBack="true"
+                   OnTextChanged="txtTopSearch_TextChanged"
+                   placeholder="Buscar páginas…" />
+
+      <asp:Panel ID="pnlSuggest" runat="server" CssClass="suggest" Visible="false">
+        <asp:Repeater ID="repSuggest" runat="server" OnItemCommand="repSuggest_ItemCommand">
+          <ItemTemplate>
+            <asp:LinkButton runat="server" CssClass="sug-item"
+                            CommandName="go"
+                            CommandArgument='<%# Eval("Url") %>'>
+              <strong><%# Eval("Title") %></strong>
+              <span class="sug-url"><%# Eval("Url") %></span>
+            </asp:LinkButton>
+          </ItemTemplate>
+        </asp:Repeater>
+      </asp:Panel>
+    </div>
+  </ContentTemplate>
+  <Triggers>
+    <asp:AsyncPostBackTrigger ControlID="txtTopSearch" EventName="TextChanged" />
+  </Triggers>
+</asp:UpdatePanel>
                 <div class="top-actions">
 <label for="ddlLangTop" class="sr-only">Idioma</label>
 <asp:DropDownList ID="ddlLangTop" runat="server"
@@ -43,11 +71,15 @@
 
 <!-- Logueado -->
 <asp:Panel ID="pnlAuth" runat="server" CssClass="account" Visible="false">
+
+
   <button id="accountBtn" type="button" class="account-btn" onclick="toggleMenu()">
     <span class="avatar"><asp:Literal ID="litInitials" runat="server" /></span>
     <span class="email"><asp:Literal ID="litEmail" runat="server" /></span>
     <svg class="caret" width="12" height="12" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+
   </button>
+
 
   <!-- Settings card -->
   <div id="accountMenu" class="settings-card" role="menu" aria-label="Cuenta">

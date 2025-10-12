@@ -964,3 +964,66 @@ body.theme-dark {
 .hc .a11y-btn:focus-visible, .hc .a11y-ctrl:focus-visible {
     outline: 3px solid #00ffff
 }
+/* barra arriba */
+.top-search {
+    position: relative;
+    margin: 0 10px;
+    display: inline-block;
+}
+
+    .top-search .search-inp {
+        width: 260px;
+        max-width: 38vw;
+        padding: 8px 10px;
+        border-radius: 10px;
+        border: 1px solid var(--stroke,#e5e7eb);
+        background: #fff;
+    }
+
+/* dropdown de sugerencias */
+.suggest {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 2000;
+    background: #fff;
+    border: 1px solid var(--stroke,#e5e7eb);
+    border-radius: 10px;
+    margin-top: 6px;
+    padding: 6px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.08);
+    max-height: 320px;
+    overflow: auto;
+}
+
+.sug-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 8px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 0;
+    background: transparent;
+}
+
+.sug-item:hover {
+    background: #f3f4f6;
+}
+
+.sug-url {
+    opacity: .6;
+    margin-left: 6px;
+    font-size: .9em
+}
+
+.hc .search-inp, .hc .suggest {
+    background: #000;
+    color: #fff;
+    border-color: #fff
+}
+
+.hc .sug-item:hover {
+    background: #111
+}

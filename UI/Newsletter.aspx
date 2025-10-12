@@ -104,6 +104,57 @@
     <h1>Newsletter</h1>
     <div class="meta">Novedades, lanzamientos y artículos de la comunidad.</div>
   </div>
+   <div class="hero nl-sub" style="margin-top:8px">
+  <!-- Estado: NO suscripto -->
+  <asp:Panel ID="pnlForm" runat="server" CssClass="nl-wrap">
+    <h2>Suscribirme al newsletter</h2>
+
+    <div>
+      <label for="<%= txtEmail.ClientID %>">Email</label><br/>
+      <asp:TextBox ID="txtEmail" runat="server" CssClass="input" />
+      <asp:RequiredFieldValidator ID="reqEmail" runat="server"
+          ControlToValidate="txtEmail" Display="Dynamic"
+          ErrorMessage="El email es obligatorio." />
+      <asp:RegularExpressionValidator ID="valEmail" runat="server"
+          ControlToValidate="txtEmail" Display="Dynamic"
+          ValidationExpression="^[^@\s]+@[^@\s]+\.[^@\s]+$"
+          ErrorMessage="Email inválido." />
+    </div>
+
+    <fieldset>
+      <legend style="padding:0 6px;color:var(--ink-soft)">Categorías</legend>
+      <label><asp:CheckBox ID="chkReco"  runat="server" /> Libros recomendados</label><br/>
+      <label><asp:CheckBox ID="chkLaunch" runat="server" /> Nuevos lanzamientos</label><br/>
+      <label><asp:CheckBox ID="chkEvtPres" runat="server" /> Eventos presenciales</label><br/>
+      <label><asp:CheckBox ID="chkEvtVirt" runat="server" /> Eventos virtuales</label><br/>
+      <asp:CustomValidator ID="valCats" runat="server" Display="Dynamic"
+          OnServerValidate="valCats_ServerValidate"
+          ErrorMessage="Elegí al menos una categoría." />
+    </fieldset>
+
+    <div class="nl-actions">
+      <asp:Button ID="btnSubscribe" runat="server" CssClass="btn"
+                  Text="Suscribirme" OnClick="btnSubscribe_Click" />
+      <asp:Label ID="lblResult" runat="server" />
+    </div>
+
+    <asp:ValidationSummary ID="vs" runat="server" CssClass="meta" />
+  </asp:Panel>
+
+  <!-- Estado: YA suscripto -->
+  <asp:Panel ID="pnlOk" runat="server" Visible="false" CssClass="nl-wrap">
+    <h2>Suscripción</h2>
+    <div class="meta">✅ Ya estás suscripto al newsletter.</div>
+    <div class="nl-actions">
+      <asp:Button ID="btnUnsub" runat="server" CssClass="btn ghost"
+                  Text="Cancelar suscripción" OnClick="btnUnsub_Click"
+                  OnClientClick="return confirm('¿Cancelar tu suscripción?');" />
+      <asp:Label ID="lblUnsub" runat="server" />
+    </div>
+  </asp:Panel>
+</div>
+
+
 
   <asp:Repeater ID="rptNews" runat="server">
     <HeaderTemplate><div class="news-list"></HeaderTemplate>

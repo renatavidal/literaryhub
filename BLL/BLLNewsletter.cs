@@ -35,8 +35,30 @@ namespace BLL
                 IsPublished = publicar
             });
         }
+        public void Subscribe(int? userId, string email,
+                              bool prefReco, bool prefLaunch,
+                              bool prefEvtPres, bool prefEvtVirt)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentException("Email requerido.", nameof(email));
 
-        public void Eliminar(int id) => _dal.Delete(id);
+            _dal.SubscribeUpsert(userId, email, prefReco, prefLaunch, prefEvtPres, prefEvtVirt);
+        }
+
+        public bool IsSubscribed(int? userId, string email)
+        {
+            return _dal.GetStatus(userId, email)?.IsActive ?? false;
+        }
+
+        public void Unsubscribe(int? userId, string email)
+        {
+            if (string.IsNullOrWhiteSpace(email) && userId == null)
+                throw new ArgumentException("Se requiere email o usuario.");
+
+            _dal.Unsubscribe(userId, email);
+        }
+
+    public void Eliminar(int id) => _dal.Delete(id);
 
         public IList<BENewsletter> ListarPublicados(int pageIndex, int pageSize, out int total)
             => _dal.ListPublished(pageIndex, pageSize, out total);

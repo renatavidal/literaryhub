@@ -39,7 +39,44 @@ namespace MPP
             int newId = _db.LeerCantidad("dbo.usp_Newsletter_Insert", h);
             return newId;
         }
+        public void SubscribeUpsert(int? userId, string email,
+                                     bool prefReco, bool prefLaunch,
+                                     bool prefEvtPres, bool prefEvtVirt)
+        {
+            var h = new Hashtable {
+                {"@UserId", (object)userId ?? DBNull.Value},
+                {"@Email", email},
+                {"@PrefReco", prefReco},
+                {"@PrefLaunch", prefLaunch},
+                {"@PrefEvtPres", prefEvtPres},
+                {"@PrefEvtVirt", prefEvtVirt}
+            };
+            _db.Escribir("sp_Newsletter_SubscribeUpsert", h);
+        }
+        public class SubStatus
+        {
+            public bool IsActive { get; set; }
+        }
 
+        public SubStatus GetStatus(int? userId, string email)
+        {
+            var h = new Hashtable {
+                {"@UserId", (object)userId ?? DBNull.Value},
+                {"@Email",  (object)email  ?? DBNull.Value}
+            };
+            var dt = _db.Leer("sp_Newsletter_GetStatus", h);
+            if (dt.Rows.Count == 0) return new SubStatus { IsActive = false };
+            return new SubStatus { IsActive = Convert.ToBoolean(dt.Rows[0]["IsActive"]) };
+        }
+
+        public void Unsubscribe(int? userId, string email)
+        {
+            var h = new Hashtable {
+                {"@UserId", (object)userId ?? DBNull.Value},
+                {"@Email",  (object)email  ?? DBNull.Value}
+            };
+            _db.Escribir("sp_Newsletter_Unsubscribe", h);
+        }
         public void Delete(int id)
         {
             var h = new Hashtable { { "@Id", id } };

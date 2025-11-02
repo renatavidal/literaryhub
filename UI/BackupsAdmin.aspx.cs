@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Web.UI;
 using BLL;
+using BE;
 
-public partial class BackupsAdmin : Page
+public partial class BackupsAdmin : Perm_BackupRestorePage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsAdmin()) { Response.Redirect("~/AccessDenied.aspx"); return; }
         if (!IsPostBack) Bind();
     }
 
@@ -46,9 +46,7 @@ public partial class BackupsAdmin : Page
             int id; if (!int.TryParse(Convert.ToString(e.CommandArgument), out id)) return;
             try
             {
-                // IMPORTANTE: esto corta todas las conexiones (incluida esta).
                 new BLLBackup().Restore(id);
-                // Si llega acá, el restore terminó (posible que esta respuesta no se entregue).
                 lblMsg.Text = "Restore completado.";
             }
             catch (Exception ex) { lblMsg.Text = "Error: " + ex.Message; }

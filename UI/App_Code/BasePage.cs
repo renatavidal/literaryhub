@@ -107,13 +107,72 @@ public abstract class AdminPage : VerifiedUserPage
 {
     protected override string[] RequiredRoles { get { return new[] { "Admin" }; } }
 }
+public abstract class ReaderPage : AuthenticatedPage
+{ 
+    protected override bool RequireLogin { get { return true; } } 
+}  
 
-public abstract class AdminOrEditorPage : VerifiedUserPage
+
+// =======================================
+// =====  PÁGINAS CON PERMISOS  =========
+// =======================================
+
+// 1) Administrar usuarios
+public abstract class Perm_AdminUsuariosPage : VerifiedUserPage
 {
-    protected override string[] RequiredRoles { get { return new[] { "Admin", "Editor" }; } }
+    protected override string[] RequiredRoles { get { return new[] { "Administrar usuarios" }; } }
 }
 
-public abstract class ReaderPage : VerifiedUserPage
+// 2) Administrar suscripciones
+public abstract class Perm_AdminSuscripcionesPage : VerifiedUserPage
 {
-    protected override string[] RequiredRoles { get { return new[] { "Reader", "Admin", "Editor" }; } }
+    protected override string[] RequiredRoles { get { return new[] { "Administrar suscripciones" }; } }
+}
+
+// 3) Administrar encuestas
+public abstract class Perm_AdminEncuestasPage : VerifiedUserPage
+{
+    protected override string[] RequiredRoles { get { return new[] { "Administrar encuestas" }; } }
+}
+
+// 4) Ver reportes
+public abstract class Perm_VerReportesPage : VerifiedUserPage
+{
+    protected override string[] RequiredRoles { get { return new[] { "Ver reportes" }; } }
+}
+
+// 5) Administrar finanzas
+public abstract class Perm_AdminFinanzasPage : VerifiedUserPage
+{
+    protected override string[] RequiredRoles { get { return new[] { "Administrar finanzas" }; } }
+}
+
+// 6) Administrar publicidades
+public abstract class Perm_AdminPublicidadesPage : VerifiedUserPage
+{
+    protected override string[] RequiredRoles { get { return new[] { "Administrar publicidades" }; } }
+}
+
+// 7) Soporte / Chat
+public abstract class Perm_SoporteChatPage : VerifiedUserPage
+{
+    protected override string[] RequiredRoles { get { return new[] { "Soporte/Chat" }; } }
+}
+
+// 8) Backups y restore
+public abstract class Perm_BackupRestorePage : VerifiedUserPage
+{
+    protected override string[] RequiredRoles { get { return new[] { "Backups y restore" }; } }
+}
+
+// 9) Bitácora administrativa
+public abstract class Perm_AdminBitacoraPage : VerifiedUserPage
+{
+    protected override string[] RequiredRoles { get { return new[] { "AdminBitacora" }; } }
+}
+
+// 10) Administrar Newsletter
+public abstract class Perm_AdminNewsletterPage : VerifiedUserPage
+{
+    protected override string[] RequiredRoles { get { return new[] { "Administrar Newsletter" }; } }
 }

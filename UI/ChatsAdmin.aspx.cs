@@ -5,11 +5,10 @@ using System.Web.Script.Services;
 using BLL;
 using BE;
 
-public partial class ChatsAdmin : AdminPage
+public partial class ChatsAdmin : Perm_SoporteChatPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsAdmin()) Response.Redirect("/AccessDenied.aspx");
     }
     private bool IsAdmin()
     {

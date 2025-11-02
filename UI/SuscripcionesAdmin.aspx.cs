@@ -3,7 +3,7 @@ using System.Globalization;
 using BLL;
 using BE;
 
-public partial class SuscripcionesAdmin : System.Web.UI.Page
+public partial class SuscripcionesAdmin : Perm_AdminSuscripcionesPage
 {
     BLLUsuario _bll = new BLLUsuario();
     protected UserSession CurrentUser
@@ -18,12 +18,7 @@ public partial class SuscripcionesAdmin : System.Web.UI.Page
     {
         var u = CurrentUser;
         bool esAdmin = u != null && u.IsInRole("Admin");
-        if (!esAdmin)
-        {
-            Response.Redirect("/AccessDenied.aspx");
-            return;
-        }
-
+       
         if (!IsPostBack) BindGV();
     }
 

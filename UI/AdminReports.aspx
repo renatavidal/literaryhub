@@ -44,7 +44,7 @@
     <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
       <label>Desde <input type="date" id="revFrom"></label>
       <label>Hasta <input type="date" id="revTo"></label>
-      <label>Moneda <input id="revCurr" placeholder="USD (vacío = todas)" style="width:100px"></label>
+      <label>Moneda <input id="revCurr" placeholder="USD (vacío = todas)" style="width:100px" maxlength="3" pattern="^[A-Za-z]{3}$" title="Código de moneda de 3 letras"></label>
       <button type="button" id="btnLoadRev">Cargar</button>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px">

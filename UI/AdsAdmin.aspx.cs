@@ -4,11 +4,10 @@ using System.Web.UI;
 using BLL;
 using BE;
 
-public partial class AdsAdmin : Page
+public partial class AdsAdmin : Perm_AdminPublicidadesPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsAdmin()) { Response.Redirect("~/AccessDenied.aspx"); return; }
         if (!IsPostBack) BindGrid();
     }
 

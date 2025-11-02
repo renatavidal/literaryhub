@@ -22,7 +22,9 @@
       <!-- Paso 1: pedir email -->
       <asp:Panel ID="pnlStep1" runat="server">
         <div class="row">
-          <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" placeholder="Tu email" />
+          <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" placeholder="Tu email" MaxLength="120" />
+          <asp:RequiredFieldValidator ID="reqEmail1" runat="server" ControlToValidate="txtEmail" ErrorMessage="Email requerido." Display="Dynamic" />
+          <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="txtEmail" ValidationExpression="^[^\s@]+@[^\s@]+\.[^\s@]+$" ErrorMessage="Email inválido." Display="Dynamic" />
         </div>
         <asp:Button ID="btnSendCode" runat="server" Text="<%$ Resources: Forgot_SendCode %>" CssClass="btn" OnClick="btnSendCode_Click" />
         <asp:Label ID="lblMsg1" runat="server" CssClass="msg"></asp:Label>

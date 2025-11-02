@@ -36,6 +36,7 @@ namespace MPP
             {
                 hs["@CardBrand"] = (object)p.CardBrand ?? DBNull.Value;
                 hs["@CardLast4"] = (object)p.Last4 ?? DBNull.Value;
+                hs["@CardLast4"] = (object)p.Last4 ?? DBNull.Value;
                 if (p.PanEncrypted != null) hs["@PanEncrypted"] = p.PanEncrypted;   // byte[]
                 if (p.PanIV != null) hs["@PanIV"] = p.PanIV;          // byte[]
             }
@@ -43,23 +44,19 @@ namespace MPP
             // Solo si es Nota de Crédito
             if (string.Equals(p.Method, "CREDIT_NOTE", StringComparison.OrdinalIgnoreCase))
             {
-                // RefId INT (NoteId)
-                int noteId;
-                if (!int.TryParse(Convert.ToString(p.RefId), out noteId))
-                    throw new Exception("Nota de crédito inválida.");
-                hs["@RefId"] = noteId;
+                hs["@RefId"] = p.RefId;
             }
 
             if (!_db.Escribir("dbo.usp_Payment_Register", hs))
                 throw new Exception("No se pudo registrar el pago.");
         }
 
-        public decimal GetCreditNoteRemainingByUser(int noteId, int userId)
+        public decimal GetCreditNoteRemainingByUser(string noteId, int userId)
         {
             var dt = _db.Leer("dbo.s_Note_Remaining_ByUser",
                 new Hashtable { { "@NoteId", noteId }, { "@UserId", userId } });
-            if (dt.Rows.Count == 0 || dt.Rows[0][0] == DBNull.Value) return 0m;
-            return Convert.ToDecimal(dt.Rows[0][0]);
+            if (dt.Rows.Count == 0 || dt.Rows[0]["Remaining"] == DBNull.Value) return 0m;
+            return Convert.ToDecimal(dt.Rows[0]["Remaining"]);
         }
 
         public void ConfirmOrder(int orderId)

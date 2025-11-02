@@ -1,7 +1,10 @@
 ﻿// BLL/BLLPermissions.cs
 using System;
+using System.Collections.Generic;
+using System.Collections;
 using System.Data;
 using MPP;
+using BE;
 
 namespace BLL
 {
@@ -17,5 +20,13 @@ namespace BLL
         public DataTable AdminUsers() => _mpp.AdminUsers();
         public void AdminGrantRole(int userId, int roleId) => _mpp.AdminGrantRole(userId, roleId);
         public void AdminRevokeRole(int userId, int roleId) => _mpp.AdminRevokeRole(userId, roleId);
+        public int CreateRole(string nombre)
+        {
+            if (string.IsNullOrWhiteSpace(nombre)) throw new ArgumentException("Nombre de rol inválido.");
+            return _mpp.Role_Crear(nombre.Trim());
+        }
+        public System.Data.DataTable Users_Listar() => _mpp.Users_Listar();
+
+        public System.Data.DataTable Usuarios_Buscar(string texto) => _mpp.Usuarios_Buscar(texto);
     }
 }

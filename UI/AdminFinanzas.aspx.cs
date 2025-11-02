@@ -5,7 +5,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI;
 using BLL;
 
-public partial class AdminFinanzas : System.Web.UI.Page
+public partial class AdminFinanzas : Perm_AdminFinanzasPage
 {
     private readonly BLLFinanzasAdmin _bll = new BLLFinanzasAdmin();
     private readonly BLLUsuario _bllUsuario = new BLLUsuario();

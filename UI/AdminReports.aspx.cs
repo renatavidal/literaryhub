@@ -5,15 +5,11 @@ using System.Web.Services;
 using System.Web.Script.Services;
 using BLL;
 
-public partial class AdminReports : System.Web.UI.Page
+public partial class AdminReports : Perm_VerReportesPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsAdmin())
-        {
-            Response.Redirect("~/AccessDenied.aspx");
-            return;
-        }
+      
     }
 
     private bool IsAdmin()

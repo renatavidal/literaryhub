@@ -5,10 +5,8 @@ using BE;
 using BLL;
 using Newtonsoft.Json.Linq;
 
-// Si usás las páginas base centralizadas, descomentá la línea de abajo y
-// cambiá Page por AuthenticatedPage en la herencia.
-// public partial class VerifyEmailPending : AuthenticatedPage
-public partial class VerifyEmailPending : ReaderPage
+
+public partial class VerifyEmailPending : PublicPage
 {
     protected override bool RequireLogin
     {

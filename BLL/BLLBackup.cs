@@ -22,7 +22,7 @@ namespace BLL
         {
             var b = _mpp.GetById(backupId);
             if (b == null) throw new Exception("Backup inexistente.");
-            _mpp.Restore(DbName, b.FilePath);
+            _mpp.RestaurarDB(DbName, b.FilePath);
         }
     }
 }

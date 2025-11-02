@@ -111,6 +111,42 @@ namespace DAL
 
 
         }
+        public bool RestaurarDB(string dbName, string bakPath)
+        {
+            var csb = new SqlConnectionStringBuilder(oCnn.ConnectionString)
+            {
+                InitialCatalog = "master"
+            };
+
+            try
+            {
+                using (var cnn = new SqlConnection(csb.ConnectionString))
+                using (var cmd = new SqlCommand("dbo.usp_AppBackup_Restore", cnn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@DbName", dbName);
+                    cmd.Parameters.AddWithValue("@FilePath", bakPath);
+
+                    cnn.Open();
+                    cmd.CommandTimeout = 700; 
+                    cmd.ExecuteNonQuery();
+                }
+
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error SQL: {ex.Message}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error general: {ex.Message}");
+                throw;
+            }
+        }
+
+
         public bool Escribir(string consulta, Hashtable Hdatos)
         {
 

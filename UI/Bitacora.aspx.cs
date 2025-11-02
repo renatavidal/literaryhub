@@ -8,7 +8,7 @@ using System.Web;
 using BE;
 using BLL;
 
-public partial class Bitacora : System.Web.UI.Page
+public partial class Bitacora : Perm_AdminBitacoraPage
 {
     protected UserSession CurrentUser
     {
@@ -22,7 +22,7 @@ public partial class Bitacora : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        ProtegerSoloAdmin();
+        
         if (!IsPostBack)
         {
             Buscar();

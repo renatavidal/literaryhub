@@ -7,7 +7,7 @@ using System.Web.Script.Services;
 using BLL;
 using BE;
 
-public partial class EncuestasAdmin : AdminPage
+public partial class EncuestasAdmin : Perm_AdminEncuestasPage
 {
   
 

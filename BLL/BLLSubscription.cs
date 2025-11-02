@@ -13,7 +13,7 @@ namespace BLL
 
         public BLLSubscription(IEmailService mailer) { _mailer = mailer; }
         public BLLSubscription() { }
-        public decimal GetCreditNoteRemainingByUser(int noteId, int userId)
+        public decimal GetCreditNoteRemainingByUser(string noteId, int userId)
         {
             return _mpp.GetCreditNoteRemainingByUser(noteId, userId);
         }

@@ -2,13 +2,13 @@
 using System.IO;
 using BLL;
 
-public partial class NewsletterAdmin : ReaderPage
+public partial class NewsletterAdmin : Perm_AdminNewsletterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         // Solo Admin
         var auth = Session["auth"] as UserSession;
-        if (auth == null || !auth.IsInRole("Admin"))
+        if (auth == null )
         {
             Response.Redirect("~/AccessDenied.aspx");
             return;

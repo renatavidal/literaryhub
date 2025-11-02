@@ -7,10 +7,12 @@
   <div class="card" style="margin-bottom:14px">
     <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
       <label>Nombre / etiqueta:
-        <asp:TextBox ID="txtLabel" runat="server" CssClass="input" />
+        <asp:TextBox ID="txtLabel" runat="server" CssClass="input" MaxLength="120" />
       </label>
+      <asp:RegularExpressionValidator runat="server" ControlToValidate="txtLabel" ValidationExpression="^[\s\S]{0,120}$" Display="Dynamic" CssClass="hint" ErrorMessage="Max 120 caracteres." />
       <asp:Button ID="btnCreate" runat="server" Text="Crear backup" CssClass="btn"
                   OnClick="btnCreate_Click" />
+      <asp:RequiredFieldValidator runat="server" ControlToValidate="txtLabel" Display="Dynamic" CssClass="hint" ErrorMessage="Nombre/etiqueta requerido." />
       <asp:Label ID="lblMsg" runat="server" />
     </div>
     <small>Se guarda en <code><%: System.Configuration.ConfigurationManager.AppSettings["BackupFolder"] %></code></small>
@@ -29,7 +31,7 @@
         <asp:TemplateField HeaderText="">
           <ItemTemplate>
             <asp:LinkButton runat="server" CommandName="restore" CommandArgument='<%# Eval("Id") %>'
-              Text="Restore" OnClientClick="return confirm('Esto restaurará la base y cortará conexiones. ¿Continuar?');" />
+              Text="Restore" />
           </ItemTemplate>
         </asp:TemplateField>
       </Columns>

@@ -4,11 +4,10 @@ using System.Web.UI.WebControls;
 using BLL;
 using BE;
 
-public partial class AdministrarUsuarios : AdminPage
+public partial class AdministrarUsuarios : Perm_AdminUsuariosPage
 {
     protected override bool RequireLogin { get { return true; } }
     protected override bool RequireVerifiedEmail { get { return true; } }
-    protected override string[] RequiredRoles { get { return new[] { "Admin" }; } } // si usás roles
 
     protected void Page_Load(object sender, EventArgs e)
     {

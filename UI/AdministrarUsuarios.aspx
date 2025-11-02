@@ -20,7 +20,8 @@
     <div class="card">
       <div class="row">
         <label for="txtTexto">Nombre / Apellido / Email</label>
-        <asp:TextBox ID="txtTexto" runat="server" CssClass="input" />
+        <asp:TextBox ID="txtTexto" runat="server" CssClass="input" MaxLength="120" />
+        <asp:RegularExpressionValidator runat="server" ControlToValidate="txtTexto" ValidationExpression="^[\s\S]{0,120}$" Display="Dynamic" CssClass="hint" ErrorMessage="Max 120 caracteres." />
         <asp:Button ID="btnBuscar" runat="server" Text="<%$ Resources: AdminUsers_Search %>" CssClass="btn" OnClick="btnBuscar_Click" />
       </div>
       <asp:Label ID="lblMsg" runat="server" CssClass="muted" />

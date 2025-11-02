@@ -42,7 +42,7 @@
       <!-- Tarjeta -->
         <div class="row">
           <label>Monto con tarjeta (USD)</label>
-          <asp:TextBox ID="txtCardAmount" runat="server" CssClass="input" />
+          <asp:TextBox ID="txtCardAmount" runat="server" CssClass="input" MaxLength="10" />
           <asp:RegularExpressionValidator ID="rxCard" runat="server"
             ControlToValidate="txtCardAmount" ValidationGroup="chk"
             ValidationExpression="^\d{1,7}(\.\d{1,2})?$"
@@ -66,15 +66,12 @@
        <div class="grid2" style="margin-top:8px">
   <div class="row">
     <label>Id de Nota</label>
-    <asp:TextBox ID="txtNcId" runat="server" CssClass="input" />
-    <asp:RegularExpressionValidator ID="rxNcId" runat="server"
-  ControlToValidate="txtNcId" ValidationGroup="chk"
-  ValidationExpression="^\d+$" Display="Dynamic" CssClass="hint"
-  ErrorMessage="Id de NC inválido." />
+    <asp:TextBox ID="txtNcId" runat="server" CssClass="input" MaxLength="100" />
+   
   </div>
   <div class="row">
     <label>Monto a usar (USD)</label>
-    <asp:TextBox ID="txtNcAmount" runat="server" CssClass="input" />
+    <asp:TextBox ID="txtNcAmount" runat="server" CssClass="input" MaxLength="10" />
     <asp:RegularExpressionValidator ID="rxNc" runat="server"
       ControlToValidate="txtNcAmount" ValidationGroup="chk"
       ValidationExpression="^\d{1,7}(\.\d{1,2})?$"
@@ -103,7 +100,7 @@
       <asp:CheckBox ID="chkAccount" runat="server" Text="Descontar de mi saldo" />
     <div class="row" style="margin-top:8px">
   <label>Monto a descontar (USD)</label>
-  <asp:TextBox ID="txtAccountAmount" runat="server" CssClass="input" />
+  <asp:TextBox ID="txtAccountAmount" runat="server" CssClass="input" MaxLength="10" />
   <asp:RegularExpressionValidator ID="rxAcc" runat="server"
     ControlToValidate="txtAccountAmount" ValidationGroup="chk"
     ValidationExpression="^\d{1,7}(\.\d{1,2})?$"
@@ -131,10 +128,10 @@
 <asp:ValidationSummary ID="valSummary" runat="server" ValidationGroup="chk" CssClass="hint" />
 
     <div>
-      <!-- Si aún no tenés code-behind, dejá este botón sin OnClick y luego lo conectás -->
       <asp:Button ID="btnPagar" runat="server" Text="Pagar" CssClass="btn"
             OnClick="btnPagar_Click" />
       <asp:Literal ID="litMsg" runat="server" />
+        <asp:Label ID="outputmessage" runat="server" />
     </div>
 
   </div>

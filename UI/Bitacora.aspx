@@ -159,7 +159,8 @@
     </div>
     <div>
       <label><%: GetLocalResourceObject("Audit_Filter_Action") %></label>
-      <asp:TextBox ID="txtTexto" runat="server" CssClass="input" placeholder="Buscar en descripción..." />
+      <asp:TextBox ID="txtTexto" runat="server" CssClass="input" placeholder="Buscar en descripción..." MaxLength="120" />
+      <asp:RegularExpressionValidator runat="server" ControlToValidate="txtTexto" ValidationExpression="^[\s\S]{0,120}$" Display="Dynamic" CssClass="hint" ErrorMessage="Max 120 caracteres." />
     </div>
   </div>
 

@@ -47,7 +47,7 @@
         </div>
         <div class="row">
           <label>Monto (USD)</label>
-          <asp:TextBox ID="txtNoteAmount" runat="server" CssClass="input" />
+          <asp:TextBox ID="txtNoteAmount" runat="server" CssClass="input" MaxLength="10" />
           <asp:RegularExpressionValidator runat="server" ControlToValidate="txtNoteAmount"
             ValidationExpression="^\d{1,7}(\.\d{1,2})?$" Display="Dynamic" CssClass="hint"
             ErrorMessage="Monto inválido (hasta 2 decimales)." />
@@ -56,6 +56,8 @@
       <div class="row" style="margin-top:8px">
         <label>Motivo</label>
         <asp:TextBox ID="txtNoteReason" runat="server" CssClass="input" MaxLength="120" />
+        <asp:RequiredFieldValidator runat="server" ControlToValidate="txtNoteReason" Display="Dynamic" CssClass="hint" ErrorMessage="Motivo requerido." />
+        <asp:RegularExpressionValidator runat="server" ControlToValidate="txtNoteReason" ValidationExpression="^[\s\S]{0,120}$" Display="Dynamic" CssClass="hint" ErrorMessage="Max 120 caracteres." />
       </div>
       <asp:Button ID="btnCrearNota" runat="server" Text="Crear Nota" CssClass="btn" OnClick="btnCrearNota_Click" />
     </div>
@@ -83,7 +85,7 @@
       <div class="grid2">
         <div class="row">
           <label>Monto (positivo acredita / negativo debita)</label>
-          <asp:TextBox ID="txtMovAmount" runat="server" CssClass="input" />
+          <asp:TextBox ID="txtMovAmount" runat="server" CssClass="input" MaxLength="11" />
           <asp:RegularExpressionValidator runat="server" ControlToValidate="txtMovAmount"
             ValidationExpression="^-?\d{1,7}(\.\d{1,2})?$" Display="Dynamic" CssClass="hint"
             ErrorMessage="Monto inválido (use signo - para debitar)." />
@@ -91,6 +93,8 @@
         <div class="row">
           <label>Concepto</label>
           <asp:TextBox ID="txtMovConcept" runat="server" CssClass="input" MaxLength="120" />
+          <asp:RequiredFieldValidator runat="server" ControlToValidate="txtMovConcept" Display="Dynamic" CssClass="hint" ErrorMessage="Concepto requerido." />
+          <asp:RegularExpressionValidator runat="server" ControlToValidate="txtMovConcept" ValidationExpression="^[\s\S]{0,120}$" Display="Dynamic" CssClass="hint" ErrorMessage="Max 120 caracteres." />
         </div>
       </div>
       <asp:Button ID="btnAgregarMov" runat="server" Text="Agregar movimiento" CssClass="btn" OnClick="btnAgregarMov_Click" />

@@ -66,11 +66,11 @@ namespace MPP
             };
         }
 
-        public void Restore(string dbName, string filePath)
+        public void RestaurarDB(string dbName, string filePath)
         {
             var h = new Hashtable { { "@DbName", dbName }, { "@FilePath", filePath } };
             // 👇 llamado por nombre de 3 partes => se ejecuta en master, pero usando DAL
-            _datos.Escribir("[master].dbo.usp_AppBackup_Restore", h);
+            _datos.RestaurarDB( dbName, filePath);
         }
     }
 }

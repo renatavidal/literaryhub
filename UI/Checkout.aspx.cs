@@ -11,6 +11,7 @@ public partial class Checkout : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        outputmessage.Visible = false;
         if (!IsPostBack)
         {
             string code = Request.QueryString["plan"];
@@ -79,16 +80,15 @@ public partial class Checkout : System.Web.UI.Page
     {
         if (!chkNC.Checked) { args.IsValid = true; return; }
 
-        int noteId; decimal req;
-        if (!int.TryParse(txtNcId.Text, out noteId) ||
+        decimal req;
+        if (string.IsNullOrWhiteSpace(txtNcId.Text) ||
             !TryParseAmount(txtNcAmount.Text, out req) || req <= 0m)
         { args.IsValid = false; return; }
 
         var auth = Session["auth"] as UserSession;
         if (auth == null) { args.IsValid = false; return; }
 
-        var rem = _bll.GetCreditNoteRemainingByUser(noteId, auth.UserId);
-        // Si la NC no es del usuario, rem será 0 → invalida
+        var rem = _bll.GetCreditNoteRemainingByUser(txtNcId.Text, auth.UserId);
         args.IsValid = (req <= rem && rem > 0m);
     }
 
@@ -101,7 +101,6 @@ public partial class Checkout : System.Web.UI.Page
         args.IsValid = (req <= bal);
     }
 
-    // ===== Custom validators (se ejecutan ANTES de ir a BD) =====
 
    
 
@@ -111,7 +110,6 @@ public partial class Checkout : System.Web.UI.Page
         valCardAmt.Enabled = chkCard.Checked;
 
         rxNc.Enabled = chkNC.Checked;
-        rxNcId.Enabled = chkNC.Checked;
         valNcIdRequired.Enabled = chkNC.Checked;
         valNcAmt.Enabled = chkNC.Checked;
         valNcFunds.Enabled = chkNC.Checked;
@@ -151,7 +149,11 @@ public partial class Checkout : System.Web.UI.Page
         }
 
         int orderId = _bll.Checkout(auth.UserId, planCode, currency, splits, auth.Email);
-       
+
+        outputmessage.Visible = true;
+        outputmessage.Text = "Orden exitosa:  " + orderId.ToString();
+
+
     }
 
 }

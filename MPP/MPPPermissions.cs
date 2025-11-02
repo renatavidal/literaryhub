@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using DAL;
+using BE;
 
 namespace MPP
 {
@@ -26,5 +27,21 @@ namespace MPP
           => _db.Escribir("usp_AdminUser_GrantRole", new Hashtable { { "@UserId", userId }, { "@RoleId", roleId } });
         public void AdminRevokeRole(int userId, int roleId)
           => _db.Escribir("usp_AdminUser_RevokeRole", new Hashtable { { "@UserId", userId }, { "@RoleId", roleId } });
+        public int Role_Crear(string nombre)
+        {
+            var h = new Hashtable { { "@Nombre", nombre } };
+            return _db.LeerCantidad("sp_Role_Insert", h);
+        }
+        public System.Data.DataTable Users_Listar()
+        {
+            var h = new System.Collections.Hashtable { { "@Texto", DBNull.Value } };
+            return _db.Leer("s_usuarios_buscar", h); // NULL => TODOS
+        }
+
+        public System.Data.DataTable Usuarios_Buscar(string texto)
+        {
+            var h = new System.Collections.Hashtable { { "@Texto", (object)texto ?? DBNull.Value } };
+            return _db.Leer("s_usuarios_buscar", h);
+        }
     }
 }

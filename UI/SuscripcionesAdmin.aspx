@@ -45,13 +45,29 @@
       </asp:TemplateField>
       <asp:TemplateField HeaderText="<%$ Resources: SA_PriceUSD %>">
         <ItemTemplate>$<%# Eval("PrecioUSD","{0:0.##}") %></ItemTemplate>
-        <EditItemTemplate><asp:TextBox ID="txtPrecio" runat="server" Text='<%# Bind("PrecioUSD","{0:0.##}") %>' Width="80" /></EditItemTemplate>
-        <FooterTemplate><asp:TextBox ID="ftPrecio" runat="server" Width="80" Text="0" /></FooterTemplate>
+        <EditItemTemplate>
+          <asp:TextBox ID="txtPrecio" runat="server" Text='<%# Bind("PrecioUSD","{0:0.##}") %>' Width="80" MaxLength="10" />
+          <asp:RequiredFieldValidator runat="server" ControlToValidate="txtPrecio" Display="Dynamic" CssClass="hint" ErrorMessage="Precio requerido." />
+          <asp:RegularExpressionValidator runat="server" ControlToValidate="txtPrecio" ValidationExpression="^\d{1,7}(\.\d{1,2})?$" Display="Dynamic" CssClass="hint" ErrorMessage="Precio inválido (hasta 2 decimales)." />
+        </EditItemTemplate>
+        <FooterTemplate>
+          <asp:TextBox ID="ftPrecio" runat="server" Width="80" Text="0" MaxLength="10" />
+          <asp:RequiredFieldValidator runat="server" ControlToValidate="ftPrecio" Display="Dynamic" CssClass="hint" ErrorMessage="Precio requerido." />
+          <asp:RegularExpressionValidator runat="server" ControlToValidate="ftPrecio" ValidationExpression="^\d{1,7}(\.\d{1,2})?$" Display="Dynamic" CssClass="hint" ErrorMessage="Precio inválido (hasta 2 decimales)." />
+        </FooterTemplate>
       </asp:TemplateField>
       <asp:TemplateField HeaderText="<%$ Resources: SA_Order %>">
         <ItemTemplate><%# Eval("Orden") %></ItemTemplate>
-        <EditItemTemplate><asp:TextBox ID="txtOrden" runat="server" Text='<%# Bind("Orden") %>' Width="60" /></EditItemTemplate>
-        <FooterTemplate><asp:TextBox ID="ftOrden" runat="server" Width="60" Text="0" /></FooterTemplate>
+        <EditItemTemplate>
+          <asp:TextBox ID="txtOrden" runat="server" Text='<%# Bind("Orden") %>' Width="60" MaxLength="6" />
+          <asp:RequiredFieldValidator runat="server" ControlToValidate="txtOrden" Display="Dynamic" CssClass="hint" ErrorMessage="Orden requerido." />
+          <asp:RegularExpressionValidator runat="server" ControlToValidate="txtOrden" ValidationExpression="^\d{1,6}$" Display="Dynamic" CssClass="hint" ErrorMessage="Orden inválido (1-6 dígitos)." />
+        </EditItemTemplate>
+        <FooterTemplate>
+          <asp:TextBox ID="ftOrden" runat="server" Width="60" Text="0" MaxLength="6" />
+          <asp:RequiredFieldValidator runat="server" ControlToValidate="ftOrden" Display="Dynamic" CssClass="hint" ErrorMessage="Orden requerido." />
+          <asp:RegularExpressionValidator runat="server" ControlToValidate="ftOrden" ValidationExpression="^\d{1,6}$" Display="Dynamic" CssClass="hint" ErrorMessage="Orden inválido (1-6 dígitos)." />
+        </FooterTemplate>
       </asp:TemplateField>
       <asp:CheckBoxField DataField="EsDestacado" HeaderText="<%$ Resources: SA_Featured %>" />
       <asp:CheckBoxField DataField="Activo" HeaderText="<%$ Resources: SA_Active %>" />

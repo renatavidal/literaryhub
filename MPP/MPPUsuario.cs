@@ -70,7 +70,7 @@ namespace MPP
 
             var roles = new string[dt.Rows.Count];
             for (int i = 0; i < dt.Rows.Count; i++)
-                roles[i] = Convert.ToString(dt.Rows[i]["Rol"]);
+                roles[i] = Convert.ToString(dt.Rows[i]["PermName"]);
             return roles;
         }
 

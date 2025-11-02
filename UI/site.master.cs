@@ -35,21 +35,21 @@ public partial class Site : MasterPage
         pnlAnon.Visible = (sess == null);
         pnlAuth.Visible = (sess != null);
 
-        lnkBitacora.Visible = UsuarioActualEsAdmin();
+        lnkBitacora.Visible = UsuarioActualTienePermiso("AdminBitacora");
         HyperLink.Visible = (sess != null);
-        HyperLink3.Visible = UsuarioActualEsAdmin();
+        HyperLink3.Visible = UsuarioActualTienePermiso("Administrar suscripciones");
         HyperLink5.Visible = (sess != null);
-        HyperLink8.Visible = UsuarioActualEsAdmin();
+        HyperLink8.Visible = UsuarioActualTienePermiso("Administrar usuarios");
         HyperLink1.Visible = (sess != null);
-        HyperLink2.Visible = UsuarioActualEsAdmin();
-        HyperLink4.Visible = UsuarioActualEsAdmin();
-        HyperLink7.Visible = UsuarioActualEsAdmin();
-        HyperLink9.Visible = UsuarioActualEsAdmin();
-        HyperLink10.Visible = UsuarioActualEsAdmin();
-        HyperLink12.Visible = UsuarioActualEsAdmin();
-        lnkBackups.Visible = UsuarioActualEsAdmin();
-        HyperLink15.Visible = UsuarioActualEsAdmin();
-        HyperLink11.Visible = sess != null && !UsuarioActualEsAdmin();
+        HyperLink2.Visible = UsuarioActualTienePermiso("Administrar Newsletter");
+        HyperLink4.Visible = UsuarioActualTienePermiso("Administrar finanzas");
+        HyperLink7.Visible = UsuarioActualTienePermiso("Administrar encuestas");
+        HyperLink9.Visible = UsuarioActualTienePermiso("Ver reportes");
+        HyperLink10.Visible = UsuarioActualTienePermiso("Administrar publicidades");
+        HyperLink12.Visible = UsuarioActualTienePermiso("Soporte/Chat");
+        lnkBackups.Visible = UsuarioActualTienePermiso("Backups y restore");
+        HyperLink15.Visible = UsuarioActualTienePermiso("Administrar usuarios");
+        HyperLink11.Visible = sess != null && !UsuarioActualTienePermiso("Administrar usuarios");
         upSearch.Visible = sess != null;
 
         if (sess != null)
@@ -75,15 +75,54 @@ public partial class Site : MasterPage
         var cookie = new HttpCookie("lh-lang", lang) { Path = "/", Expires = DateTime.UtcNow.AddYears(1) };
         Response.Cookies.Add(cookie);
         Session["lh-lang"] = lang;
+        SetGoogTransCookie("/auto/" + lang);
+        SetGoogTransCookie("/es/" + lang);
+    }
+    private void SetGoogTransCookie(string value)
+    {
+        var g1 = new HttpCookie("googtrans", value)
+        {
+            Path = "/",
+            Expires = DateTime.UtcNow.AddYears(1)
+        };
+        Response.Cookies.Add(g1);
+
     }
 
     private void RegisterApplyLanguageScript(string lang)
     {
-        var js = "window.lhApplyGoogleLang && window.lhApplyGoogleLang('"+lang+"');";
+        var js = "window.lhApplyGoogleLang && window.lhApplyGoogleLang('"+lang+ "');" +
+        "window.lhApplyGoogleLang && window.lhApplyGoogleLang('" + lang + "');";
+        ;
         if (ScriptManager.GetCurrent(Page) != null)
             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "gt-apply", js, true);
         else
             Page.ClientScript.RegisterStartupScript(Page.GetType(), "gt-apply", js, true);
+    }
+    private void EnsureGoogleEndRequestHook()
+    {
+        const string key = "gt-endrequest-hook";
+        if (Page.ClientScript.IsClientScriptBlockRegistered(key)) return;
+
+        var hook = @"
+        (function(){
+          function getLang(){
+            try{ return sessionStorage.getItem('lh-lang') || 'es'; }catch(e){ return 'es'; }
+          }
+          var prm = window.Sys && Sys.WebForms && Sys.WebForms.PageRequestManager
+                    ? Sys.WebForms.PageRequestManager.getInstance() : null;
+          if(prm){
+            prm.add_endRequest(function(){ 
+              var lang = getLang();
+              if(window.lhApplyGoogleLang) window.lhApplyGoogleLang(lang);
+            });
+          }
+        })();
+        ";
+        if (ScriptManager.GetCurrent(Page) != null)
+            ScriptManager.RegisterClientScriptBlock(Page, Page.GetType(), key, hook, true);
+        else
+            Page.ClientScript.RegisterClientScriptBlock(Page.GetType(), key, hook, true);
     }
 
     protected void ddlLangTop_SelectedIndexChanged(object sender, EventArgs e)
@@ -116,6 +155,12 @@ public partial class Site : MasterPage
     {
         if( CurrentUser != null)
             return CurrentUser.IsInRole("Admin"); 
+        return false;
+    }
+    private bool UsuarioActualTienePermiso(string permiso)
+    {
+        if (CurrentUser != null)
+            return CurrentUser.IsInRole(permiso);
         return false;
     }
     private bool UsuarioActualEsCliente()

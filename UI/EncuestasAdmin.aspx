@@ -29,22 +29,22 @@
 
     <div style="margin-top:8px">
       <div style="display:flex;gap:10px;align-items:center">
-        <label>Título <input id="svTitle" style="width:420px"/></label>
+        <label>Título <input id="svTitle" style="width:420px" maxlength="200" pattern=".{1,200}" title="1 a 200 caracteres"/></label>
         <label><input type="checkbox" id="svActive" checked/> Activa</label>
       </div>
 
       <!-- 5 filas: texto + tipo (1=Sí/No, 2=Rating) -->
-      <div class="row"><input id="txtQ1" placeholder="Pregunta 1 (opcional)"/>
+      <div class="row"><input id="txtQ1" placeholder="Pregunta 1 (opcional)" maxlength="200" pattern=".{0,200}"/>
         <select id="selQ1"><option value="">(tipo)</option><option value="1">Sí/No</option><option value="2">Rating 1..5</option></select></div>
-      <div class="row"><input id="txtQ2" placeholder="Pregunta 2 (opcional)"/>
+      <div class="row"><input id="txtQ2" placeholder="Pregunta 2 (opcional)" maxlength="200" pattern=".{0,200}"/>
         <select id="selQ2"><option value="">(tipo)</option><option value="1">Sí/No</option><option value="2">Rating 1..5</option></select></div>
-      <div class="row"><input id="txtQ3" placeholder="Pregunta 3 (opcional)"/>
+      <div class="row"><input id="txtQ3" placeholder="Pregunta 3 (opcional)" maxlength="200" pattern=".{0,200}"/>
         <select id="selQ3"><option value="">(tipo)</option><option value="1">Sí/No</option><option value="2">Rating 1..5</option></select></div>
-      <div class="row"><input id="txtQ4" placeholder="Pregunta 4 (opcional)"/>
+      <div class="row"><input id="txtQ4" placeholder="Pregunta 4 (opcional)" maxlength="200" pattern=".{0,200}"/>
         <select id="selQ4"><option value="">(tipo)</option><option value="1">Sí/No</option><option value="2">Rating 1..5</option></select></div>
-      <div class="row"><input id="txtQ5" placeholder="Pregunta 5 (opcional)"/>
+      <div class="row"><input id="txtQ5" placeholder="Pregunta 5 (opcional)" maxlength="200" pattern=".{0,200}"/>
         <select id="selQ5"><option value="">(tipo)</option><option value="1">Sí/No</option><option value="2">Rating 1..5</option></select></div>
-         <div class="row"><input id="txtQ7" placeholder="Fecha de vencimiento"/>
+         <div class="row"><input id="txtQ7" placeholder="Fecha de vencimiento" maxlength="200" pattern=".{0,200}"/>
               <input type="datetime-local" id="svExpire" step="60" placeholder="aaaa-mm-dd hh:mm" />
 
       <div style="margin-top:12px;display:flex;gap:8px">

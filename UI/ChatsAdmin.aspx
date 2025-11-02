@@ -27,7 +27,7 @@
       </div>
       <div id="msgs" class="body"></div>
       <div class="send">
-        <input id="txt" placeholder="Responder…" />
+        <input id="txt" placeholder="Responder…" maxlength="2000" pattern=".{0,2000}" />
         <button type="button" id="btnSend">Enviar</button>
       </div>
     </div>

@@ -10,10 +10,13 @@ public partial class AdminFinanzas : Perm_AdminFinanzasPage
     private readonly BLLFinanzasAdmin _bll = new BLLFinanzasAdmin();
     private readonly BLLUsuario _bllUsuario = new BLLUsuario();
 
+
     protected void Page_Load(object sender, EventArgs e)
     {
+    
         if (!IsPostBack)
         {
+            notasdecredito.Visible = false;
             CargarUsuarios();
             if (ddlUser.Items.Count > 0) RefrescarTodo();
         }
@@ -77,22 +80,22 @@ public partial class AdminFinanzas : Perm_AdminFinanzasPage
 
     protected void gvNotas_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        if (e.CommandName == "delNote")
-        {
-            // Con ButtonField, CommandArgument = índice de la fila
-            int rowIndex;
-            if (!int.TryParse(Convert.ToString(e.CommandArgument), out rowIndex)) return;
+        //if (e.CommandName == "delNote")
+        //{
+        //    Con ButtonField, CommandArgument = índice de la fila
+        //    int rowIndex;
+        //    if (!int.TryParse(Convert.ToString(e.CommandArgument), out rowIndex)) return;
 
-            // DataKeys ya poblado por DataKeyNames="Id"
-            int noteId = Convert.ToInt32(gvNotas.DataKeys[rowIndex].Value);
+        //    DataKeys ya poblado por DataKeyNames = "Id"
+        //    int noteId = Convert.ToInt32(gvNotas.DataKeys[rowIndex].Value);
 
-            if (_bll.BorrarNota(noteId))
-                litMsg.Text = "<div class='hint'>Nota borrada.</div>";
-            else
-                litMsg.Text = "<div class='hint'>No se pudo borrar: ya aplicada o sin saldo completo.</div>";
+        //    if (_bll.BorrarNota(noteId))
+        //        litMsg.Text = "<div class='hint'>Nota borrada.</div>";
+        //    else
+        //        litMsg.Text = "<div class='hint'>No se pudo borrar: ya aplicada o sin saldo completo.</div>";
 
-            RefrescarTodo();
-        }
+        //    RefrescarTodo();
+        //}
     }
 
 

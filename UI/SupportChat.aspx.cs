@@ -53,6 +53,14 @@ public partial class SupportChat : ReaderPage
     {
         try
         {
+            if (text.Length >= 201)
+            {
+                return new ApiOk
+                {
+                    ok = false,
+                    error = "El mensaje no puede superar los 200 caracteres."
+                };
+            }
             int uid = CurrentUserId();
             var bll = new BLLChat();
             bll.SendMessage(threadId, uid, false, text);

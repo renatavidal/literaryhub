@@ -35,7 +35,7 @@
     </div>
 
     <!-- Alta de Nota -->
-    <div class="card">
+    <div class="card" id="notasdecredito" runat="server">
       <h3>Nueva Nota</h3>
       <div class="grid2">
         <div class="row">
@@ -74,7 +74,6 @@
           <asp:BoundField DataField="Remaining" HeaderText="Saldo" DataFormatString="{0:0.##}" />
           <asp:BoundField DataField="Reason" HeaderText="Motivo" />
           <asp:BoundField DataField="CreatedUtc" HeaderText="Fecha" DataFormatString="{0:yyyy-MM-dd HH:mm}" />
-          <asp:ButtonField ButtonType="Button" CommandName="delNote" Text="Borrar" />
         </Columns>
       </asp:GridView>
     </div>
@@ -99,13 +98,13 @@
       </div>
       <asp:Button ID="btnAgregarMov" runat="server" Text="Agregar movimiento" CssClass="btn" OnClick="btnAgregarMov_Click" />
 
-      <asp:GridView ID="gvCuenta" runat="server" AutoGenerateColumns="false" CssClass="table" OnRowCommand="gvCuenta_RowCommand" style="margin-top:12px">
+      <asp:GridView ID="gvCuenta" runat="server" AutoGenerateColumns="false" CssClass="table" OnRowCommand="gvCuenta_RowCommand" DataKeyNames="Id" style="margin-top:12px">
         <Columns>
           <asp:BoundField DataField="Id" HeaderText="Id" />
           <asp:BoundField DataField="Amount" HeaderText="Monto" DataFormatString="{0:0.##}" ItemStyle-CssClass="right" />
           <asp:BoundField DataField="Concept" HeaderText="Concepto" />
           <asp:BoundField DataField="CreatedUtc" HeaderText="Fecha" DataFormatString="{0:yyyy-MM-dd HH:mm}" />
-          <asp:ButtonField ButtonType="Button" CommandName="delMov" Text="Borrar" />
+          <asp:ButtonField ButtonType="Button" CommandName="delMov" Text="Borrar" CausesValidation="false" />
         </Columns>
       </asp:GridView>
     </div>

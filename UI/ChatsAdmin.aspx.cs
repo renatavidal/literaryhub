@@ -51,6 +51,14 @@ public partial class ChatsAdmin : Perm_SoporteChatPage
     {
         try
         {
+            if (text.Length >= 201)
+            {
+                return new ApiOk
+                {
+                    ok = false,
+                    error = "El mensaje no puede superar los 200 caracteres."
+                };
+            }
             var _bll = new BLLChat();
             _bll.SendMessage(threadId, CurrentUserId(), true, text);
             return new ApiOk { ok = true };

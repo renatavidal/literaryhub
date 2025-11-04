@@ -29,7 +29,6 @@ public partial class NewsletterAdmin : Perm_AdminNewsletterPage
         try
         {
             var auth = Session["auth"] as UserSession;
-            if (auth == null || !auth.IsInRole("Admin")) { Response.Redirect("~/AccessDenied.aspx"); return; }
 
             string imageUrl = null;
             if (fuImg.HasFile)

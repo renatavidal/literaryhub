@@ -168,6 +168,7 @@
     <asp:Button ID="btnFiltrar" runat="server" CssClass="btn solid" Text="<%$ Resources: Audit_ApplyFilters %>" OnClick="btnFiltrar_Click" />
     <asp:Button ID="btnLimpiar" runat="server" CssClass="btn ghost" Text="<%$ Resources: Audit_ClearFilters %>" OnClick="btnLimpiar_Click" />
     <span class="muted"><%: GetLocalResourceObject("Audit_Records") %> <asp:Label ID="lblTotal" runat="server" Text="0" /></span>
+    <asp:Label ID="lblMsg" runat="server" CssClass="hint" />
   </div>
 
   <asp:GridView ID="gvBitacora" runat="server" CssClass="grid"

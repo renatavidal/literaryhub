@@ -3,7 +3,7 @@ using System.Data;
 using System.Web.UI.WebControls; // <-- por ListItem
 using BLL;
 
-public partial class AdminPermisos : AdminPage
+public partial class AdminPermisos : Perm_AdminPermisos
 {
     private readonly BLLPermissions _bll = new BLLPermissions();
 

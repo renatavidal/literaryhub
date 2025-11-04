@@ -38,6 +38,11 @@ public partial class AdminReports : Perm_VerReportesPage
         DateTime? from = ParseIso(fromUtc);
         DateTime? to = ParseIso(toUtc);
 
+        if (from.HasValue && to.HasValue && from.Value >= to.Value)
+        {
+            throw new Exception("La fecha 'Desde' debe ser anterior a 'Hasta'.");
+        }
+
         var bll = new BLLRevenue();
         var rows = bll.List((granularity ?? "DAY").ToUpperInvariant(), from, to, currency);
 

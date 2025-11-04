@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Cards updated="2025-10-07">
 	<Brand name="VISA">
-		<Pan value="4111111111111111" />
+		<Pan value="111111111111" />
 		<Pan value="4012888888881881" />
 		<Pan value="4222222222222" />
 	</Brand>

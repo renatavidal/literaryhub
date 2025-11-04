@@ -197,8 +197,10 @@
      }
 
      let chY, chM, chW, chD;
-     $id('btnLoadRev').onclick = function () {
-         if (chY) chY.destroy(); if (chM) chM.destroy(); if (chW) chW.destroy(); if (chD) chD.destroy();
+      $id('btnLoadRev').onclick = function () {
+          const f = $id('revFrom').value, t = $id('revTo').value;
+          if (f && t && f >= t) { alert('La fecha Desde debe ser anterior a Hasta.'); return; }
+          if (chY) chY.destroy(); if (chM) chM.destroy(); if (chW) chW.destroy(); if (chD) chD.destroy();
          Promise.all([
              loadRevenue('YEAR', 'Año', 'chYear').then(c => chY = c),
              loadRevenue('MONTH', 'Mes', 'chMonth').then(c => chM = c),

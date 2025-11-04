@@ -51,6 +51,7 @@ public partial class Bitacora : Perm_AdminBitacoraPage
     {
         txtDesde.Text = txtHasta.Text = txtTexto.Text = "";
         ddlUsuario.ClearSelection(); ddlUsuario.Items[0].Selected = true;
+        lblMsg.Text = "";
         Buscar();
     }
     void CargarUsuarios()
@@ -87,12 +88,26 @@ public partial class Bitacora : Perm_AdminBitacoraPage
     void Buscar()
     {
         var _bll = new BLLBitacora();
+        var desde = ParseLocalDateToUtc(txtDesde.Text);
+        var hasta = ParseLocalDateToUtc(txtHasta.Text);
+
+        if (desde.HasValue && hasta.HasValue && desde.Value >= hasta.Value)
+        {
+            lblMsg.Text = "La fecha de inicio debe ser anterior a la fecha de fin.";
+            gvBitacora.DataSource = new object[0];
+            gvBitacora.DataBind();
+            lblTotal.Text = "0";
+            return;
+        }
+
+        lblMsg.Text = "";
+
         var filtro = new BEBitacoraFiltro
         {
             UserId = string.IsNullOrEmpty(ddlUsuario.SelectedValue) ? (int?)null : int.Parse(ddlUsuario.SelectedValue),
             Texto = string.IsNullOrWhiteSpace(txtTexto.Text) ? null : txtTexto.Text.Trim(),
-            DesdeUtc = ParseLocalDateToUtc(txtDesde.Text),
-            HastaUtc = ParseLocalDateToUtc(txtHasta.Text)
+            DesdeUtc = desde,
+            HastaUtc = hasta
         };
 
         var datos = _bll.Buscar(filtro);

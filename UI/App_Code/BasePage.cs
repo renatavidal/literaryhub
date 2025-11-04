@@ -176,3 +176,8 @@ public abstract class Perm_AdminNewsletterPage : VerifiedUserPage
 {
     protected override string[] RequiredRoles { get { return new[] { "Administrar Newsletter" }; } }
 }
+public abstract class Perm_AdminPermisos : VerifiedUserPage
+{
+    protected override string[] RequiredRoles { get { return new[] { "Administrar usuarios" }; } }
+}
+
